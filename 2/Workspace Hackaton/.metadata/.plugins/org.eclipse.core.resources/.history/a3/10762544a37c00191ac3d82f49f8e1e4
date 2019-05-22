@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+ * PopulateDatabase.xml
+ *
+ * Copyright (C) 2019 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	">
+	
+	<!-- User accounts -->
+
+	<bean id="userAccount1" class="security.UserAccount">
+		<property name="username" value="admin" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount2" class="security.UserAccount">
+		<property name="username" value="petowner1" />
+		<property name="password" value="0015c698fa10895de1efcb72bd8d5140" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="PETOWNER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount3" class="security.UserAccount">
+		<property name="username" value="petowner2" />
+		<property name="password" value="c77476f189c700ec604de6001c8086f1" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="PETOWNER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount4" class="security.UserAccount">
+		<property name="username" value="adopter1" />
+		<property name="password" value="6d08d4d1cb2c3eec7cae07cd8b598382" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADOPTER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount5" class="security.UserAccount">
+		<property name="username" value="adopter2" />
+		<property name="password" value="864b9c471763fbdd068b5fa3a4c3f71e" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADOPTER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount6" class="security.UserAccount">
+		<property name="username" value="veterinarian1" />
+		<property name="password" value="180ed327e7513896840b5a279462c071" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="VETERINARIAN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount7" class="security.UserAccount">
+		<property name="username" value="veterinarian2" />
+		<property name="password" value="4b5f2ba011d599d4d89e21cf9805d8eb" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="VETERINARIAN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+		
+	<!-- Other domain beans come here -->	
+	
+	<bean id="customisation1" class="domain.Customisation">
+		  <property name="systemName" value="Acme Shelter" /> 
+		  <property name="bannerUrl" value="https://tinyurl.com/acme-rookies" /> 
+		  <property name="welcomeMessageEng" value="Welcome to Acme Shelter We're pet lovers favourite place!" /> 
+		  <property name="welcomeMessageEsp" value="¡Bienvenidos a Acme Shelter! ¡Somos el mercado de trabajo favorito de los amantes de las mascotas!" /> 
+		  <property name="phoneNumberCode" value="+34" /> 
+		  <property name="finderDuration" value="1" /> 
+		  <property name="resultsNumber" value="10" /> 
+		  <property name="vat" value="21" /> 
+		  <property name="flatRate" value="50" /> 
+  </bean>
+	
+	<bean id="admin" class="domain.Administrator">
+		  <property name="name" value="Administrator" /> 
+		  <property name="surname" value="Admin" /> 
+		  <property name="photo" value="http://www.foto.com" /> 
+		  <property name="email" value="admin@" /> 
+		  <property name="phoneNumber" value="+34 676676676" /> 
+		  <property name="address" value="Address 1" /> 
+		  <property name="userAccount" ref="userAccount1" /> 
+		  <property name="socialProfiles">
+			  <list /> 
+			  </property>
+		  <property name="boxes">
+				<list>
+				 
+				</list>
+		  </property>
+		  <property name="holderName" value="Admin Admin" /> 
+		  <property name="makeName" value="VISA" /> 
+		  <property name="number" value="4083602396731593" /> 
+		  <property name="expirationYear" value="2025" /> 
+		  <property name="expirationMonth" value="5" /> 
+		  <property name="cvv" value="583" /> 
+	</bean>
+	
+	<bean id="petowner1" class="domain.PetOwner">
+		<property name="name" value="Tomás" />
+		<property name="finder" ref="finder1" />
+		<property name="surname" value="Cabello" />
+		<property name="photo" value="http://www.foto.com" />
+		<property name="email" value="petowner1@petowner1.com" />
+		<property name="phoneNumber" value="+34 611111111" />
+		<property name="address" value="Address 2" />
+		<property name="userAccount" ref="userAccount2" />
+		<property name="socialProfiles">
+			<list>
+			</list>
+		</property>
+		<property name="boxes">
+			<list>
+			</list>
+		</property>
+		
+		<property name="holderName" value="Pet Owner Tomás"/>
+		<property name="makeName" value="VISA"/>
+		<property name="number" value="4128837079312553"/>
+		<property name="expirationYear" value="2022"/>
+		<property name="expirationMonth" value="4"/>
+		<property name="cvv" value="188"/>
+	</bean>
+	
+	
+	
+</beans>

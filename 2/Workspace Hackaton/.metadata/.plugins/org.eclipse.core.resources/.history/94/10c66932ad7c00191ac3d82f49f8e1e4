@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+ * PopulateDatabase.xml
+ *
+ * Copyright (C) 2019 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	">
+	
+	<!-- User accounts -->
+
+	<bean id="userAccount1" class="security.UserAccount">
+		<property name="username" value="admin" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount2" class="security.UserAccount">
+		<property name="username" value="petowner1" />
+		<property name="password" value="0015c698fa10895de1efcb72bd8d5140" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="PETOWNER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount3" class="security.UserAccount">
+		<property name="username" value="petowner2" />
+		<property name="password" value="c77476f189c700ec604de6001c8086f1" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="PETOWNER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount4" class="security.UserAccount">
+		<property name="username" value="adopter1" />
+		<property name="password" value="6d08d4d1cb2c3eec7cae07cd8b598382" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADOPTER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount5" class="security.UserAccount">
+		<property name="username" value="adopter2" />
+		<property name="password" value="864b9c471763fbdd068b5fa3a4c3f71e" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADOPTER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount6" class="security.UserAccount">
+		<property name="username" value="veterinarian1" />
+		<property name="password" value="180ed327e7513896840b5a279462c071" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="VETERINARIAN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount7" class="security.UserAccount">
+		<property name="username" value="veterinarian2" />
+		<property name="password" value="4b5f2ba011d599d4d89e21cf9805d8eb" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="VETERINARIAN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+		
+	<!-- Other domain beans come here -->	
+	
+	<bean id="customisation1" class="domain.Customisation">
+		  <property name="systemName" value="Acme Shelter" /> 
+		  <property name="bannerUrl" value="https://tinyurl.com/acme-rookies" /> 
+		  <property name="welcomeMessageEng" value="Welcome to Acme Shelter We're pet lovers favourite place!" /> 
+		  <property name="welcomeMessageEsp" value="¡Bienvenidos a Acme Shelter! ¡Somos el mercado de trabajo favorito de los amantes de las mascotas!" /> 
+		  <property name="phoneNumberCode" value="+34" /> 
+		  <property name="finderDuration" value="1" /> 
+		  <property name="resultsNumber" value="10" /> 
+		  <property name="vat" value="21" /> 
+		  <property name="flatRate" value="50" /> 
+  </bean>
+	
+	<bean id="admin" class="domain.Administrator">
+		  <property name="name" value="Administrator" /> 
+		  <property name="surname" value="Admin" /> 
+		  <property name="photo" value="http://www.foto.com" /> 
+		  <property name="email" value="admin@" /> 
+		  <property name="phoneNumber" value="+34 676676676" /> 
+		  <property name="address" value="Address 1" /> 
+		  <property name="userAccount" ref="userAccount1" /> 
+		  <property name="socialProfiles">
+			  <list /> 
+			  </property>
+		  <property name="boxes">
+				<list>
+				 
+				</list>
+		  </property>
+		  <property name="holderName" value="Admin Admin" /> 
+		  <property name="makeName" value="VISA" /> 
+		  <property name="number" value="4083602396731593" /> 
+		  <property name="expirationYear" value="2025" /> 
+		  <property name="expirationMonth" value="5" /> 
+		  <property name="cvv" value="583" /> 
+	</bean>
+	
+	<bean id="petowner1" class="domain.PetOwner">
+		<property name="name" value="Tomás" />
+		<property name="surname" value="Cabello" />
+		<property name="photo" value="http://www.foto.com" />
+		<property name="email" value="petowner1@petowner1.com" />
+		<property name="phoneNumber" value="+34 611111111" />
+		<property name="address" value="c/Harina, nº10, Bormujos" />
+		<property name="userAccount" ref="userAccount2" />
+		<property name="socialProfiles">
+			<list>
+			</list>
+		</property>
+		<property name="boxes">
+			<list>
+			</list>
+		</property>
+		
+		<property name="holderName" value="Pet Owner Tomás"/>
+		<property name="makeName" value="VISA"/>
+		<property name="number" value="4128837079312553"/>
+		<property name="expirationYear" value="2022"/>
+		<property name="expirationMonth" value="4"/>
+		<property name="cvv" value="188"/>
+	</bean>
+	
+	<bean id="petowner2" class="domain.PetOwner">
+		<property name="name" value="Manuel" />
+		<property name="surname" value="Recio" />
+		<property name="photo" value="http://www.foto.com" />
+		<property name="email" value="petowner2@petowner2.com" />
+		<property name="phoneNumber" value="+34 611111111" />
+		<property name="address" value="c/Este, nº10, Sevilla" />
+		<property name="userAccount" ref="userAccount3" />
+		<property name="socialProfiles">
+			<list>
+			</list>
+		</property>
+		<property name="boxes">
+			<list>
+			</list>
+		</property>
+		
+		<property name="holderName" value="Pet Owner Manuel"/>
+		<property name="makeName" value="VISA"/>
+		<property name="number" value="4128837079312553"/>
+		<property name="expirationYear" value="2022"/>
+		<property name="expirationMonth" value="4"/>
+		<property name="cvv" value="188"/>
+	</bean>
+	
+	<bean id="adopter1" class="domain.Adopter">
+		<property name="name" value="Juan Antonio" />
+		<property name="finder" ref="finder1" />
+		<property name="surname" value="De la Cruz" />
+		<property name="photo" value="http://www.foto.com" />
+		<property name="email" value="adopter1@adopter1.com" />
+		<property name="phoneNumber" value="+34 611111111" />
+		<property name="address" value="c/Trigo, nº10, Los Palacios y Villafranca" />
+		<property name="userAccount" ref="userAccount4" />
+		<property name="socialProfiles">
+			<list>
+			</list>
+		</property>
+		<property name="boxes">
+			<list>
+			</list>
+		</property>
+		
+		<property name="holderName" value="Adopter Juan Antonio"/>
+		<property name="makeName" value="VISA"/>
+		<property name="number" value="4128837079312553"/>
+		<property name="expirationYear" value="2022"/>
+		<property name="expirationMonth" value="4"/>
+		<property name="cvv" value="188"/>
+	</bean>
+	
+	<bean id="adopter2" class="domain.Adopter">
+		<property name="name" value="Alba" />
+		<property name="finder" ref="finder1" />
+		<property name="surname" value="Burdallo" />
+		<property name="photo" value="http://www.foto.com" />
+		<property name="email" value="adopter2@adopter2.com" />
+		<property name="phoneNumber" value="+34 611111111" />
+		<property name="address" value="c/Torre, nº10, Sevilla" />
+		<property name="userAccount" ref="userAccount5" />
+		<property name="socialProfiles">
+			<list>
+			</list>
+		</property>
+		<property name="boxes">
+			<list>
+			</list>
+		</property>
+		
+		<property name="holderName" value="Adopter Alba"/>
+		<property name="makeName" value="VISA"/>
+		<property name="number" value="4128837079312553"/>
+		<property name="expirationYear" value="2022"/>
+		<property name="expirationMonth" value="4"/>
+		<property name="cvv" value="188"/>
+	</bean>
+	
+	<bean id="veterinarian1" class="domain.Veterinarian">
+		<property name="name" value="Antonio" />
+		<property name="surname" value="Picón" />
+		<property name="photo" value="http://www.foto.com" />
+		<property name="email" value="vet1@vet1.com" />
+		<property name="phoneNumber" value="+34 611111111" />
+		<property name="address" value="c/Lactosa, nº10, Jaén" />
+		<property name="userAccount" ref="userAccount6" />
+		<property name="socialProfiles">
+			<list>
+			</list>
+		</property>
+		<property name="boxes">
+			<list>
+			</list>
+		</property>
+		
+		<property name="holderName" value="Veterinarian Antonio"/>
+		<property name="makeName" value="VISA"/>
+		<property name="number" value="4128837079312553"/>
+		<property name="expirationYear" value="2022"/>
+		<property name="expirationMonth" value="4"/>
+		<property name="cvv" value="188"/>
+	</bean>
+	
+	<bean id="veterinarian2" class="domain.Veterinarian">
+		<property name="name" value="José María" />
+		<property name="surname" value="García" />
+		<property name="photo" value="http://www.foto.com" />
+		<property name="email" value="vet2@vet2.com" />
+		<property name="phoneNumber" value="+34 611111111" />
+		<property name="address" value="c/Cervantes, nº10, Jaén" />
+		<property name="userAccount" ref="userAccount7" />
+		<property name="socialProfiles">
+			<list>
+			</list>
+		</property>
+		<property name="boxes">
+			<list>
+			</list>
+		</property>
+		
+		<property name="holderName" value="Veterinarian José María"/>
+		<property name="makeName" value="VISA"/>
+		<property name="number" value="4128837079312553"/>
+		<property name="expirationYear" value="2022"/>
+		<property name="expirationMonth" value="4"/>
+		<property name="cvv" value="188"/>
+	</bean>
+	
+	<!-- Pet -->
+	
+	<bean id="pet1" class="domain.Pet">
+		<property name="name" value="Leia" />
+		<property name="age" value="2" />
+		<property name="sex" value="FEMALE" />
+		<property name="status" value="LOW" />
+		<property name="character" value="Tranquila" />
+		<property name="careRequirements" value="Cepillado una vez a la semana" />
+		<property name="dietRequirements" value="No puede comer hierba. Adora el pescado" />
+		<property name="petsRequirements" value="Se lleva bien con otros animales" />
+		<property name="familyRequirements" value="Es muy sociable" />
+		<property name="address" value="c/Aurora, 60, Los Palacios" />
+		<property name="managementCost" value="1" />
+		<property name="photos">
+			<list>
+				<value>https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Persian_in_Cat_Cafe.jpg/245px-Persian_in_Cat_Cafe.jpg</value>
+			</list>
+		</property>
+		<property name="petType" ref="petType7"/>
+	</bean>
+	
+	<bean id="pet2" class="domain.Pet">
+		<property name="name" value="Garfield" />
+		<property name="status" value="MEDIUM" />
+		<property name="age" value="3" />
+		<property name="sex" value="MALE" />
+		<property name="character" value="Muy cariñoso." />
+		<property name="dietRequirements" value="No puede comer hierba." />
+		<property name="petsRequirements" value="Se lleva bien con otros animales" />
+		<property name="address" value="c/Trigo, 60, Los Palacios" />
+		<property name="managementCost" value="1" />
+		<property name="photos">
+			<list>
+				<value>https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_November_2010-1a.jpg/220px-Cat_November_2010-1a.jpg</value>
+			</list>
+		</property>
+		<property name="petType" ref="petType7"/>
+	</bean>
+	
+	<bean id="pet3" class="domain.Pet">
+		<property name="name" value="Rambo" />
+		<property name="status" value="MEDIUM" />
+		<property name="age" value="4" />
+		<property name="sex" value="MALE" />
+		<property name="character" value="Activo." />
+		<property name="petsRequirements" value="Se lleva bien con otros animales" />
+		<property name="careRequirements" value="Necesita hacer ejercicio una vez al día" />
+		<property name="address" value="c/Harina, 60, Los Palacios" />
+		<property name="managementCost" value="4" />
+		<property name="photos">
+			<list>
+				<value>https://www.petfirst.com/wp-content/uploads/2018/03/Breed-Hero-Doberman-1200x1200.jpg</value>
+			</list>
+		</property>
+		<property name="petType" ref="petType3"/>
+	</bean>
+	
+	<bean id="pet4" class="domain.Pet">
+		<property name="name" value="Luke" />
+		<property name="status" value="LOW" />
+		<property name="age" value="1" />
+		<property name="sex" value="MALE" />
+		<property name="character" value="Cariñoso" />
+		<property name="address" value="c/Harina, 60, Los Palacios" />
+		<property name="dietRequirements" value="Solo puede comer pienso." />
+		<property name="managementCost" value="4" />
+		<property name="photos">
+			<list>
+				<value>https://archive.content.aah.net.au/files/images/puppy-labrador-grass.jpg</value>
+			</list>
+		</property>
+		<property name="histories">
+			<list>
+				<ref bean="history1"/>
+			</list>
+		</property>
+		<property name="petType" ref="petType4"/>
+	</bean>
+	
+	<!-- History -->
+	<bean id="history1" class="domain.History">
+		<property name="startMoment" value="2019-02-16" />
+		<property name="description" value="Nació en el refugio." />
+		<property name="actor"		 value="petowner1" />
+	</bean>
+	
+	<!-- Application -->
+	<bean id="application1" class="domain.Application">
+		<property name="moment" value="2019/02/02 21:00:00" />
+		<property name="status" value="PENDING" />
+		<property name="comment" value="Tengo otros gatitos y una casa grande." />
+		<property name="photos">
+			<list>
+				<value>https://www.pinehallbrick.com/wp-content/uploads/2016/09/casa-grande_white-mortar-bbfarm-1-.jpg</value>
+			</list>
+		</property>
+		<property name="pet" ref="pet1" />
+		<property name="adopter" ref="adopter1" />
+	</bean>
+	
+	<bean id="application2" class="domain.Application">
+		<property name="moment" value="2019/02/02 21:00:00" />
+		<property name="status" value="REJECTED" />
+		<property name="rejectCause" value="No me convence que quieras un animal por un antojo." />
+		<property name="comment" value="Tengo varios perros y no me queda mucho espacio, pero mi hija está antojada de un gatito." />
+		<property name="photos">
+			<list>
+			</list>
+		</property>
+		<property name="pet" ref="pet1" />
+		<property name="adopter" ref="adopter2" />
+	</bean>
+	
+	<!-- PetTypes -->
+	<bean id="petType1" class="domain.PetType">
+		<property name="name" value="PET"/>
+		<property name="nombre" value="PET"/>
+		<property name="childs">
+			<list>
+				<ref bean="petType2"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="petType2" class="domain.PetType">
+		<property name="name" value="DOG"/>
+		<property name="nombre" value="DOG"/>
+		<property name="childs">
+			<list>
+				<ref bean="petType3"/>
+				<ref bean="petType4"/>
+				<ref bean="petType5"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="petType3" class="domain.PetType">
+		<property name="name" value="Unknown"/>
+		<property name="nombre" value="Desconocido"/>
+	</bean>
+	<bean id="petType4" class="domain.PetType">
+		<property name="name" value="Bulldog"/>
+		<property name="nombre" value="Bulldog"/>
+	</bean>
+	<bean id="petType5" class="domain.PetType">
+		<property name="name" value="Bodeguero"/>
+		<property name="nombre" value="Bodeguero"/>
+	</bean>
+	
+	<bean id="petType6" class="domain.PetType">
+		<property name="name" value="CAT"/>
+		<property name="nombre" value="CAT"/>
+		<property name="childs">
+			<list>
+				<ref bean="petType7"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="petType7" class="domain.PetType">
+		<property name="name" value="Unknown"/>
+		<property name="nombre" value="Desconocido"/>
+	</bean>
+	
+	<!-- Curricula -->
+	<bean id="curriculum1" class="domain.Curriculum">
+		<property name="qualifications" value="Licenciado en veterinaria en la Universidad de Sevilla en 2010"/>
+	</bean>
+</beans>

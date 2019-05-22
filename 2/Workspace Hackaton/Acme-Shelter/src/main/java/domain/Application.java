@@ -1,0 +1,106 @@
+
+package domain;
+
+import java.util.Collection;
+import java.util.Date;
+
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.SafeHtml;
+import org.springframework.format.annotation.DateTimeFormat;
+
+@Entity
+@Access(AccessType.PROPERTY)
+public class Application extends DomainEntity {
+
+	private Date				moment;
+	private String				status;
+	private String				comment;
+	private String				rejectCause;
+	private Collection<String>	photos;
+
+
+	@NotNull
+	@Past
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	public Date getMoment() {
+		return this.moment;
+	}
+
+	public void setMoment(final Date moment) {
+		this.moment = moment;
+	}
+
+	@NotBlank
+	@Pattern(regexp = "^" + "PENDING" + "|" + "SUBMITTED" + "|" + "ACCEPTED" + "|" + "REJECTED" + "$")
+	public String getStatus() {
+		return this.status;
+	}
+
+	public void setStatus(final String status) {
+		this.status = status;
+	}
+
+	@SafeHtml
+	public String getComment() {
+		return this.comment;
+	}
+
+	public void setComment(final String comment) {
+		this.comment = comment;
+	}
+
+	@SafeHtml
+	public String getRejectCause() {
+		return this.rejectCause;
+	}
+
+	public void setRejectCause(final String rejectCause) {
+		this.rejectCause = rejectCause;
+	}
+
+	public Collection<String> getPhotos() {
+		return this.photos;
+	}
+
+	public void setPhotos(final Collection<String> photos) {
+		this.photos = photos;
+	}
+
+
+	private Adopter	adopter;
+	private Pet		pet;
+
+
+	@Valid
+	@ManyToOne(optional = false)
+	public Adopter getAdopter() {
+		return this.adopter;
+	}
+
+	public void setAdopter(final Adopter adopter) {
+		this.adopter = adopter;
+	}
+
+	@Valid
+	@ManyToOne(optional = false)
+	public Pet getPet() {
+		return this.pet;
+	}
+
+	public void setPet(final Pet pet) {
+		this.pet = pet;
+	}
+
+}

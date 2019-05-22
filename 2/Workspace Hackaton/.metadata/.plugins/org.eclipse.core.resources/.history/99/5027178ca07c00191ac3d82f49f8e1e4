@@ -1,0 +1,27 @@
+
+package domain;
+
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import javax.validation.Valid;
+
+@Entity
+@Access(AccessType.PROPERTY)
+public class Adopter2 extends Actor {
+
+	private Finder2	finder;
+
+
+	@Valid
+	@OneToOne(optional = false)
+	public Finder2 getFinder() {
+		return this.finder;
+	}
+
+	public void setFinder(final Finder2 finder) {
+		this.finder = finder;
+	}
+
+}

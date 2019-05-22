@@ -1,0 +1,28 @@
+
+package domain;
+
+import java.util.Collection;
+
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+
+@Entity
+@Access(AccessType.PROPERTY)
+public class Veterinarian2 extends Actor {
+
+	private Collection<Curriculum2>	curriculums;
+
+
+	@OneToMany(cascade = CascadeType.ALL)
+	public Collection<Curriculum2> getCurriculums() {
+		return this.curriculums;
+	}
+
+	public void setCurriculums(final Collection<Curriculum2> curriculums) {
+		this.curriculums = curriculums;
+	}
+
+}
