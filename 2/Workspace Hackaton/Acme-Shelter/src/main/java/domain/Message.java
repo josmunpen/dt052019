@@ -1,12 +1,14 @@
 
 package domain;
 
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -15,27 +17,26 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
 public class Message extends DomainEntity {
 
-	private Date	moment;
-	private String	tag;
-	private String	body;
-	private String	subject;
-	private boolean	flagSpam;
-	private boolean	broadcast;
+	private Date				moment;
+	private String				priority;
+	private String				tag;
+	private String				body;
+	private String				subject;
+	private boolean				broadcast;
 
-	private Actor	sender;
-	private Actor	recipient;	//DEBE SER UNA COLLECTION?
+	private Actor				sender;
+	private Collection<Actor>	recipients;	//DEBE SER UNA COLLECTION?
 
 
 	@NotNull
 	@Past
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@Temporal(TemporalType.TIMESTAMP)
 	public Date getMoment() {
 		return this.moment;
@@ -43,7 +44,15 @@ public class Message extends DomainEntity {
 	public void setMoment(final Date moment) {
 		this.moment = moment;
 	}
-	@SafeHtml
+
+	@NotBlank
+	public String getPriority() {
+		return this.priority;
+	}
+	public void setPriority(final String priority) {
+		this.priority = priority;
+	}
+
 	public String getTag() {
 		return this.tag;
 	}
@@ -53,7 +62,6 @@ public class Message extends DomainEntity {
 
 	@NotBlank
 	@Column(columnDefinition = "LONGTEXT")
-	@SafeHtml
 	public String getBody() {
 		return this.body;
 	}
@@ -62,18 +70,11 @@ public class Message extends DomainEntity {
 	}
 
 	@NotBlank
-	@SafeHtml
 	public String getSubject() {
 		return this.subject;
 	}
 	public void setSubject(final String subject) {
 		this.subject = subject;
-	}
-	public boolean getFlagSpam() {
-		return this.flagSpam;
-	}
-	public void setFlagSpam(final boolean flagSpam) {
-		this.flagSpam = flagSpam;
 	}
 
 	public boolean isBroadcast() {
@@ -93,12 +94,12 @@ public class Message extends DomainEntity {
 		this.sender = sender;
 	}
 
-	@ManyToOne
-	public Actor getRecipient() {
-		return this.recipient;
+	@ManyToMany
+	public Collection<Actor> getRecipients() {
+		return this.recipients;
 	}
-	public void setRecipient(final Actor recipient) {
-		this.recipient = recipient;
+	public void setRecipients(final Collection<Actor> recipients) {
+		this.recipients = recipients;
 	}
 	@Override
 	public String toString() {

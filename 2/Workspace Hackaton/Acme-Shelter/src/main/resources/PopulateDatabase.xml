@@ -130,8 +130,12 @@
 			  </property>
 		  <property name="boxes">
 				<list>
-				 
-				</list>
+				<ref bean="in1" />
+				<ref bean="notification1" />
+				<ref bean="out1" />
+				<ref bean="trash1" />
+				<ref bean="spam1" />
+			</list>
 		  </property>
 		  <property name="holderName" value="Admin Admin" /> 
 		  <property name="makeName" value="VISA" /> 
@@ -156,6 +160,11 @@
 		</property>
 		<property name="boxes">
 			<list>
+			<ref bean="in2" />
+				<ref bean="notification2" />
+				<ref bean="out2" />
+				<ref bean="trash2" />
+				<ref bean="spam2" />
 			</list>
 		</property>
 		<property name="description" value="Adoro leer y los gatos!"/>
@@ -183,6 +192,11 @@
 		</property>
 		<property name="boxes">
 			<list>
+			<ref bean="in3" />
+				<ref bean="notification3" />
+				<ref bean="out3" />
+				<ref bean="trash3" />
+				<ref bean="spam3" />
 			</list>
 		</property>
 		
@@ -211,6 +225,11 @@
 		</property>
 		<property name="boxes">
 			<list>
+			<ref bean="in4" />
+				<ref bean="notification4" />
+				<ref bean="out4" />
+				<ref bean="trash4" />
+				<ref bean="spam4" />
 			</list>
 		</property>
 		
@@ -238,6 +257,11 @@
 		</property>
 		<property name="boxes">
 			<list>
+			<ref bean="in5" />
+				<ref bean="notification5" />
+				<ref bean="out5" />
+				<ref bean="trash5" />
+				<ref bean="spam5" />
 			</list>
 		</property>
 		
@@ -265,6 +289,11 @@
 		</property>
 		<property name="boxes">
 			<list>
+			<ref bean="in6" />
+				<ref bean="notification6" />
+				<ref bean="out6" />
+				<ref bean="trash6" />
+				<ref bean="spam6" />
 			</list>
 		</property>
 		<property name="curriculums">
@@ -296,6 +325,11 @@
 		</property>
 		<property name="boxes">
 			<list>
+			<ref bean="in7" />
+				<ref bean="notification7" />
+				<ref bean="out7" />
+				<ref bean="trash7" />
+				<ref bean="spam7" />
 			</list>
 		</property>
 		<property name="curriculums">
@@ -555,5 +589,542 @@
 		<property name="age" value=""/>
 	</bean>
 	
+	<!-- Message Boxes -->
+	
+	<bean id="in1" class="domain.Box">
+
+		<property name="name" value="in box" />
+
+		
+
+		<property name="messages">
+
+			<list>
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="notification1" class="domain.Box">
+
+		<property name="name" value="notification box" />
+
+		
+
+		<property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="out1" class="domain.Box">
+
+		<property name="name" value="out box" />
+
+		
+
+		<property name="messages">
+
+			<list>
+				<ref bean="message1" />
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="trash1" class="domain.Box">
+
+		<property name="name" value="trash box" />
+
+		
+
+		<property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="spam1" class="domain.Box">
+
+		<property name="name" value="spam box" />
+
+		
+
+		<property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="in2" class="domain.Box">
+
+		<property name="name" value="in box" />
+
+		
+
+		<property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="notification2" class="domain.Box">
+
+		<property name="name" value="notification box" />
+
+		
+
+		<property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+
+	</bean>
+
+
+
+	<bean id="out2" class="domain.Box">
+
+		<property name="name" value="out box" />
+
+		
+
+		<property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="trash2" class="domain.Box">
+
+		<property name="name" value="trash box" />
+
+		
+
+		<property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="spam2" class="domain.Box">
+
+		<property name="name" value="spam box" />
+
+		
+
+		<property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="in3" class="domain.Box">
+
+		<property name="name" value="in box" />
+
+		
+
+		<property name="messages">
+
+			<list>
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="notification3" class="domain.Box">
+
+		<property name="name" value="notification box" />
+
+		
+
+		<property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+
+	<bean id="out3" class="domain.Box">
+
+		<property name="name" value="out box" />
+
+		
+
+		<property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="trash3" class="domain.Box">
+
+		<property name="name" value="trash box" />
+
+		
+
+		<property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="spam3" class="domain.Box">
+
+		<property name="name" value="spam box" />
+
+		
+
+		<property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+
+
+	</bean>
+
+	<bean id="in4" class="domain.Box">
+
+		<property name="name" value="in box" />
+
+		
+
+		<property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="notification4" class="domain.Box">
+
+		<property name="name" value="notification box" />
+
+		
+
+		<property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="out4" class="domain.Box">
+
+		<property name="name" value="out box" />
+
+		
+
+		<property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="trash4" class="domain.Box">
+
+		<property name="name" value="trash box" />
+
+		
+
+		<property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="spam4" class="domain.Box">
+
+		<property name="name" value="spam box" />
+
+		
+
+		<property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+
+
+	</bean>
+
+
+	<bean id="in5" class="domain.Box">
+
+		<property name="name" value="in box" />
+
+		
+
+		<property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="notification5" class="domain.Box">
+
+		<property name="name" value="notification box" />
+
+		
+
+		<property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+
+	<bean id="out5" class="domain.Box">
+
+		<property name="name" value="out box" />
+
+		
+
+		<property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="trash5" class="domain.Box">
+
+		<property name="name" value="trash box" />
+
+		
+
+		<property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="spam5" class="domain.Box">
+
+		<property name="name" value="spam box" />
+
+		
+
+		<property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="in6" class="domain.Box">
+
+		<property name="name" value="in box" />
+
+		
+
+		<property name="messages">
+
+			<list>
+				<ref bean="message1" />
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="notification6" class="domain.Box">
+
+		<property name="name" value="notification box" />
+
+		
+
+		<property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="out6" class="domain.Box">
+
+		<property name="name" value="out box" />
+
+		
+
+		<property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="trash6" class="domain.Box">
+
+		<property name="name" value="trash box" />
+
+		
+
+		<property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="spam6" class="domain.Box">
+
+		<property name="name" value="spam box" />
+		<property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="in7" class="domain.Box">
+
+		<property name="name" value="in box" />
+		<property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="notification7" class="domain.Box">
+
+		<property name="name" value="notification box" />
+		<property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+
+	</bean>
+
+	<bean id="out7" class="domain.Box">
+
+		<property name="name" value="out box" />
+
+		<property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+
+	</bean>
+
+	<bean id="trash7" class="domain.Box">
+
+		<property name="name" value="trash box" />
+
+		<property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+
+
+	</bean>
+
+	<bean id="spam7" class="domain.Box">
+
+		<property name="name" value="spam box" />
+		<property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+	</bean>
+
+	<bean id="message1" class="domain.Message">
+		<property name="body" value="Prueba" />
+		<property name="broadcast" value="FALSE" />
+		<property name="moment" value="10/10/2018 00:00:00" />
+		<property name="priority" value="HIGH" />
+		<property name="recipients">
+			<list>
+				<ref bean="veterinarian1" />
+			</list>
+		</property>
+		<property name="sender" ref="admin" />
+		<property name="subject" value="Prueba" />
+		<property name="tag" value="Prueba" />
+	</bean>
 	
 </beans>
