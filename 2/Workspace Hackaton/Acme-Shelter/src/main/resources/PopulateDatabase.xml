@@ -139,6 +139,7 @@
 		  <property name="expirationYear" value="2025" /> 
 		  <property name="expirationMonth" value="5" /> 
 		  <property name="cvv" value="583" /> 
+		  <property name="description" value="Me gustan muchísimo los gatos!" />
 	</bean>
 	
 	<bean id="petowner1" class="domain.PetOwner">
@@ -157,6 +158,7 @@
 			<list>
 			</list>
 		</property>
+		<property name="description" value="Adoro leer y los gatos!"/>
 		
 		<property name="holderName" value="Pet Owner Tomás"/>
 		<property name="makeName" value="VISA"/>
@@ -174,6 +176,7 @@
 		<property name="phoneNumber" value="+34 611111111" />
 		<property name="address" value="c/Este, nº10, Sevilla" />
 		<property name="userAccount" ref="userAccount3" />
+		<property name="description" value="Me encanta realizar ejercicio al aire libre con perros"/>
 		<property name="socialProfiles">
 			<list>
 			</list>
@@ -200,6 +203,8 @@
 		<property name="phoneNumber" value="+34 611111111" />
 		<property name="address" value="c/Trigo, nº10, Los Palacios y Villafranca" />
 		<property name="userAccount" ref="userAccount4" />
+		
+		<property name="description" value="Adoro las iguanas y los coches"/>
 		<property name="socialProfiles">
 			<list>
 			</list>
@@ -226,6 +231,7 @@
 		<property name="phoneNumber" value="+34 611111111" />
 		<property name="address" value="c/Torre, nº10, Sevilla" />
 		<property name="userAccount" ref="userAccount5" />
+		<property name="description" value="Mis hobbies favoritos son la programación y la pintura"/>
 		<property name="socialProfiles">
 			<list>
 			</list>
@@ -251,6 +257,8 @@
 		<property name="phoneNumber" value="+34 611111111" />
 		<property name="address" value="c/Lactosa, nº10, Jaén" />
 		<property name="userAccount" ref="userAccount6" />
+		
+		<property name="description" value="Además de los animales, adoro la música clásica"/>
 		<property name="socialProfiles">
 			<list>
 			</list>
@@ -280,7 +288,8 @@
 		<property name="email" value="vet2@vet2.com" />
 		<property name="phoneNumber" value="+34 611111111" />
 		<property name="address" value="c/Cervantes, nº10, Jaén" />
-		<property name="userAccount" ref="userAccount7" />
+		<property name="userAccount" ref="userAccount7" />		
+		<property name="description" value="Me flipa la repostería y estar con mi familia"/>
 		<property name="socialProfiles">
 			<list>
 			</list>
@@ -323,6 +332,9 @@
 			</list>
 		</property>
 		<property name="petType" ref="petType7"/>
+		<property name="identifier" value="Q1W23"/>
+		<property name="petOwner" ref="petowner1"/>
+		
 	</bean>
 	
 	<bean id="pet2" class="domain.Pet">
@@ -341,6 +353,9 @@
 			</list>
 		</property>
 		<property name="petType" ref="petType7"/>
+		<property name="identifier" value="Q1W22"/>
+
+		<property name="petOwner" ref="petowner1"/>
 	</bean>
 	
 	<bean id="pet3" class="domain.Pet">
@@ -359,6 +374,9 @@
 			</list>
 		</property>
 		<property name="petType" ref="petType3"/>
+		
+		<property name="petOwner" ref="petowner2"/>
+		<property name="identifier" value="Q1W21"/>
 	</bean>
 	
 	<bean id="pet4" class="domain.Pet">
@@ -381,6 +399,9 @@
 			</list>
 		</property>
 		<property name="petType" ref="petType4"/>
+		
+		<property name="petOwner" ref="petowner2"/>
+		<property name="identifier" value="Q1W25"/>
 	</bean>
 	
 	<!-- History -->
@@ -504,6 +525,9 @@
 		<property name="moment" value="2019/02/01 23:00:00"/>
 		<property name="description" value="Gata sana en general"/>
 		<property name="stateOfHealth" value="GOOD"/>
+		<property name="pet" ref="pet1"/>
+		<property name="veterinarian" ref="veterinarian1"/>
+		
 	</bean>
 	
 	<!-- Treatments -->
