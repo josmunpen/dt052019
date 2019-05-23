@@ -219,7 +219,7 @@
 	
 	<bean id="adopter2" class="domain.Adopter">
 		<property name="name" value="Alba" />
-		<property name="finder" ref="finder1" />
+		<property name="finder" ref="finder2" />
 		<property name="surname" value="Burdallo" />
 		<property name="photo" value="http://www.foto.com" />
 		<property name="email" value="adopter2@adopter2.com" />
@@ -310,7 +310,7 @@
 		<property name="age" value="2" />
 		<property name="sex" value="FEMALE" />
 		<property name="status" value="LOW" />
-		<property name="character" value="Tranquila" />
+		<property name="nature" value="Tranquila" />
 		<property name="careRequirements" value="Cepillado una vez a la semana" />
 		<property name="dietRequirements" value="No puede comer hierba. Adora el pescado" />
 		<property name="petsRequirements" value="Se lleva bien con otros animales" />
@@ -330,7 +330,7 @@
 		<property name="status" value="MEDIUM" />
 		<property name="age" value="3" />
 		<property name="sex" value="MALE" />
-		<property name="character" value="Muy cariñoso." />
+		<property name="nature" value="Muy cariñoso." />
 		<property name="dietRequirements" value="No puede comer hierba." />
 		<property name="petsRequirements" value="Se lleva bien con otros animales" />
 		<property name="address" value="c/Trigo, 60, Los Palacios" />
@@ -348,7 +348,7 @@
 		<property name="status" value="MEDIUM" />
 		<property name="age" value="4" />
 		<property name="sex" value="MALE" />
-		<property name="character" value="Activo." />
+		<property name="nature" value="Activo." />
 		<property name="petsRequirements" value="Se lleva bien con otros animales" />
 		<property name="careRequirements" value="Necesita hacer ejercicio una vez al día" />
 		<property name="address" value="c/Harina, 60, Los Palacios" />
@@ -366,7 +366,7 @@
 		<property name="status" value="LOW" />
 		<property name="age" value="1" />
 		<property name="sex" value="MALE" />
-		<property name="character" value="Cariñoso" />
+		<property name="nature" value="Cariñoso" />
 		<property name="address" value="c/Harina, 60, Los Palacios" />
 		<property name="dietRequirements" value="Solo puede comer pienso." />
 		<property name="managementCost" value="4" />
@@ -385,9 +385,9 @@
 	
 	<!-- History -->
 	<bean id="history1" class="domain.History">
-		<property name="startMoment" value="2019-02-16" />
+		<property name="startMoment" value="2019/02/16" />
 		<property name="description" value="Nació en el refugio." />
-		<property name="actor"		 value="petowner1" />
+		<property name="actor"		 ref="petowner1" />
 	</bean>
 	
 	<!-- Application -->
@@ -475,7 +475,7 @@
 	
 	<!-- Tips -->
 	<bean id="tip1" class="domain.Tip">
-		<property name="moment" value="2019-02-02 21:00:00"/>
+		<property name="moment" value="2019/02/02 21:00:00"/>
 		<property name="title" value="Cómo lavar a tu perro"/>
 		<property name="body" value="Para lavar a tu perro se recomienda que sigas los siguientes pasos. 1. Prepara una bañera con agua templada. 2. Añade algo de jabón. 3. Introduce al perro y frota con delicadeza."/>
 		<property name="veterinarian" ref="veterinarian1"/>
@@ -494,23 +494,42 @@
 	
 	<!-- Comments -->
 	<bean id="comment1" class="domain.Comment">
-		<property name="moment" value="2019-02-02 23:00:00"/>
-		<property name="body" value="¡Muy útil!"/>
+		<property name="moment" value="2019/02/02 23:00:00"/>
+		<property name="comment" value="¡Muy útil!"/>
 		<property name="score" value="4"/>
 	</bean>	
 	
 	<!-- Medical Check-ups -->
 	<bean id="checkUp1" class="domain.MedicalCheckUp">
-		<property name="moment" value="2019-02-01 23:00:00"/>
+		<property name="moment" value="2019/02/01 23:00:00"/>
 		<property name="description" value="Gata sana en general"/>
 		<property name="stateOfHealth" value="GOOD"/>
 	</bean>
 	
 	<!-- Treatments -->
 	<bean id="treatment1" class="domain.Treatment">
-		<property name="moment" value="2019-02-01"/>
+		<property name="moment" value="2019/02/01"/>
 		<property name="illness" value="Tiene pulgas"/>
 		<property name="treatment" value="Dos pipetas para pulgas al año"/>
 	</bean>
+	
+	<!-- Finders -->
+	<bean id="finder1" class="domain.Finder">
+		<property name="keyword" value="" />
+		<property name="description" value="" />
+		<property name="type" value="" />
+		<property name="address" value="" />
+		<property name="moment" value="2019/01/01 00:00:00"/>
+		<property name="age" value=""/>
+	</bean>
+	<bean id="finder2" class="domain.Finder">
+		<property name="keyword" value="" />
+		<property name="description" value="" />
+		<property name="type" value="" />
+		<property name="address" value="" />
+		<property name="moment" value="2019/01/01 00:00:00"/>
+		<property name="age" value=""/>
+	</bean>
+	
 	
 </beans>

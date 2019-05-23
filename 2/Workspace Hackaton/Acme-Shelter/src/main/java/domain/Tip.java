@@ -10,8 +10,10 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -61,6 +63,7 @@ public class Tip extends DomainEntity {
 
 	private Collection<PetType>	petTypes;
 	private Collection<Comment>	comments;
+	private Veterinarian		veterinarian;
 
 
 	@ManyToMany
@@ -79,6 +82,16 @@ public class Tip extends DomainEntity {
 
 	public void setComments(final Collection<Comment> comments) {
 		this.comments = comments;
+	}
+
+	@Valid
+	@OneToOne(optional = false)
+	public Veterinarian getVeterinarian() {
+		return this.veterinarian;
+	}
+
+	public void setVeterinarian(final Veterinarian veterinarian) {
+		this.veterinarian = veterinarian;
 	}
 
 }

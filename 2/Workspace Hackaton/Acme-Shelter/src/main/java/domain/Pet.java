@@ -6,6 +6,7 @@ import java.util.Collection;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -25,7 +26,7 @@ public class Pet extends DomainEntity {
 	private String				name;
 	private String				pedigree;
 	private String				status;
-	private String				character;
+	private String				nature;
 	private String				careRequirements;
 	private String				dietRequirements;
 	private String				petsRequirements;
@@ -86,12 +87,12 @@ public class Pet extends DomainEntity {
 	}
 
 	@SafeHtml
-	public String getCharacter() {
-		return this.character;
+	public String getNature() {
+		return this.nature;
 	}
 
-	public void setCharacter(final String character) {
-		this.character = character;
+	public void setNature(final String nature) {
+		this.nature = nature;
 	}
 
 	@SafeHtml
@@ -149,6 +150,7 @@ public class Pet extends DomainEntity {
 		this.managementCost = managementCost;
 	}
 
+	@ElementCollection
 	public Collection<String> getPhotos() {
 		return this.photos;
 	}
