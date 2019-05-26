@@ -130,8 +130,11 @@
 			  </property>
 		  <property name="boxes">
 				<list>
-				 
-				</list>
+				<ref bean="in1" />
+				<ref bean="notification1" />
+				<ref bean="out1" />
+				<ref bean="trash1" />
+			</list>
 		  </property>
 		  <property name="holderName" value="Admin Admin" /> 
 		  <property name="makeName" value="VISA" /> 
@@ -139,6 +142,7 @@
 		  <property name="expirationYear" value="2025" /> 
 		  <property name="expirationMonth" value="5" /> 
 		  <property name="cvv" value="583" /> 
+		  <property name="description" value="Me gustan muchísimo los gatos!" />
 	</bean>
 	
 	<bean id="petowner1" class="domain.PetOwner">
@@ -155,8 +159,13 @@
 		</property>
 		<property name="boxes">
 			<list>
+			<ref bean="in2" />
+				<ref bean="notification2" />
+				<ref bean="out2" />
+				<ref bean="trash2" />
 			</list>
 		</property>
+		<property name="description" value="Adoro leer y los gatos!"/>
 		
 		<property name="holderName" value="Pet Owner Tomás"/>
 		<property name="makeName" value="VISA"/>
@@ -174,12 +183,17 @@
 		<property name="phoneNumber" value="+34 611111111" />
 		<property name="address" value="c/Este, nº10, Sevilla" />
 		<property name="userAccount" ref="userAccount3" />
+		<property name="description" value="Me encanta realizar ejercicio al aire libre con perros"/>
 		<property name="socialProfiles">
 			<list>
 			</list>
 		</property>
 		<property name="boxes">
 			<list>
+			<ref bean="in3" />
+				<ref bean="notification3" />
+				<ref bean="out3" />
+				<ref bean="trash3" />
 			</list>
 		</property>
 		
@@ -200,12 +214,18 @@
 		<property name="phoneNumber" value="+34 611111111" />
 		<property name="address" value="c/Trigo, nº10, Los Palacios y Villafranca" />
 		<property name="userAccount" ref="userAccount4" />
+		
+		<property name="description" value="Adoro las iguanas y los coches"/>
 		<property name="socialProfiles">
 			<list>
 			</list>
 		</property>
 		<property name="boxes">
 			<list>
+			<ref bean="in4" />
+				<ref bean="notification4" />
+				<ref bean="out4" />
+				<ref bean="trash4" />
 			</list>
 		</property>
 		
@@ -219,19 +239,24 @@
 	
 	<bean id="adopter2" class="domain.Adopter">
 		<property name="name" value="Alba" />
-		<property name="finder" ref="finder1" />
+		<property name="finder" ref="finder2" />
 		<property name="surname" value="Burdallo" />
 		<property name="photo" value="http://www.foto.com" />
 		<property name="email" value="adopter2@adopter2.com" />
 		<property name="phoneNumber" value="+34 611111111" />
 		<property name="address" value="c/Torre, nº10, Sevilla" />
 		<property name="userAccount" ref="userAccount5" />
+		<property name="description" value="Mis hobbies favoritos son la programación y la pintura"/>
 		<property name="socialProfiles">
 			<list>
 			</list>
 		</property>
 		<property name="boxes">
 			<list>
+			<ref bean="in5" />
+				<ref bean="notification5" />
+				<ref bean="out5" />
+				<ref bean="trash5" />
 			</list>
 		</property>
 		
@@ -251,12 +276,18 @@
 		<property name="phoneNumber" value="+34 611111111" />
 		<property name="address" value="c/Lactosa, nº10, Jaén" />
 		<property name="userAccount" ref="userAccount6" />
+		
+		<property name="description" value="Además de los animales, adoro la música clásica"/>
 		<property name="socialProfiles">
 			<list>
 			</list>
 		</property>
 		<property name="boxes">
 			<list>
+			<ref bean="in6" />
+				<ref bean="notification6" />
+				<ref bean="out6" />
+				<ref bean="trash6" />
 			</list>
 		</property>
 		<property name="curriculums">
@@ -280,13 +311,18 @@
 		<property name="email" value="vet2@vet2.com" />
 		<property name="phoneNumber" value="+34 611111111" />
 		<property name="address" value="c/Cervantes, nº10, Jaén" />
-		<property name="userAccount" ref="userAccount7" />
+		<property name="userAccount" ref="userAccount7" />		
+		<property name="description" value="Me flipa la repostería y estar con mi familia"/>
 		<property name="socialProfiles">
 			<list>
 			</list>
 		</property>
 		<property name="boxes">
 			<list>
+			<ref bean="in7" />
+				<ref bean="notification7" />
+				<ref bean="out7" />
+				<ref bean="trash7" />
 			</list>
 		</property>
 		<property name="curriculums">
@@ -310,7 +346,7 @@
 		<property name="age" value="2" />
 		<property name="sex" value="FEMALE" />
 		<property name="status" value="LOW" />
-		<property name="character" value="Tranquila" />
+		<property name="nature" value="Tranquila" />
 		<property name="careRequirements" value="Cepillado una vez a la semana" />
 		<property name="dietRequirements" value="No puede comer hierba. Adora el pescado" />
 		<property name="petsRequirements" value="Se lleva bien con otros animales" />
@@ -323,6 +359,9 @@
 			</list>
 		</property>
 		<property name="petType" ref="petType7"/>
+		<property name="identifier" value="Q1W23"/>
+		<property name="petOwner" ref="petowner1"/>
+		
 	</bean>
 	
 	<bean id="pet2" class="domain.Pet">
@@ -330,7 +369,7 @@
 		<property name="status" value="MEDIUM" />
 		<property name="age" value="3" />
 		<property name="sex" value="MALE" />
-		<property name="character" value="Muy cariñoso." />
+		<property name="nature" value="Muy cariñoso." />
 		<property name="dietRequirements" value="No puede comer hierba." />
 		<property name="petsRequirements" value="Se lleva bien con otros animales" />
 		<property name="address" value="c/Trigo, 60, Los Palacios" />
@@ -341,6 +380,9 @@
 			</list>
 		</property>
 		<property name="petType" ref="petType7"/>
+		<property name="identifier" value="Q1W22"/>
+
+		<property name="petOwner" ref="petowner1"/>
 	</bean>
 	
 	<bean id="pet3" class="domain.Pet">
@@ -348,7 +390,7 @@
 		<property name="status" value="MEDIUM" />
 		<property name="age" value="4" />
 		<property name="sex" value="MALE" />
-		<property name="character" value="Activo." />
+		<property name="nature" value="Activo." />
 		<property name="petsRequirements" value="Se lleva bien con otros animales" />
 		<property name="careRequirements" value="Necesita hacer ejercicio una vez al día" />
 		<property name="address" value="c/Harina, 60, Los Palacios" />
@@ -359,6 +401,9 @@
 			</list>
 		</property>
 		<property name="petType" ref="petType3"/>
+		
+		<property name="petOwner" ref="petowner2"/>
+		<property name="identifier" value="Q1W21"/>
 	</bean>
 	
 	<bean id="pet4" class="domain.Pet">
@@ -366,7 +411,7 @@
 		<property name="status" value="LOW" />
 		<property name="age" value="1" />
 		<property name="sex" value="MALE" />
-		<property name="character" value="Cariñoso" />
+		<property name="nature" value="Cariñoso" />
 		<property name="address" value="c/Harina, 60, Los Palacios" />
 		<property name="dietRequirements" value="Solo puede comer pienso." />
 		<property name="managementCost" value="4" />
@@ -381,13 +426,16 @@
 			</list>
 		</property>
 		<property name="petType" ref="petType4"/>
+		
+		<property name="petOwner" ref="petowner2"/>
+		<property name="identifier" value="Q1W25"/>
 	</bean>
 	
 	<!-- History -->
 	<bean id="history1" class="domain.History">
-		<property name="startMoment" value="2019-02-16" />
+		<property name="startMoment" value="2019/02/16" />
 		<property name="description" value="Nació en el refugio." />
-		<property name="actor"		 value="petowner1" />
+		<property name="actor"		 ref="petowner1" />
 	</bean>
 	
 	<!-- Application -->
@@ -475,7 +523,7 @@
 	
 	<!-- Tips -->
 	<bean id="tip1" class="domain.Tip">
-		<property name="moment" value="2019-02-02 21:00:00"/>
+		<property name="moment" value="2019/02/02 21:00:00"/>
 		<property name="title" value="Cómo lavar a tu perro"/>
 		<property name="body" value="Para lavar a tu perro se recomienda que sigas los siguientes pasos. 1. Prepara una bañera con agua templada. 2. Añade algo de jabón. 3. Introduce al perro y frota con delicadeza."/>
 		<property name="veterinarian" ref="veterinarian1"/>
@@ -494,23 +542,494 @@
 	
 	<!-- Comments -->
 	<bean id="comment1" class="domain.Comment">
-		<property name="moment" value="2019-02-02 23:00:00"/>
-		<property name="body" value="¡Muy útil!"/>
+		<property name="moment" value="2019/02/02 23:00:00"/>
+		<property name="comment" value="¡Muy útil!"/>
 		<property name="score" value="4"/>
 	</bean>	
 	
 	<!-- Medical Check-ups -->
 	<bean id="checkUp1" class="domain.MedicalCheckUp">
-		<property name="moment" value="2019-02-01 23:00:00"/>
+		<property name="moment" value="2019/02/01 23:00:00"/>
 		<property name="description" value="Gata sana en general"/>
 		<property name="stateOfHealth" value="GOOD"/>
+		<property name="pet" ref="pet1"/>
+		<property name="veterinarian" ref="veterinarian1"/>
+		
 	</bean>
 	
 	<!-- Treatments -->
 	<bean id="treatment1" class="domain.Treatment">
-		<property name="moment" value="2019-02-01"/>
+		<property name="moment" value="2019/02/01"/>
 		<property name="illness" value="Tiene pulgas"/>
 		<property name="treatment" value="Dos pipetas para pulgas al año"/>
+	</bean>
+	
+	<!-- Finders -->
+	<bean id="finder1" class="domain.Finder">
+		<property name="keyword" value="" />
+		<property name="description" value="" />
+		<property name="type" value="" />
+		<property name="address" value="" />
+		<property name="moment" value="2019/01/01 00:00:00"/>
+		<property name="age" value=""/>
+	</bean>
+	<bean id="finder2" class="domain.Finder">
+		<property name="keyword" value="" />
+		<property name="description" value="" />
+		<property name="type" value="" />
+		<property name="address" value="" />
+		<property name="moment" value="2019/01/01 00:00:00"/>
+		<property name="age" value=""/>
+	</bean>
+	
+	<!-- Message Boxes -->
+	
+	<bean id="in1" class="domain.Box">
+
+		<property name="name" value="in box" />
+
+		
+
+		<property name="predefined" value="true" /> <property name="messages">
+
+			<list>
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="notification1" class="domain.Box">
+
+		<property name="name" value="notification box" />
+
+		
+
+		<property name="predefined" value="true" /> <property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="out1" class="domain.Box">
+
+		<property name="name" value="out box" />
+
+		
+
+		<property name="predefined" value="true" /> <property name="messages">
+
+			<list>
+				<ref bean="message1" />
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="trash1" class="domain.Box">
+
+		<property name="name" value="trash box" />
+
+		
+
+		<property name="predefined" value="true" /> <property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	
+
+	<bean id="in2" class="domain.Box">
+
+		<property name="name" value="in box" />
+
+		
+
+		<property name="predefined" value="true" /> <property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="notification2" class="domain.Box">
+
+		<property name="name" value="notification box" />
+
+		
+
+		<property name="predefined" value="true" /> <property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+
+	</bean>
+
+
+
+	<bean id="out2" class="domain.Box">
+
+		<property name="name" value="out box" />
+
+		
+
+		<property name="predefined" value="true" /> <property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="trash2" class="domain.Box">
+
+		<property name="name" value="trash box" />
+
+		
+
+		<property name="predefined" value="true" /> <property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	
+
+	<bean id="in3" class="domain.Box">
+
+		<property name="name" value="in box" />
+
+		
+
+		<property name="predefined" value="true" /> <property name="messages">
+
+			<list>
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="notification3" class="domain.Box">
+
+		<property name="name" value="notification box" />
+
+		
+
+		<property name="predefined" value="true" /> <property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+
+	<bean id="out3" class="domain.Box">
+
+		<property name="name" value="out box" />
+
+		
+
+		<property name="predefined" value="true" /> <property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="trash3" class="domain.Box">
+
+		<property name="name" value="trash box" />
+
+		
+
+		<property name="predefined" value="true" /> <property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	
+
+	<bean id="in4" class="domain.Box">
+
+		<property name="name" value="in box" />
+
+		
+
+		<property name="predefined" value="true" /> <property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="notification4" class="domain.Box">
+
+		<property name="name" value="notification box" />
+
+		
+
+		<property name="predefined" value="true" /> <property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="out4" class="domain.Box">
+
+		<property name="name" value="out box" />
+
+		
+
+		<property name="predefined" value="true" /> <property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="trash4" class="domain.Box">
+
+		<property name="name" value="trash box" />
+
+		
+
+		<property name="predefined" value="true" /> <property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	
+
+
+	<bean id="in5" class="domain.Box">
+
+		<property name="name" value="in box" />
+
+		
+
+		<property name="predefined" value="true" /> <property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="notification5" class="domain.Box">
+
+		<property name="name" value="notification box" />
+
+		
+
+		<property name="predefined" value="true" /> <property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+
+	<bean id="out5" class="domain.Box">
+
+		<property name="name" value="out box" />
+
+		
+
+		<property name="predefined" value="true" /> <property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="trash5" class="domain.Box">
+
+		<property name="name" value="trash box" />
+
+		
+
+		<property name="predefined" value="true" /> <property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	
+
+	<bean id="in6" class="domain.Box">
+
+		<property name="name" value="in box" />
+
+		
+
+		<property name="predefined" value="true" /> <property name="messages">
+
+			<list>
+				<ref bean="message1" />
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="notification6" class="domain.Box">
+
+		<property name="name" value="notification box" />
+
+		
+
+		<property name="predefined" value="true" /> <property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="out6" class="domain.Box">
+
+		<property name="name" value="out box" />
+
+		
+
+		<property name="predefined" value="true" /> <property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="trash6" class="domain.Box">
+
+		<property name="name" value="trash box" />
+
+		
+
+		<property name="predefined" value="true" /> <property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	
+
+	<bean id="in7" class="domain.Box">
+
+		<property name="name" value="in box" />
+		<property name="predefined" value="true" /> <property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="notification7" class="domain.Box">
+
+		<property name="name" value="notification box" />
+		<property name="predefined" value="true" /> <property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+
+	</bean>
+
+	<bean id="out7" class="domain.Box">
+
+		<property name="name" value="out box" />
+
+		<property name="predefined" value="true" /> <property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+
+	</bean>
+
+	<bean id="trash7" class="domain.Box">
+
+		<property name="name" value="trash box" />
+
+		<property name="predefined" value="true" /> <property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+
+
+	</bean>
+
+	
+
+	<bean id="message1" class="domain.Message">
+		<property name="body" value="Prueba" />
+		<property name="broadcast" value="FALSE" />
+		<property name="moment" value="10/10/2018 00:00:00" />
+		<property name="priority" value="HIGH" />
+		<property name="recipients">
+			<list>
+				<ref bean="veterinarian1" />
+			</list>
+		</property>
+		<property name="sender" ref="admin" />
+		<property name="subject" value="Prueba" />
+		<property name="tag" value="Prueba" />
 	</bean>
 	
 </beans>

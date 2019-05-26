@@ -39,13 +39,25 @@
 		<security:intercept-url pattern="/security/login.do" access="permitAll" /> 
 		<security:intercept-url pattern="/security/loginFailure.do" access="permitAll" /> 
 
+		<!-- ANON -->
+		<security:intercept-url pattern="/adopter/register.do" access="permitAll" /> 		
+		<security:intercept-url pattern="/petowner/register.do" access="permitAll" /> 		
+
+		<!-- ADOPTER -->
+		<security:intercept-url pattern="/adopter/adopter/edit.do" access="hasRole('ADOPTER')" /> 
+		<security:intercept-url pattern="/adopter/adopter/show.do" access="hasRole('ADOPTER')" /> 
+		
+		<!-- PET OWNER -->
+		<security:intercept-url pattern="/petowner/petowner/edit.do" access="hasRole('PETOWNER')" /> 
+		<security:intercept-url pattern="/petowner/petowner/show.do" access="hasRole('PETOWNER')" /> 
+		
+
 		<security:intercept-url pattern="/welcome/index.do" access="permitAll" /> 
 
 		<security:intercept-url pattern="/administrator/action-1.do" access="hasRole('ADMIN')" /> 
 		<security:intercept-url pattern="/administrator/action-2.do" access="hasRole('ADMIN')" /> 
 
-		<security:intercept-url pattern="/customer/action-1.do" access="hasRole('CUSTOMER')" /> 
-		<security:intercept-url pattern="/customer/action-2.do" access="hasRole('CUSTOMER')" /> 
+
 
 		<security:intercept-url pattern="/profile/action-1.do" access="isAuthenticated()" /> 
 		<security:intercept-url pattern="/profile/action-2.do" access="isAuthenticated()" /> 

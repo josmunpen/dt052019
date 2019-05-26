@@ -24,8 +24,11 @@
 		<value>/views/welcome/tiles.xml</value>
 		
 		<value>/views/administrator/tiles.xml</value>
-		<value>/views/customer/tiles.xml</value>
 		<value>/views/profile/tiles.xml</value>
+		<value>/views/adopter/tiles.xml</value>
+		<value>/views/petowner/tiles.xml</value>
+		
+		
 	</util:list>
 
 </beans>
