@@ -1,0 +1,208 @@
+
+package domain;
+
+import java.util.Collection;
+
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.SafeHtml;
+
+@Entity
+@Access(AccessType.PROPERTY)
+public class Pet extends DomainEntity {
+
+	private String				identifier;
+	private Integer				age;
+	private String				name;
+	private String				pedigree;
+	private String				status;
+	private String				nature;
+	private String				careRequirements;
+	private String				dietRequirements;
+	private String				petsRequirements;
+	private String				familyRequirements;
+	private String				address;
+	private int					managementCost;
+	private Collection<String>	photos;
+	private String				sex;
+
+
+	@NotBlank
+	@SafeHtml
+	@Pattern(regexp = "^[a-zA-Z0-9_]{5}$")
+	public String getIdentifier() {
+		return this.identifier;
+	}
+
+	public void setIdentifier(final String identifier) {
+		this.identifier = identifier;
+	}
+
+	public Integer getAge() {
+		return this.age;
+	}
+
+	public void setAge(final Integer age) {
+		this.age = age;
+	}
+
+	@NotBlank
+	@SafeHtml
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(final String name) {
+		this.name = name;
+	}
+
+	@SafeHtml
+	public String getPedigree() {
+		return this.pedigree;
+	}
+
+	public void setPedigree(final String pedigree) {
+		this.pedigree = pedigree;
+	}
+
+	@NotBlank
+	@SafeHtml
+	@Pattern(regexp = "^" + "LOW" + "|" + "MEDIUM" + "|" + "HIGH" + "$")
+	public String getStatus() {
+		return this.status;
+	}
+
+	public void setStatus(final String status) {
+		this.status = status;
+	}
+
+	@SafeHtml
+	public String getNature() {
+		return this.nature;
+	}
+
+	public void setNature(final String nature) {
+		this.nature = nature;
+	}
+
+	@SafeHtml
+	public String getCareRequirements() {
+		return this.careRequirements;
+	}
+
+	public void setCareRequirements(final String careRequirements) {
+		this.careRequirements = careRequirements;
+	}
+
+	@SafeHtml
+	public String getDietRequirements() {
+		return this.dietRequirements;
+	}
+
+	public void setDietRequirements(final String dietRequirements) {
+		this.dietRequirements = dietRequirements;
+	}
+
+	@SafeHtml
+	public String getPetsRequirements() {
+		return this.petsRequirements;
+	}
+
+	public void setPetsRequirements(final String petsRequirements) {
+		this.petsRequirements = petsRequirements;
+	}
+
+	@SafeHtml
+	public String getFamilyRequirements() {
+		return this.familyRequirements;
+	}
+
+	public void setFamilyRequirements(final String familyRequirements) {
+		this.familyRequirements = familyRequirements;
+	}
+
+	@NotBlank
+	@SafeHtml
+	public String getAddress() {
+		return this.address;
+	}
+
+	public void setAddress(final String address) {
+		this.address = address;
+	}
+
+	@NotNull
+	public int getManagementCost() {
+		return this.managementCost;
+	}
+
+	public void setManagementCost(final int managementCost) {
+		this.managementCost = managementCost;
+	}
+
+	@ElementCollection
+	public Collection<String> getPhotos() {
+		return this.photos;
+	}
+
+	public void setPhotos(final Collection<String> photos) {
+		this.photos = photos;
+	}
+
+	@SafeHtml
+	@NotBlank
+	@Pattern(regexp = "^" + "MALE" + "|" + "FEMALE" + "$")
+	public String getSex() {
+		return this.sex;
+	}
+
+	public void setSex(final String sex) {
+		this.sex = sex;
+	}
+
+
+	private PetOwner			petOwner;
+	private PetType				petType;
+	private Collection<History>	histories;
+
+
+	@Valid
+	@ManyToOne(optional = false)
+	public PetOwner getPetOwner() {
+		return this.petOwner;
+	}
+
+	public void setPetOwner(final PetOwner petOwner) {
+		this.petOwner = petOwner;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL)
+	public Collection<History> getHistories() {
+		return this.histories;
+	}
+
+	public void setHistories(final Collection<History> histories) {
+		this.histories = histories;
+	}
+
+	@Valid
+	@ManyToOne(optional = false)
+	public PetType getPetType() {
+		return this.petType;
+	}
+
+	public void setPetType(final PetType petType) {
+		this.petType = petType;
+	}
+
+}
