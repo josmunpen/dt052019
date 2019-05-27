@@ -15,7 +15,13 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<h3>
+<jstl:if test="${language=='en'}" >
+<jstl:out value="${customisation.welcomeMessageEng}"/>
+</jstl:if>
 
-<p><spring:message code="welcome.greeting.prefix" /> ${name}<spring:message code="welcome.greeting.suffix" /></p>
+<jstl:if test="${language=='es'}">
+<jstl:out value="${customisation.welcomeMessageEsp}"/>
+</jstl:if>
+</h3>
 
-<p><spring:message code="welcome.greeting.current.time" /> ${moment}</p> 

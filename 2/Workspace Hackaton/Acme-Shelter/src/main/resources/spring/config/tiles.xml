@@ -29,8 +29,11 @@
 		<value>/views/petowner/tiles.xml</value>
 		<value>/views/history/tiles.xml</value>
 		<value>/views/application/tiles.xml</value>
-		
 		<value>/views/pet/tiles.xml</value>
+		<value>/views/dashboard/tiles.xml</value>
+		<value>/views/search/tiles.xml</value>
+		<value>/views/customisation/tiles.xml</value>
+		<value>/views/finder/tiles.xml</value>
 	</util:list>
 
 </beans>

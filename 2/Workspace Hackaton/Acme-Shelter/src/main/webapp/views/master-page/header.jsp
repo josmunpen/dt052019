@@ -14,7 +14,7 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 
 <div>
-	<a href="#"><img src="images/logo.png" alt="Acme Shelter Co., Inc." /></a>
+	<a href="#"><img src="${customisation.bannerUrl}" alt="${customisation.systemName }" /></a>
 </div>
 
 <div>
@@ -24,17 +24,20 @@
 			<li><a class="fNiv"><spring:message	code="master.page.administrator" /></a>
 				<ul>
 					<li class="arrow"></li>
+					<li><a href="dashboard/administrator/dashboard.do"><spring:message code="master.page.administrator.dashboard" /></a></li>
+					<li><a href="customisation/administrator/edit.do"><spring:message code="master.page.administrator.customisation" /></a></li>					
 				</ul>
 			</li>
 		</security:authorize>
 		
 		<security:authorize access="hasRole('ADOPTER')">
-			<li><a class="fNiv"><spring:message	code="master.page.adopter" /></a>
+		<li><a class="fNiv"><spring:message	code="master.page.adopter" /></a>
 				<ul>
 					<li class="arrow"></li>
+					<li><a href="finder/adopter/show.do"><spring:message code="master.page.adopter.finder" /></a></li>
 					<li><a href="adopter/adopter/edit.do"><spring:message code="master.page.edit.adopter" /></a></li>
 			</ul>
-			</li>
+		</li>
 		</security:authorize>
 		
 		<security:authorize access="hasRole('PETOWNER')">
@@ -47,12 +50,13 @@
 				</ul>
 			</li>
 		</security:authorize>
-		
+		<security:authorize access="permitAll">
+			<li><a class="fNiv" href="search/search.do"><spring:message code="master.page.search" /></a></li>
+		</security:authorize>
 		<security:authorize access="isAnonymous()">
 			<li><a class="fNiv" href="adopter/register.do"><spring:message code="master.page.register.adopter" /></a></li>
 			<li><a class="fNiv" href="petowner/register.do"><spring:message code="master.page.register.petowner" /></a></li>
 			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
-
 		</security:authorize>
 		
 		<security:authorize access="isAuthenticated()">

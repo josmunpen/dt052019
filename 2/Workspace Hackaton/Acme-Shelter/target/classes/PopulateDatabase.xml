@@ -499,8 +499,8 @@
 		</property>
 	</bean>
 	<bean id="petType3" class="domain.PetType">
-		<property name="name" value="Unknown"/>
-		<property name="nombre" value="Desconocido"/>
+		<property name="name" value="Unknown Dog"/>
+		<property name="nombre" value="Perro Desconocido"/>
 	</bean>
 	<bean id="petType4" class="domain.PetType">
 		<property name="name" value="Bulldog"/>
@@ -521,8 +521,8 @@
 		</property>
 	</bean>
 	<bean id="petType7" class="domain.PetType">
-		<property name="name" value="Unknown"/>
-		<property name="nombre" value="Desconocido"/>
+		<property name="name" value="Unknown Cat"/>
+		<property name="nombre" value="Gato Desconocido"/>
 	</bean>
 	
 	<!-- Curricula -->
@@ -579,17 +579,15 @@
 	<!-- Finders -->
 	<bean id="finder1" class="domain.Finder">
 		<property name="keyword" value="" />
-		<property name="description" value="" />
 		<property name="type" value="" />
-		<property name="address" value="" />
+		<property name="sex" value="" />
 		<property name="moment" value="2019/01/01 00:00:00"/>
 		<property name="age" value=""/>
 	</bean>
 	<bean id="finder2" class="domain.Finder">
 		<property name="keyword" value="" />
-		<property name="description" value="" />
+		<property name="sex" value="" />
 		<property name="type" value="" />
-		<property name="address" value="" />
 		<property name="moment" value="2019/01/01 00:00:00"/>
 		<property name="age" value=""/>
 	</bean>

@@ -22,12 +22,21 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Finder extends DomainEntity {
 
 	private String	keyword;
-	private String	description;
 	private String	type;
-	private String	address;
+	private String	sex;
 	private Integer	age;
 	private Date	moment;
 
+
+	@SafeHtml
+	//@Pattern(regexp = "^" + "MALE" + "|" + "FEMALE" + "$")
+	public String getSex() {
+		return this.sex;
+	}
+
+	public void setSex(final String sex) {
+		this.sex = sex;
+	}
 
 	@SafeHtml
 	public String getKeyword() {
@@ -39,30 +48,12 @@ public class Finder extends DomainEntity {
 	}
 
 	@SafeHtml
-	public String getDescription() {
-		return this.description;
-	}
-
-	public void setDescription(final String description) {
-		this.description = description;
-	}
-
-	@SafeHtml
 	public String getType() {
 		return this.type;
 	}
 
 	public void setType(final String type) {
 		this.type = type;
-	}
-
-	@SafeHtml
-	public String getAddress() {
-		return this.address;
-	}
-
-	public void setAddress(final String address) {
-		this.address = address;
 	}
 
 	@Range(min = 0)

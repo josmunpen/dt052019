@@ -1,10 +1,11 @@
 
 package services;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-
+import javax.transaction.Transactional;
 import javax.validation.ValidationException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,11 +15,15 @@ import org.springframework.validation.Validator;
 
 import repositories.PetRepository;
 import security.Authority;
+import security.LoginService;
+import security.UserAccount;
+import domain.Finder;
 import utilities.TickerGenerator;
 import domain.Actor;
 import domain.History;
 import domain.MedicalCheckUp;
 import domain.Pet;
+import domain.PetType;
 import domain.PetOwner;
 
 @Service
@@ -26,10 +31,10 @@ import domain.PetOwner;
 public class PetService {
 
 	@Autowired
-	PetRepository			petRepository;
+	PetRepository	petRepository;
 
 	@Autowired
-	PetTypeService			petTypeService;
+	PetTypeService	petTypeService;
 
 	@Autowired
 	TreatmentService		treatmentService;
@@ -52,10 +57,35 @@ public class PetService {
 	@Autowired
 	Validator				validator;
 
+	private boolean checkAdopter() {
+		final Authority a = new Authority();
+		a.setAuthority(Authority.ADOPTER);
+		final UserAccount user = LoginService.getPrincipal();
+		return user.getAuthorities().contains(a);
+	}
+
+	public Collection<Pet> findAll() {
+		return this.petRepository.findAll();
+	}
+
+	//Search
+	public List<Pet> searchPet(final String keyword) {
+		return this.petRepository.searchPets(keyword);
+	}
+
+	//Finder
+	public Collection<Pet> finderKeyword(final String keyword) {
+		Assert.isTrue(this.checkAdopter());
+		return this.petRepository.finderKeyword(keyword);
+	}
 
 	public List<Pet> findAllByPetOwner(final Integer petOwnerId) {
 		Assert.isTrue(this.petOwnerService.checkPetOwner());
 		return this.petRepository.findByPetOwnerId(petOwnerId);
+	}
+	public Collection<Pet> finderSex(final String sex) {
+		Assert.isTrue(this.checkAdopter());
+		return this.petRepository.finderSex(sex);
 	}
 
 	public Pet findOne(final int petId) {
@@ -65,6 +95,11 @@ public class PetService {
 
 		return p;
 	}
+
+	public Collection<Pet> finderAge(final Integer age) {
+		Assert.isTrue(this.checkAdopter());
+		return this.petRepository.finderAge(age);
+	}
 	private boolean checkPetOwner() {
 		final Actor a = this.actorService.findByPrincipal();
 		final PetOwner p = this.petOwnerService.findOne(a.getId());
@@ -73,6 +108,12 @@ public class PetService {
 		a2.setAuthority(Authority.PETOWNER);
 
 		return p.getUserAccount().getAuthorities().contains(a2);
+	}
+
+	public Collection<Pet> finderType(final String ptname) {
+		Assert.isTrue(this.checkAdopter());
+		final PetType pt = this.petTypeService.findOneName(ptname);
+		return this.petRepository.finderType(pt);
 	}
 
 	public Pet create() {
@@ -112,6 +153,17 @@ public class PetService {
 		if (binding.hasErrors())
 			throw new ValidationException();
 
+	public List<Pet> finderResults(final Finder finder) {
+		Assert.isTrue(this.checkAdopter());
+		final List<Pet> res = new ArrayList<>(this.findAll());
+		if (finder.getKeyword() != null && finder.getKeyword() != "")
+			res.retainAll(this.finderKeyword(finder.getKeyword()));
+		if (finder.getSex() != null && finder.getSex() != "")
+			res.retainAll(this.finderSex(finder.getSex()));
+		if (finder.getType() != null && finder.getType() != "")
+			res.retainAll(this.finderType(finder.getType()));
+		if (finder.getAge() != null)
+			res.retainAll(this.finderAge(finder.getAge()));
 		return res;
 	}
 	public void flush() {
@@ -136,6 +188,5 @@ public class PetService {
 		}
 		this.applicationService.delete(p1);
 		this.petRepository.delete(p1);
-
 	}
 }
