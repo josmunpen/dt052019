@@ -18,7 +18,7 @@ public class TreatmentService {
 
 
 	public void delete(final MedicalCheckUp m) {
-		for (final Treatment t : this.treatmentRepository.findByMedicalCheckUp(m))
+		for (final Treatment t : this.treatmentRepository.findByMedicalCheckUp(m.getId()))
 			this.treatmentRepository.delete(t.getId());
 	}
 }

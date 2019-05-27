@@ -78,12 +78,42 @@
 	<h3 style="color:blue;">
 		<spring:message code="pet.sex" />:
 	</h3>
+	
+	<jstl:if test="${pageContext.response.locale.language=='es'}">
+	<jstl:if test="${pet.sex=='MALE'}">
+	<jstl:out value="Macho"/>
+	</jstl:if>
+	
+	<jstl:if test="${pet.sex=='FEMALE'}">
+	<jstl:out value="Hembra"/>
+	</jstl:if>
+	
+	</jstl:if>
+	
+	<jstl:if test="${pageContext.response.locale.language=='en'}">
 	<jstl:out value="${pet.sex}"></jstl:out>
+	</jstl:if>
 	
 	<h3 style="color:blue;">
 		<spring:message code="pet.status" />:
 	</h3>
+	<jstl:if test="${pageContext.response.locale.language=='es'}">
+	<jstl:if test="${pet.status=='LOW'}">
+	<jstl:out value="Malo"/>
+	</jstl:if>
+	
+	<jstl:if test="${pet.status=='MEDIUM'}">
+	<jstl:out value="Neutro"/>
+	</jstl:if>
+	
+	<jstl:if test="${pet.status=='HIGH'}">
+	<jstl:out value="Bueno"/>
+	</jstl:if>
+	</jstl:if>
+	
+	<jstl:if test="${pageContext.response.locale.language=='en'}">
 	<jstl:out value="${pet.status}"></jstl:out>
+	</jstl:if>
 	
 	<br/>
 	<br/>

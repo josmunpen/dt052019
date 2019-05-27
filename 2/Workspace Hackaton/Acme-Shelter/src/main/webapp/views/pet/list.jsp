@@ -50,9 +50,23 @@
 	<display:column property="sex" titleKey="pet.sex"  />
 	</jstl:if>
 	
+	<jstl:if test="${pageContext.response.locale.language=='es'}">
+	<jstl:if test="${row.status=='LOW'}">
+	<display:column titleKey="pet.status" value="Malo"/>
+	</jstl:if>
+	
+	<jstl:if test="${row.status=='MEDIUM'}">
+	<display:column titleKey="pet.status" value="Neutro"/>
+	</jstl:if>
+	
+	<jstl:if test="${row.status=='HIGH'}">
+	<display:column titleKey="pet.status" value="Bueno"/>
+	</jstl:if>
+	</jstl:if>
+	
+	<jstl:if test="${pageContext.response.locale.language=='en'}">
 	<display:column property="status" titleKey="pet.status"  />
-	
-	
+	</jstl:if>
 	
 	<display:column>
 			<a href="pet/petOwner/show.do?petId=${row.id}">
