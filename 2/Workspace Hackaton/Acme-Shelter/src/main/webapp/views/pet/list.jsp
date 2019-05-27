@@ -69,6 +69,12 @@
 	</jstl:if>
 	
 	<display:column>
+	<a href="history/petowner/list.do?petId=${row.id}">
+		<spring:message code="pet.histories"/>
+	</a>
+	</display:column>
+	
+	<display:column>
 			<a href="pet/petOwner/show.do?petId=${row.id}">
 			<spring:message code="pet.show" />
 			</a>

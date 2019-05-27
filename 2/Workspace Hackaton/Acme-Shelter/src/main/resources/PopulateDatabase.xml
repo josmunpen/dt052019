@@ -361,6 +361,10 @@
 		<property name="petType" ref="petType7"/>
 		<property name="identifier" value="Q1W23"/>
 		<property name="petOwner" ref="petowner1"/>
+		<property name="histories">
+			<list>
+			</list>
+		</property>
 		
 	</bean>
 	
@@ -383,6 +387,10 @@
 		<property name="identifier" value="Q1W22"/>
 
 		<property name="petOwner" ref="petowner1"/>
+		<property name="histories">
+			<list>
+			</list>
+		</property>
 	</bean>
 	
 	<bean id="pet3" class="domain.Pet">
@@ -404,6 +412,10 @@
 		
 		<property name="petOwner" ref="petowner2"/>
 		<property name="identifier" value="Q1W21"/>
+		<property name="histories">
+			<list>
+			</list>
+		</property>
 	</bean>
 	
 	<bean id="pet4" class="domain.Pet">

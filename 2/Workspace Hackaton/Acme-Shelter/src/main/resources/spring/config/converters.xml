@@ -27,10 +27,19 @@
 		<bean class="converters.PetToStringConverter" /> 
 		<bean class="converters.PetOwnerToStringConverter" />
 		<bean class="converters.PetTypeToStringConverter" />
+		<bean class="converters.HistoryToStringConverter" />
+		<bean class="converters.ApplicationToStringConverter" />
+		<bean class="converters.ActorToStringConverter" />
+		<bean class="converters.AdopterToStringConverter" />
 		
 		<bean class="converters.StringToPetConverter" /> 
 		<bean class="converters.StringToPetOwnerConverter" />  
 		<bean class="converters.StringToPetTypeConverter" />
+		<bean class="converters.StringToHistoryConverter" />
+		<bean class="converters.StringToApplicationConverter" />
+		<bean class="converters.StringToActorConverter" />
+		<bean class="converters.StringToAdopterConverter" />
+		
 		
 	</util:list>
 	

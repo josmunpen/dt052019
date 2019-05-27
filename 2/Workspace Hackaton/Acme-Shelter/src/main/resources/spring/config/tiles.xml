@@ -27,7 +27,8 @@
 		<value>/views/profile/tiles.xml</value>
 		<value>/views/adopter/tiles.xml</value>
 		<value>/views/petowner/tiles.xml</value>
-		
+		<value>/views/history/tiles.xml</value>
+		<value>/views/application/tiles.xml</value>
 		
 		<value>/views/pet/tiles.xml</value>
 	</util:list>

@@ -43,7 +43,7 @@
 					<li class="arrow"></li>
 					<li><a href="petowner/petowner/edit.do"><spring:message code="master.page.edit.petOwner" /></a></li>
 					<li><a href="pet/petOwner/list.do"><spring:message code="master.page.petOwner.pets" /></a></li>
-										
+					<li><a href="application/petowner/list.do"><spring:message code="master.page.petowner.application.list" /></a></li>					
 				</ul>
 			</li>
 		</security:authorize>

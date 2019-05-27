@@ -50,6 +50,8 @@
 		<!-- PET OWNER -->
 		<security:intercept-url pattern="/petowner/petowner/edit.do" access="hasRole('PETOWNER')" /> 
 		<security:intercept-url pattern="/petowner/petowner/show.do" access="hasRole('PETOWNER')" /> 
+		<security:intercept-url pattern="/history/petowner/**" access="hasRole('PETOWNER')" />
+		<security:intercept-url pattern="/application/petowner/**" access="hasRole('PETOWNER')" />
 		
 
 		<security:intercept-url pattern="/welcome/index.do" access="permitAll" /> 
