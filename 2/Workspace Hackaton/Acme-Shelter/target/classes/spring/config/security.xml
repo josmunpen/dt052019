@@ -63,6 +63,7 @@
 		<security:intercept-url pattern="/profile/action-2.do" access="isAuthenticated()" /> 
 		<security:intercept-url pattern="/profile/action-3.do" access="isAuthenticated()" /> 
 	
+		<security:intercept-url pattern="/pet/petOwner/**" access="hasRole('PETOWNER')" />
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 
 		<security:form-login 

@@ -30,10 +30,12 @@ import forms.PetOwnerForm;
 public class PetOwnerService {
 
 	@Autowired
-	public PetOwnerRepository	petOwnerRepository;
+	PetOwnerRepository		petOwnerRepository;
 
 	@Autowired
-	public ActorService2		actorService;
+	public ActorService		actorServiceT;
+	@Autowired
+	public ActorService2	actorService;
 
 
 	//TODO: DESCOMENTAR
@@ -263,6 +265,16 @@ public class PetOwnerService {
 
 	public void flush() {
 		this.petOwnerRepository.flush();
+	}
+
+	public boolean checkPetOwner() {
+		final Actor a = this.actorServiceT.findByPrincipal();
+		final PetOwner p = this.petOwnerRepository.findOne(a.getId());
+
+		final Authority a2 = new Authority();
+		a2.setAuthority(Authority.PETOWNER);
+
+		return p.getUserAccount().getAuthorities().contains(a2);
 	}
 
 }

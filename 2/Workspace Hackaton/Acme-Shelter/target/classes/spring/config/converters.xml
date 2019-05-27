@@ -18,8 +18,20 @@
 	">
 
 	<util:list id="converters">
-		<bean class="converters.StringToAuthorityConverter" /> 
+		<!-- 
+			Add your own converters using entries of the following form: 
+			<bean class="converters.Class1ToClass2" /> 
+		-->
+			<bean class="converters.StringToAuthorityConverter" /> 
 		<bean class="converters.AuthorityToStringConverter" /> 
+		<bean class="converters.PetToStringConverter" /> 
+		<bean class="converters.PetOwnerToStringConverter" />
+		<bean class="converters.PetTypeToStringConverter" />
+		
+		<bean class="converters.StringToPetConverter" /> 
+		<bean class="converters.StringToPetOwnerConverter" />  
+		<bean class="converters.StringToPetTypeConverter" />
+		
 	</util:list>
 	
 </beans>

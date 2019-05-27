@@ -29,6 +29,7 @@
 		<value>/views/petowner/tiles.xml</value>
 		
 		
+		<value>/views/pet/tiles.xml</value>
 	</util:list>
 
 </beans>

@@ -26,9 +26,9 @@
 		<value>/views/administrator/messages</value>
 		<value>/views/customer/messages</value>
 		<value>/views/profile/messages</value>
+		<value>/views/pet/messages</value>
 		<value>/views/adopter/messages</value>
 		<value>/views/petowner/messages</value>
-		
 	</util:list>
 
 </beans>
