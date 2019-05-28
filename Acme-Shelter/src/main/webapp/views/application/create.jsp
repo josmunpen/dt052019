@@ -12,7 +12,9 @@
 	<form:form action="application/adopter/create.do" modelAttribute="application">
 		<form:hidden path="id" />
 		<form:hidden path="version" />
-
+		<input type="hidden" name="petId" value="${p.id}"/>
+		<form:hidden path="version" />
+		
 		<h2>
 			<form:label path="comment">
 				<spring:message code="application.comment" />
@@ -35,7 +37,7 @@
 		<br />
 
 		<input type="submit" name="save"
-			value="<spring:message code="application.save" />" />&nbsp;
+			value="<spring:message code="application.save" />" />
 
 		<input type="button" name="cancel"
 			onclick="javascript: window.location.replace('application/adopter/list.do')"

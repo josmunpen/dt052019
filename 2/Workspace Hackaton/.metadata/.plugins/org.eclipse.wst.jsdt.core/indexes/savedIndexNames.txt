@@ -1,5 +1,0 @@
-INDEX VERSION 1.122+C:\Documents and Settings\Student\Desktop\Workspace Hackaton\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-1592953892.index
-2381020903.index
-1891850790.index
-3089465212.index

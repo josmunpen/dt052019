@@ -31,9 +31,6 @@
 			<jstl:if test="${row.status == 'PENDING' }">
 				<spring:message code="application.pending" />
 			</jstl:if>
-			<jstl:if test="${row.status == 'SUBMITTED' }">
-				<spring:message code="application.submitted" />
-			</jstl:if>
 
 		</display:column>
 	</jstl:if>

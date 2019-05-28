@@ -24,11 +24,11 @@
 			</a>
 		</display:column>
 	</security:authorize>
-	
-	<jstl:if test="${showError == true}">
-		<div class="error">
-			<spring:message code="pet.apply.error" />
-		</div>
-	</jstl:if>
 
 </display:table>
+
+<jstl:if test="${showError == true}">
+	<div class="error">
+		<spring:message code="application.apply.error" />
+	</div>
+</jstl:if>

@@ -3,8 +3,6 @@ package controllers;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
@@ -51,8 +49,6 @@ public class ApplicationAdopterController {
 		
 		res.addObject("applications", applications);
 		res.addObject("requestURI", "application/adopter/list.do");
-//		final boolean showError = false;
-//		res.addObject("showError", showError);
 		
 		return res;
 		
@@ -86,45 +82,49 @@ public class ApplicationAdopterController {
 		Pet p = petService.findOne(petId);
 		Adopter a = adopterService.findByUserAccount(LoginService.getPrincipal());
 		
-		Application ap = applicationService.create();
+		Application application = applicationService.create();
 		try {
 			Assert.isTrue(applicationService.checkAdopterPets(petId));
 		} catch (Throwable oops) {
-			res = new ModelAndView("redirect:/pet/list.do");
+			Collection<Pet> pets = petService.findAll();
+			res = new ModelAndView("pet/list");
+			res.addObject("pets", pets);
+			res.addObject("requestURI", "pet/list.do");
+//			res = new ModelAndView("redirect:/pet/list.do");
 			Boolean showError = true;
-//			res = this.createEditModelAndView(ap, "application.apply.error");
 			res.addObject("showError", showError);
 			
 			return res;
 		}
 		
-		ap.setAdopter(a);
-		ap.setPet(p);
-		ap.setStatus("created");
+		application.setAdopter(a);
+		application.setPet(p);
 		
-		res = createEditModelAndView(ap);
-//		applicationService.save(ap);
 		
-//		res = new ModelAndView("application/adopter/create");
-//		res.addObject(ap);
-		
+		res = createEditModelAndView(application);
+		res.addObject(application);
+		res.addObject("p", p);
+				
 		return res;
 	}
 	
 	@RequestMapping(value="/create", method=RequestMethod.POST, params="save")
-	public ModelAndView save(@Valid Application ap, BindingResult binding) {
+	public ModelAndView save(Application application, BindingResult binding, @RequestParam int petId) {
 		ModelAndView res;
-		
+		Adopter a = adopterService.findByUserAccount(LoginService.getPrincipal());
+		Pet p = petService.findOne(petId);
+		application.setAdopter(a);
+		application.setPet(p);
+		application = applicationService.reconstruct(application, binding);
 		if (binding.hasErrors()) {
-			res = this.createEditModelAndView(ap);
+			res = this.createEditModelAndView(application);
 		} else {
 			try {
-//				Assert.isTrue(ap.getPet().getId() == petId);
-				this.applicationService.save(ap);
-				res = new ModelAndView("redirect:application/adopter/list.do");
+				Application apli = this.applicationService.save(application);
+				Assert.isTrue(applicationService.findAppsByAdopter(a).contains(apli));
+				res = new ModelAndView("redirect:list.do");
 			} catch (Throwable oops) {
-				res = createEditModelAndView(ap, "application.commit.error");
-//				res.addObject("commitError", "application.commit.error");
+				res = createEditModelAndView(application, "application.commit.error");
 			}
 		}
 		return res;

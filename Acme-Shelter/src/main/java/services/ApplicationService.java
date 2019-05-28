@@ -1,13 +1,15 @@
 package services;
 
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.ApplicationRepository;
 import security.LoginService;
@@ -29,6 +31,10 @@ public class ApplicationService {
 	@Autowired
 	private AdopterService adopterService;
 	
+	@Autowired
+	private Validator validator;
+	
+	//Methods
 	public Application findOne(int id) {
 		Assert.isTrue(id != 0);
 		return applicationRepository.findOne(id);
@@ -41,16 +47,17 @@ public class ApplicationService {
 	public Application create() {
 		Application a = new Application();
 		a.setStatus("PENDING");
-		a.setRejectCause("");
+//		a.setRejectCause("");
+		Date moment = new Date(System.currentTimeMillis()-1);
+		a.setMoment(moment);
 		return a;
 	}
 	
-	@SuppressWarnings("deprecation")
 	public Application save(Application ap) {
 		ap.setStatus("PENDING");
-		Date moment = new Date();
-		moment.setSeconds(moment.getSeconds()-1);
-		ap.setMoment(moment);
+		final Calendar now = Calendar.getInstance();
+		now.add(Calendar.SECOND, -1);
+		ap.setMoment(now.getTime());
 		
 		Assert.isTrue(checkAdopterPets(ap.getPet().getId()));
 		
@@ -77,5 +84,24 @@ public class ApplicationService {
 		return res;
 	}
 	
+	public Application reconstruct(Application ap, BindingResult binding) {
+		Application res;
+		
+		if (ap.getId()==0) {
+			Date moment = new Date(System.currentTimeMillis()-1);
+			ap.setMoment(moment);
+			ap.setStatus("PENDING");
+			res = ap;
+		} else {
+			res = this.findOne(ap.getId());
+			res.setAdopter(ap.getAdopter());
+			res.setMoment(ap.getMoment());
+			res.setPet(ap.getPet());
+			res.setStatus(ap.getStatus());
+			res.setRejectCause(ap.getRejectCause());
+		}
+		this.validator.validate(res, binding);
+		return res;
+	}
 	
 }
