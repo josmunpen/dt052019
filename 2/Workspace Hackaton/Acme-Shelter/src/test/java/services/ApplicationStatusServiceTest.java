@@ -41,12 +41,15 @@ public class ApplicationStatusServiceTest extends AbstractTest{
 	@Test
 	public void esditStatusGood(){
 		
-		Application a = this.applicationService.findOne(269);
-		
 		super.authenticate("petowner1");
+		
+		int id = super.getEntityId("application1");
+		Application a = this.applicationService.findOne(id);
+		
 		a.setStatus("REJECTED");
 		a.setRejectCause("No me convence");
 		
+		this.applicationService.checkRejectedTest(a);
 		this.applicationService.saveStatus(a);
 		super.unauthenticate();
 	}
@@ -62,13 +65,16 @@ public class ApplicationStatusServiceTest extends AbstractTest{
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void ediStatusBad() {
-
-		Application a = this.applicationService.findOne(269);
 		
 		super.authenticate("petowner1");
+
+		int id = super.getEntityId("application1");
+		Application a = this.applicationService.findOne(id);
+		
 		a.setStatus("REJECTED");
 		a.setRejectCause("");
 		
+		this.applicationService.checkRejectedTest(a);
 		this.applicationService.saveStatus(a);
 		super.unauthenticate();
 	}
