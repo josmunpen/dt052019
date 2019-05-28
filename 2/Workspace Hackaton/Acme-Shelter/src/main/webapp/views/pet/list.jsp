@@ -16,15 +16,19 @@
 
 	<display:column property="identifier" titleKey="pet.identifier"  />
 	<security:authorize access="hasRole('PETOWNER')">
+	<jstl:if test="${Anon!=true }">
 	<display:column property="address" titleKey="pet.address"  />
+	</jstl:if>
 	</security:authorize>
 	<display:column property="age" titleKey="pet.age" />
 	<security:authorize access="hasRole('PETOWNER')">	
+	<jstl:if test="${Anon!=true }">
 	<display:column property="careRequirements" titleKey="pet.care.requirements"  />
 	<display:column property="dietRequirements" titleKey="pet.diet.requirements"  />
 	<display:column property="familyRequirements" titleKey="pet.family.requirements"  />
 	<display:column property="managementCost" titleKey="pet.management.cost"  />
 	<display:column property="petsRequirements" titleKey="pet.requirements"  />
+	</jstl:if>
 	</security:authorize>
 	<display:column property="name" titleKey="pet.name"  />
 	<display:column property="nature" titleKey="pet.nature"  />
@@ -81,6 +85,7 @@
 	</jstl:if>
 	
 	<security:authorize access="hasRole('PETOWNER')">
+	<jstl:if test="${Anon!=true }">
 	<display:column>
 	<a href="history/petowner/list.do?petId=${row.id}">
 		<spring:message code="pet.histories"/>
@@ -99,6 +104,7 @@
 			<spring:message code="pet.edit" />
 			</a>
 	</display:column>
+	</jstl:if>
 </security:authorize>
 <jstl:if test="${Anon==true }">
 <display:column><a href="petowner/show.do?petOwnerId=${row.petOwner.id}">
@@ -117,10 +123,11 @@
 		
 </display:table>
 <security:authorize access="hasRole('PETOWNER')">
+<jstl:if test="${Anon!=true }">
 <a href="pet/petOwner/create.do">
 			<spring:message code="pet.register" />
 			</a>
-			
+</jstl:if>
 </security:authorize><jstl:if test="${showError == true}">
 	<div class="error">
 		<spring:message code="application.apply.error" />
