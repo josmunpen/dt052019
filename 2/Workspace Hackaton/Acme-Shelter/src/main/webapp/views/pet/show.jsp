@@ -9,20 +9,23 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-
+	<security:authorize access="hasRole('PETOWNER')">
 	<h3 style="color:blue;">
 		<spring:message code="pet.address" />:
 	</h3>
 	<jstl:out value="${pet.address}"></jstl:out>
+	</security:authorize>
 	
 	<h3 style="color:blue;">
 		<spring:message code="pet.age" />:
 	</h3>
 	<jstl:out value="${pet.age}"></jstl:out>
 	
+	<security:authorize access="hasRole('PETOWNER')">
 	<h3 style="color:blue;">
 		<spring:message code="pet.care.requirements" />:
 	</h3>
+	
 	<jstl:out value="${pet.careRequirements}"></jstl:out>
 	
 	<h3 style="color:blue;">
@@ -43,6 +46,7 @@
 	<h3 style="color:blue;">
 		<spring:message code="pet.name" />:
 	</h3>
+	</security:authorize>
 	<jstl:out value="${pet.name}"></jstl:out>
 	
 	<h3 style="color:blue;">
@@ -55,10 +59,12 @@
 	</h3>
 	<jstl:out value="${pet.pedigree}"></jstl:out>
 	
+	<security:authorize access="hasRole('PETOWNER')">
 	<h3 style="color:blue;">
 		<spring:message code="pet.requirements" />:
 	</h3>
 	<jstl:out value="${pet.petsRequirements}"></jstl:out>
+	</security:authorize>
 	
 	<h3 style="color:blue;">
 		<spring:message code="pet.type" />:
@@ -73,7 +79,7 @@
 	<h3 style="color:blue;">
 		<spring:message code="pet.photos" />:
 	</h3>
-	<jstl:out value="${pet.photos}"></jstl:out>
+	<img src="${pet.photos}"/>
 	
 	<h3 style="color:blue;">
 		<spring:message code="pet.sex" />:
@@ -117,14 +123,14 @@
 	
 	<br/>
 	<br/>
-	
+	<security:authorize access="hasRole('PETOWNER')">
 	<form:form action="pet/petOwner/edit.do" modelAttribute="pet">
 	<form:hidden path="id"/>
 	<input type="submit" name="delete"
 			value="<spring:message code="pet.delete" />"
 			onclick="return confirm('<spring:message code="pet.confirm.delete" />')" />&nbsp;
 	</form:form>
-	
+	</security:authorize>
 	
 	<input type="button" name="back" onclick="javascript: window.location.replace('pet/petOwner/list.do')"
 		value="<spring:message code="pet.back" />" />

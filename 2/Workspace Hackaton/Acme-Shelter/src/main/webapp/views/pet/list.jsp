@@ -15,16 +15,20 @@
 	name="pets" requestURI="${requestURI}" id="row">
 
 	<display:column property="identifier" titleKey="pet.identifier"  />
+	<security:authorize access="hasRole('PETOWNER')">
 	<display:column property="address" titleKey="pet.address"  />
-	<display:column property="age" titleKey="pet.age" />	
+	</security:authorize>
+	<display:column property="age" titleKey="pet.age" />
+	<security:authorize access="hasRole('PETOWNER')">	
 	<display:column property="careRequirements" titleKey="pet.care.requirements"  />
 	<display:column property="dietRequirements" titleKey="pet.diet.requirements"  />
 	<display:column property="familyRequirements" titleKey="pet.family.requirements"  />
 	<display:column property="managementCost" titleKey="pet.management.cost"  />
+	<display:column property="petsRequirements" titleKey="pet.requirements"  />
+	</security:authorize>
 	<display:column property="name" titleKey="pet.name"  />
 	<display:column property="nature" titleKey="pet.nature"  />
 	<display:column property="pedigree" titleKey="pet.pedigree"  />
-	<display:column property="petsRequirements" titleKey="pet.requirements"  />
 	
 	<jstl:if test="${pageContext.response.locale.language=='es'}">
 	<display:column property="petType.nombre" titleKey="pet.type"  />
@@ -68,6 +72,15 @@
 	<display:column property="status" titleKey="pet.status"  />
 	</jstl:if>
 	
+	<jstl:if test="${Anon==true}">
+	<display:column>
+			<a href="pet/show.do?petId=${row.id}">
+			<spring:message code="pet.show" />
+			</a>
+	</display:column>
+	</jstl:if>
+	
+	<security:authorize access="hasRole('PETOWNER')">
 	<display:column>
 	<a href="history/petowner/list.do?petId=${row.id}">
 		<spring:message code="pet.histories"/>
@@ -86,9 +99,16 @@
 			<spring:message code="pet.edit" />
 			</a>
 	</display:column>
-		
+</security:authorize>
+<jstl:if test="${Anon==true }">
+<display:column><a href="petowner/show.do?petOwnerId=${row.petOwner.id}">
+			<spring:message code="pet.petowner" />
+			</a></display:column>
+</jstl:if>		
 </display:table>
-
+<security:authorize access="hasRole('PETOWNER')">
 <a href="pet/petOwner/create.do">
 			<spring:message code="pet.register" />
 			</a>
+			
+</security:authorize>

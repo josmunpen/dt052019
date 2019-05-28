@@ -22,10 +22,12 @@
 	</h4>
 	<jstl:out value="${petOwner.surname}"></jstl:out>
 	
+	<security:authorize access="hasRole('PETOWNER')">
 	<h4>
 		<spring:message code="petOwner.edit.label.address" />:
 	</h4>
 	<jstl:out value="${petOwner.address}"></jstl:out>
+	</security:authorize>
 	
 	<h4>
 		<spring:message code="petOwner.edit.label.description" />:
@@ -39,17 +41,19 @@
 	</h4>
 	<jstl:out value="${petOwner.email}"></jstl:out>
 	
+	<security:authorize access="hasRole('PETOWNER')">
 	<h4>
 		<spring:message code="petOwner.edit.label.phoneNumber" />:
 	</h4>
 	<jstl:out value="${petOwner.phoneNumber}"></jstl:out>
-
+	</security:authorize>
+	
 	<h4>
 		<spring:message code="petOwner.edit.label.username" />:
 	</h4>
 	<jstl:out value="${petOwner.userAccount.username}"></jstl:out>
 
-
+	<security:authorize access="hasRole('PETOWNER')">
 	<h4>
 		<spring:message code="petOwner.holderName" />:
 	</h4>
@@ -74,6 +78,7 @@
 		<spring:message code="petOwner.expirationMonth" />:
 	</h4>
 	<jstl:out value="${petOwner.expirationMonth}"></jstl:out>
+	</security:authorize>
 	
 	<h4>
 		<spring:message code="petOwner.socialprofile" />:
@@ -86,11 +91,12 @@
 
 
 <br/><br/>
-
+<security:authorize access="hasRole('PETOWNER')">
 	<spring:message code="petOwner.export.explanation" var="exportExplanation"/>
 	<jstl:out value="${exportExplanation}"/>
 	
 	<a href="petowner/petowner/edit.do"> Link </a>
-	
-	
 	<br/>
+	</security:authorize>
+	
+	

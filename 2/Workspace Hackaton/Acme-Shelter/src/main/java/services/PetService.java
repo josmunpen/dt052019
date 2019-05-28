@@ -91,9 +91,8 @@ public class PetService {
 	}
 
 	public Pet findOne(final int petId) {
-		Assert.isTrue(this.checkPetOwner());
+
 		final Pet p = this.petRepository.findOne(petId);
-		Assert.isTrue(p.getPetOwner().getId() == this.actorService.findByPrincipal().getId());
 
 		return p;
 	}
@@ -154,7 +153,6 @@ public class PetService {
 
 		if (binding.hasErrors())
 			throw new ValidationException();
-
 		return res;
 	}
 
@@ -194,4 +192,5 @@ public class PetService {
 		this.applicationService.delete(p1);
 		this.petRepository.delete(p1);
 	}
+
 }
