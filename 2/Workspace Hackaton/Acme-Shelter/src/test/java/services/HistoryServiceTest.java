@@ -31,6 +31,9 @@ public class HistoryServiceTest extends AbstractTest{
 	@Autowired
 	PetService petService;
 	
+	@Autowired
+	ActorService actorService;
+	
 	/**
 	 * // * TESTING REQUIREMENT #11.3 (Manage Histories : create)
 	 * // * POSITIVETEST
@@ -43,16 +46,21 @@ public class HistoryServiceTest extends AbstractTest{
 	public void createHistoryGood() throws ParseException {
 		final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		
-		Pet pet = this.petService.findOne(265);
-		
 		super.authenticate("petowner1");
+		
+		int id = super.getEntityId("pet1");
+		
+		Pet pet = this.petService.findOne(id);
+		
+		
 		History h = this.historyService.create();
 		h.setDescription("History 1");
 		final Date d1 = sdf.parse("12/12/2015");
 		h.setStartMoment(d1);
 		final Date d2 = sdf.parse("12/12/2018");
 		h.setEndMoment(d2);
-		h.setActor(historyService.getThisPetOwner());
+		int id2 = super.getEntityId("petowner1");
+		h.setActor(this.actorService.findOne(id2));
 		
 		
 		this.historyService.save(h, pet);
@@ -72,17 +80,21 @@ public class HistoryServiceTest extends AbstractTest{
 	public void createHistoryBad() throws ParseException {
 		final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		
-		Pet pet = this.petService.findOne(265);
-		
 		super.authenticate("petowner1");
+		
+		
+		int id = super.getEntityId("pet1");
+		Pet pet = this.petService.findOne(id);
+		
+		
 		History h = this.historyService.create();
 		h.setDescription("History 1");
 		final Date d3 = sdf.parse("12/12/2018");
 		h.setStartMoment(d3);
 		final Date d4 = sdf.parse("12/12/2015");
 		h.setEndMoment(d4);
-		h.setActor(historyService.getThisPetOwner());
-		
+		int id2 = super.getEntityId("petowner1");
+		h.setActor(this.actorService.findOne(id2));
 		
 		this.historyService.save(h, pet);
 		super.unauthenticate();
