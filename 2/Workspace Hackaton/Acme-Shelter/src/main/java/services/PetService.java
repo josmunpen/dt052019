@@ -4,11 +4,12 @@ package services;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 import javax.transaction.Transactional;
 import javax.validation.ValidationException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
@@ -17,24 +18,24 @@ import repositories.PetRepository;
 import security.Authority;
 import security.LoginService;
 import security.UserAccount;
-import domain.Finder;
 import utilities.TickerGenerator;
 import domain.Actor;
+import domain.Finder;
 import domain.History;
 import domain.MedicalCheckUp;
 import domain.Pet;
-import domain.PetType;
 import domain.PetOwner;
+import domain.PetType;
 
 @Service
 @Transactional
 public class PetService {
 
 	@Autowired
-	PetRepository	petRepository;
+	PetRepository			petRepository;
 
 	@Autowired
-	PetTypeService	petTypeService;
+	PetTypeService			petTypeService;
 
 	@Autowired
 	TreatmentService		treatmentService;
@@ -56,6 +57,7 @@ public class PetService {
 
 	@Autowired
 	Validator				validator;
+
 
 	private boolean checkAdopter() {
 		final Authority a = new Authority();
@@ -152,6 +154,9 @@ public class PetService {
 
 		if (binding.hasErrors())
 			throw new ValidationException();
+
+		return res;
+	}
 
 	public List<Pet> finderResults(final Finder finder) {
 		Assert.isTrue(this.checkAdopter());

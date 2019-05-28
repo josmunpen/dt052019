@@ -14,9 +14,6 @@
 		<form:hidden path="version"/>
 		<form:hidden path="messages"/>
 		<form:hidden path="predefined"/>
-		<jstl:if test="${messageBox.id == 0 }">		
-		<form:hidden path="descendants" />	
-		</jstl:if>
 		<jstl:if test="${messageBox.predefined == true }">
 			<form:hidden path="name"/>
 		</jstl:if>	
@@ -32,13 +29,6 @@
 		
 
 		
-		<jstl:if test="${messageBox.id != 0 }"> 
-		<spring:message code="messageBox.descendants" />:
-		<form:select multiple="true" id="descendants" path="descendants">
-		    <form:options items="${allBoxes}" itemLabel="name" itemValue="id" />
-		    </form:select>
-		   <br />
-		</jstl:if>
 		
 		<jstl:if test="${messageBox.predefined == true }"></jstl:if>
 		<input type="submit" name = "save" value = "<spring:message code ="messageBox.save" /> " />

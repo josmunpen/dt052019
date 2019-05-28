@@ -70,12 +70,15 @@
 
 		<security:intercept-url pattern="/dashboard/administrator/dashboard.do" access="hasRole('ADMIN')" /> 
 		<security:intercept-url pattern="/customisation/administrator/edit.do" access="hasRole('ADMIN')" /> 
+	<security:intercept-url pattern="/type/administrator/**" access="hasRole('ADMIN')" />
 
 
 		<security:intercept-url pattern="/profile/action-1.do" access="isAuthenticated()" /> 
 		<security:intercept-url pattern="/profile/action-2.do" access="isAuthenticated()" /> 
 		<security:intercept-url pattern="/profile/action-3.do" access="isAuthenticated()" /> 
 		
+		<security:intercept-url pattern="/boxes/**" access="isAuthenticated()" /> 
+		<security:intercept-url pattern="/messages/**" access="isAuthenticated()" /> 
 	
 		<security:intercept-url pattern="/pet/petOwner/**" access="hasRole('PETOWNER')" />
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -81,26 +82,9 @@ public class BoxController extends AbstractController {
 
 		messages = mbox.getMessages();
 
-		final UserAccount actual = LoginService.getPrincipal();
-		final Actor a = this.ar.getActor(actual);
-
-		final Collection<Box> allBoxes = a.getBoxes();
-		//Cojo las cajas del sistema y las elimino
-		final Object[] array = allBoxes.toArray();
-
-		for (int i = 0; i < 5; i++) {
-			final Box x = (Box) array[i];
-			allBoxes.remove(x);
-		}
-
-		allBoxes.remove(mbox);
-
-		//¿Puedo poner una caja del sistema como descendiente? Entiendo que no
-
 		result = new ModelAndView("messageBox/edit");
 		result.addObject("messageBox", mbox);
 		result.addObject("messages", messages);
-		result.addObject("allBoxes", allBoxes);
 		result.addObject("message", messageCode);
 
 		return result;
@@ -114,7 +98,7 @@ public class BoxController extends AbstractController {
 		messageBox = this.mbs.findOne(boxId);
 		try {
 			Assert.notNull(messageBox);
-			//Assert.isTrue(!messageBox.getPredefined(), "You can't edit a predefined box");
+			Assert.isTrue(!messageBox.getPredefined(), "You can't edit a predefined box");
 			final UserAccount actual = LoginService.getPrincipal();
 			final Actor a = this.ar.getActor(actual);
 
@@ -130,16 +114,17 @@ public class BoxController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid final Box messageBox, final BindingResult binding) {
+	public ModelAndView save(@Valid @ModelAttribute("messageBox") final Box messageBox, final BindingResult binding) {
 		ModelAndView result;
 		if (binding.hasErrors())
 			result = this.createEditModelAndView(messageBox);
 		else
 			try {
 				//Compruebo si es una caja del sistema
-				if(messageBox.getId() != 0){
-					Box sysbox = mbs.findOne(messageBox.getId());
-					if(sysbox.getPredefined() == true){
+				if (messageBox.getId() != 0) {
+					final Box sysbox = this.mbs.findOne(messageBox.getId());
+					//Para prevenir GET o POST hacking
+					if (sysbox.getPredefined() == true) {
 						messageBox.setName(sysbox.getName());
 						messageBox.setPredefined(true);
 					}
@@ -156,20 +141,15 @@ public class BoxController extends AbstractController {
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
 	public ModelAndView delete(final Box messageBox, final BindingResult binding) {
 		ModelAndView result;
-		//Comprobacion de descendientes
-		final Box comp = this.mbs.findOne(messageBox.getId());
-		if (comp.getDescendants() != null && !comp.getDescendants().isEmpty())
-			result = this.createEditModelAndView(messageBox, "messageBox.descendants.error");
-		else
-			try {
-				this.as.deleteMessageBox(messageBox);
-				result = new ModelAndView("redirect:list.do");
-			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(messageBox, "messageBox.commit.error");
-			}
+		try {
+			this.as.deleteMessageBox(messageBox);
+			result = new ModelAndView("redirect:list.do");
+		} catch (final Throwable oops) {
+			result = this.createEditModelAndView(messageBox, "messageBox.commit.error");
+		}
 		return result;
 	}
-	
+
 	@RequestMapping(value = "/move", method = RequestMethod.GET)
 	public ModelAndView move(@RequestParam final int messageId) {
 		ModelAndView result;
@@ -193,10 +173,10 @@ public class BoxController extends AbstractController {
 		final Box mb = this.mbs.findOne(messageBoxId);
 		final Message m = this.ms.findOne(messageId);
 
-		try{
+		try {
 			Assert.isTrue(!mb.getMessages().contains(m));
 
-		} catch (Exception e){
+		} catch (final Exception e) {
 			result = new ModelAndView("redirect:move.do");
 			result.addObject("messageId", messageId);
 
@@ -213,4 +193,4 @@ public class BoxController extends AbstractController {
 		return result;
 	}
 
-	}
+}

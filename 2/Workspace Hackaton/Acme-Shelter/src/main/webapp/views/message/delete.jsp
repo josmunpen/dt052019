@@ -13,8 +13,11 @@
 		<form:hidden path="version"/>
 		<form:hidden path="moment"/>
 		<form:hidden path="sender"/>
-		<form:hidden path="recipients"/>
-
+		<spring:message code="mes.recipients" />:
+		<form:select multiple="true" id="recipients" path="recipients">
+		    <form:options items="${recipient}" itemLabel="email" itemValue="id" />
+		    </form:select>
+		   <br />
 		<spring:message code="mes.priority" />:
 		<form:select id="priority" path="priority" disabled="true">
 		<form:options items="${priority}" itemLabel="priority" itemValue="id"/>

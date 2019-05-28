@@ -5,21 +5,20 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import domain.PetType;
+import domain.Message;
 
 @Component
 @Transactional
-public class PetTypeToStringConverter implements Converter<PetType, String> {
+public class MessageToStringConverter implements Converter<Message, String> {
 
 	@Override
-	public String convert(final PetType c) {
+	public String convert(final Message m) {
 		String result;
 
-		if (c == null)
+		if (m == null)
 			result = null;
 		else
-			result = c.getName().toString();
-
+			result = String.valueOf(m.getId());
 		return result;
 	}
 

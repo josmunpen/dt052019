@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -62,8 +63,6 @@ public class MessageController extends AbstractController {
 		result = new ModelAndView("messages/list");
 
 		result.addObject("messages", mes);
-		result.addObject("descendants", this.mbs.findOne(boxId).getDescendants());
-
 		result.addObject("requestURI", "/messages/list.do");
 
 		return result;
@@ -103,7 +102,7 @@ public class MessageController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "send")
-	public ModelAndView send(@Valid final Message message, final BindingResult binding) {
+	public ModelAndView send(@Valid @ModelAttribute("message") final Message message, final BindingResult binding) {
 		ModelAndView result;
 
 		final UserAccount actual = LoginService.getPrincipal();

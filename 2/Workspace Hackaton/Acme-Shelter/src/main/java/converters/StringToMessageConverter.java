@@ -7,20 +7,20 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import repositories.PetTypeRepository;
-import domain.PetType;
+import repositories.MessageRepository;
+import domain.Message;
 
 @Component
 @Transactional
-public class StringToPetTypeConverter implements Converter<String, PetType> {
+public class StringToMessageConverter implements Converter<String, Message> {
 
 	@Autowired
-	PetTypeRepository	cr;
+	MessageRepository	mr;
 
 
 	@Override
-	public PetType convert(final String text) {
-		PetType result;
+	public Message convert(final String text) {
+		Message result;
 		int id;
 
 		try {
@@ -28,7 +28,7 @@ public class StringToPetTypeConverter implements Converter<String, PetType> {
 				result = null;
 			else {
 				id = Integer.valueOf(text);
-				result = this.cr.findOne(id);
+				result = this.mr.findOne(id);
 			}
 		} catch (final Throwable oops) {
 			throw new IllegalArgumentException(oops);

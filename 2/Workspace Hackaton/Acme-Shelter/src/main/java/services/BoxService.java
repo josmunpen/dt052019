@@ -105,6 +105,9 @@ public class BoxService {
 		final UserAccount actual = LoginService.getPrincipal();
 		final Actor a = this.actorRepository.getActor(actual);
 		Assert.notNull(msg);
+		Assert.notNull(msg.getBody());
+		Assert.notNull(msg.getSender());
+		Assert.notNull(msg.getSubject());
 
 		final Message result = this.ms.save(msg);
 

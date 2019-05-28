@@ -81,28 +81,6 @@ public class ActorService {
 	}
 
 	public Box editBox(final Box m) {
-		final UserAccount actual = LoginService.getPrincipal();
-		final Actor a = this.actorRepository.getActor(actual);
-
-		//Compruebo que no se produce ninguna redundancia Padre-Hijo:
-		boolean fine = true;
-		final Collection<Box> desc = m.getDescendants();
-		if (desc != null)
-			for (final Box b : desc) {
-				if (b.getId() == m.getId()) {
-					fine = false;
-					break;
-				}
-				for (final Box b2 : b.getDescendants())
-					if (b2.getId() == m.getId()) {
-						fine = false;
-						break;
-					}
-
-			}
-		Assert.isTrue(fine);
-		//Fin de la comprobación
-
 		final Box result = this.mbs.save(m);
 
 		return result;
@@ -117,10 +95,6 @@ public class ActorService {
 
 		Assert.isTrue(!m.getPredefined());
 		final Collection<Box> actorBoxes = a.getBoxes();
-		for (final Box b : actorBoxes)
-			if (b.getDescendants().contains(m))
-				b.getDescendants().remove(m);
-		a.setBoxes(actorBoxes);
 		actorBoxes.remove(m);
 		a.setBoxes(actorBoxes);
 		this.mbs.delete(m);
@@ -131,7 +105,6 @@ public class ActorService {
 		final Collection<Box> result = new ArrayList<Box>();
 		//Creo las cajas predeterminadas del sistema
 		final Box inbox = new Box();
-		inbox.setDescendants(new ArrayList<Box>());
 		inbox.setMessages(new ArrayList<Message>());
 		inbox.setName("in box");
 		inbox.setPredefined(true);
@@ -139,7 +112,6 @@ public class ActorService {
 		result.add(inbox1);
 
 		final Box notificationbox = new Box();
-		notificationbox.setDescendants(new ArrayList<Box>());
 		notificationbox.setMessages(new ArrayList<Message>());
 		notificationbox.setName("notification box");
 		notificationbox.setPredefined(true);
@@ -147,7 +119,6 @@ public class ActorService {
 		result.add(notificationbox1);
 
 		final Box outbox = new Box();
-		outbox.setDescendants(new ArrayList<Box>());
 		outbox.setMessages(new ArrayList<Message>());
 		outbox.setName("out box");
 		outbox.setPredefined(true);
@@ -155,7 +126,6 @@ public class ActorService {
 		result.add(outbox1);
 
 		final Box trashbox = new Box();
-		trashbox.setDescendants(new ArrayList<Box>());
 		trashbox.setMessages(new ArrayList<Message>());
 		trashbox.setName("trash box");
 		trashbox.setPredefined(true);

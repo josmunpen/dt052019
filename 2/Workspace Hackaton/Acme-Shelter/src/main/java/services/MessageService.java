@@ -51,9 +51,14 @@ public class MessageService {
 		return m;
 	}
 
-	public void deleteMessage(final Message m) {
-		Assert.notNull(m);
-		Assert.isTrue(!(m.getId() == 0));
+	public void deleteMessage(final Message m2) {
+		Assert.notNull(m2);
+		Assert.isTrue(!(m2.getId() == 0));
+		/**
+		 * Para evitar errores relacionados con la conversión de actores entre versiones,
+		 * los recipients del mensaje se obtienen directamente desde la base de datos.
+		 * */
+		final Message m = this.findOne(m2.getId());
 		final UserAccount actual = LoginService.getPrincipal();
 		final Actor actorActual = this.ar.getActor(actual);
 
@@ -105,6 +110,7 @@ public class MessageService {
 						tmessages.add(m);
 						trashDestino.setMessages(tmessages);
 						this.mbs.save(trashDestino);
+						addToTrash = true;
 					}
 				}
 			}

@@ -41,32 +41,7 @@
 	
 	</display:table>
 	
-	<h4><spring:message code="message.table.descendants" /></h4>
-	
-	
-	<display:table pagesize = "5" class="displaytag" name="descendants" requestURI="${requestURI}" id="row">
 
-<spring:message code="messageBox.name" var= "nameHeader" />
-	<display:column property="name" title="${nameHeader}" sortable="false" />
-
-	
-	<display:column>
-	<a href="messages/list.do?boxId=${row.id}">
-	<spring:message code="message.list"/>
-	</a>
-	</display:column>
-	
-	<display:column>
-		<jstl:if test="${row.predefined==false}">
-		<a href="boxes/edit.do?boxId=${row.id}">
-		<spring:message code="messageBox.edit"/>
-		</a>
-		</jstl:if>
-		</display:column>
-	
-
-	
-	</display:table>
 	<br/>
 	
 	<input type="button" name="Back" value="<spring:message code="messageBox.list" />"

@@ -21,14 +21,6 @@
 	</display:column>
 		
 		<display:column>
-		<jstl:if test="${row.predefined==true}">
-		<a href="boxes/edit.do?boxId=${row.id}">
-		<spring:message code="messageBox.editPredefined"/>
-		</a>
-		</jstl:if>
-		</display:column>
-	
-	<display:column>
 		<jstl:if test="${row.predefined==false}">
 		<a href="boxes/edit.do?boxId=${row.id}">
 		<spring:message code="messageBox.edit"/>
