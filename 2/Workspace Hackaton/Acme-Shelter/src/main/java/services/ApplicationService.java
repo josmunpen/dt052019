@@ -1,13 +1,20 @@
 package services;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.ApplicationRepository;
+import security.LoginService;
+import domain.Adopter;
 import domain.Application;
 import domain.Pet;
 
@@ -23,6 +30,12 @@ public class ApplicationService {
 
 	@Autowired
 	private AdopterService adopterService;
+	
+	@Autowired
+	private PetService petService;
+	
+	@Autowired
+	Validator validator;
 
 
 	public void delete(final Pet p) {
@@ -82,7 +95,8 @@ public class ApplicationService {
 	}
 	
 	public Collection<Application> findAppsByAdopter(Adopter a) {
-		return applicationRepository.findAppsByAdopter(a);
+		return ar.findAppsByAdopter(a);
+	}
 
 	public Application checkRejected(Application a) {
 		if(a.getRejectCause().equals(",")) a.setRejectCause("");
