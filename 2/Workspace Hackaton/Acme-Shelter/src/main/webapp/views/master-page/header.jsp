@@ -29,6 +29,7 @@
 					<li><a href="administrator/administrator/create.do"><spring:message code="master.page.register.admin" /></a></li>
 					<li><a href="administrator/administrator/edit.do"><spring:message code="master.page.edit.admin" /></a></li>
 					<li><a href="veterinarian/administrator/create.do"><spring:message code="master.page.register.veterinarian" /></a></li>
+					<li><a href="type/administrator/list.do"><spring:message code="master.page.types.list" /></a></li>
 				</ul>
 			</li>
 		</security:authorize>
@@ -84,6 +85,15 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
+				</ul>
+			</li>
+			<li>
+				<a class="fNiv"> 
+					<spring:message code="master.page.messages.main" /> 
+				</a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="boxes/list.do"><spring:message code="master.page.messages.list" /> </a></li>
 				</ul>
 			</li>
 		</security:authorize>
