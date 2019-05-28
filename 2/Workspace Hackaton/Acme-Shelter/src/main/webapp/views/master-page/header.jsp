@@ -49,6 +49,7 @@
 					<li class="arrow"></li>
 					<li><a href="finder/adopter/show.do"><spring:message code="master.page.adopter.finder" /></a></li>
 					<li><a href="adopter/adopter/edit.do"><spring:message code="master.page.edit.adopter" /></a></li>
+					<li><a href="application/adopter/list.do"><spring:message code="master.page.application.list" /></a></li>
 			</ul>
 		</li>
 		</security:authorize>
@@ -73,6 +74,8 @@
 		</security:authorize>
 		
 		<security:authorize access="isAuthenticated()">
+			<li><a class="fNiv" href="pet/list.do"><spring:message code="master.page.pet.list" /></a></li>
+			<li><a class="fNiv" href="socialprofile/list.do"><spring:message code="master.page.socialprofile.list" /></a></li>
 			<li>
 				<a class="fNiv"> 
 					<spring:message code="master.page.profile" /> 

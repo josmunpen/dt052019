@@ -26,4 +26,18 @@
 		<put-attribute name="body" value="/views/application/edit_status.jsp" />
 	</definition>
 	
+	<definition name="application/adopter/list" extends="master.page">
+		<put-attribute name="title" value="Mis aplicaciones" />
+		<put-attribute name="body" value="/views/application/list.jsp" />
+	</definition>
+	
+	<definition name="application/adopter/show" extends="master.page">
+		<put-attribute name="title" value="Ver aplicación" />
+		<put-attribute name="body" value="/views/application/show.jsp" />
+	</definition>
+	
+	<definition name="application/adopter/create" extends="master.page">
+		<put-attribute name="title" value="Aplicar" />
+		<put-attribute name="body" value="/views/application/create.jsp" />
+	</definition>
 </tiles-definitions>

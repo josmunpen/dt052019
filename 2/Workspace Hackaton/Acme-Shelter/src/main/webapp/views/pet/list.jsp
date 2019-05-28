@@ -105,10 +105,24 @@
 			<spring:message code="pet.petowner" />
 			</a></display:column>
 </jstl:if>		
+
+<security:authorize access="hasRole('ADOPTER')">
+		<display:column>
+			<a href="application/adopter/create.do?petId=${row.id}"> <spring:message
+					code="pet.apply" />
+			</a>
+		</display:column>
+	</security:authorize>
+
+		
 </display:table>
 <security:authorize access="hasRole('PETOWNER')">
 <a href="pet/petOwner/create.do">
 			<spring:message code="pet.register" />
 			</a>
 			
-</security:authorize>
+</security:authorize><jstl:if test="${showError == true}">
+	<div class="error">
+		<spring:message code="application.apply.error" />
+	</div>
+</jstl:if>

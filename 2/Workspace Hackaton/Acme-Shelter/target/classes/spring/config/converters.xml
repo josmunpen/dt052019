@@ -24,6 +24,8 @@
 		-->
 			<bean class="converters.StringToAuthorityConverter" /> 
 		<bean class="converters.AuthorityToStringConverter" /> 
+		<bean class="converters.SocialProfileToStringConverter" />
+		<bean class="converters.StringToSocialProfileConverter" /> 
 		<bean class="converters.PetToStringConverter" /> 
 		<bean class="converters.PetOwnerToStringConverter" />
 		<bean class="converters.PetTypeToStringConverter" />

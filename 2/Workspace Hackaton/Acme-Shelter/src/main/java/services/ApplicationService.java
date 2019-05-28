@@ -1,4 +1,3 @@
-
 package services;
 
 import java.util.ArrayList;
@@ -22,6 +21,9 @@ public class ApplicationService {
 	@Autowired
 	private HistoryService hs;
 
+	@Autowired
+	private AdopterService adopterService;
+
 
 	public void delete(final Pet p) {
 		for (final Application a : this.ar.findByPet(p.getId()))
@@ -37,8 +39,16 @@ public class ApplicationService {
 		return ar.findAll();
 	}
 	
-	public Application save(Application application){
-		return ar.save(application);
+	public Application save(Application ap) {
+		ap.setStatus("PENDING");
+		final Calendar now = Calendar.getInstance();
+		now.add(Calendar.SECOND, -1);
+		ap.setMoment(now.getTime());
+		
+		Assert.isTrue(checkAdopterPets(ap.getPet().getId()));
+		
+		Application res = ar.save(ap);
+		return res;
 	}
 	
 	public Collection<Application> myApplicationList(){
@@ -56,6 +66,14 @@ public class ApplicationService {
 		return applications;
 	}
 	
+	public Application create() {
+		Application a = new Application();
+		a.setStatus("PENDING");
+//		a.setRejectCause("");
+		Date moment = new Date(System.currentTimeMillis()-1);
+		a.setMoment(moment);
+		return a;
+	}
 	
 	public Application saveStatus(Application application){
 		Application a = checkRejected(application);
@@ -63,6 +81,8 @@ public class ApplicationService {
 		return ar.save(a);
 	}
 	
+	public Collection<Application> findAppsByAdopter(Adopter a) {
+		return applicationRepository.findAppsByAdopter(a);
 
 	public Application checkRejected(Application a) {
 		if(a.getRejectCause().equals(",")) a.setRejectCause("");
@@ -74,6 +94,21 @@ public class ApplicationService {
 			a.setRejectCause("");
 		}
 		return a;
+	}
+
+	public Boolean checkAdopterPets(int petId) {
+		Boolean res = true;
+		Pet p = petService.findOne(petId);
+		Adopter a = adopterService.findByUserAccount(LoginService.getPrincipal());
+		Collection<Application> appsByAdopter = this.findAppsByAdopter(a);
+		
+		for (Application app : appsByAdopter) {
+			if (app.getPet().equals(p) && !app.getStatus().equals("REJECTED")) {
+				res = false;
+				return res;
+			}
+		}
+		return res;
 	}
 	
 	public Application checkRejectedTest(Application a) {
@@ -96,6 +131,24 @@ public class ApplicationService {
 		return res;
 	}
 	
-	
+	public Application reconstruct(Application ap, BindingResult binding) {
+		Application res;
+		
+		if (ap.getId()==0) {
+			Date moment = new Date(System.currentTimeMillis()-1);
+			ap.setMoment(moment);
+			ap.setStatus("PENDING");
+			res = ap;
+		} else {
+			res = this.findOne(ap.getId());
+			res.setAdopter(ap.getAdopter());
+			res.setMoment(ap.getMoment());
+			res.setPet(ap.getPet());
+			res.setStatus(ap.getStatus());
+			res.setRejectCause(ap.getRejectCause());
+		}
+		this.validator.validate(res, binding);
+		return res;
+	}
 
 }

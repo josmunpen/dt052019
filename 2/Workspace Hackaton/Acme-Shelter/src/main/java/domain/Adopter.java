@@ -15,7 +15,7 @@ public class Adopter extends Actor {
 
 
 	@Valid
-	@OneToOne(optional = true)
+	@OneToOne(optional = false)
 	public Finder getFinder() {
 		return this.finder;
 	}

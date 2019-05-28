@@ -74,6 +74,22 @@
 			username-parameter="username"
 			authentication-failure-url="/security/loginFailure.do" />
 
+		<security:intercept-url pattern="/application/adopter/list.do"
+			access="hasRole('ADOPTER')" />
+		<security:intercept-url pattern="/application/adopter/show.do"
+			access="hasRole('ADOPTER')" />
+		<security:intercept-url pattern="/application/adopter/create.do"
+			access="hasRole('ADOPTER')" />
+
+		<security:intercept-url pattern="/socialprofile/list.do"
+			access="isAuthenticated()" />
+		<security:intercept-url pattern="/socialprofile/edit.do"
+			access="isAuthenticated()" />
+		<security:intercept-url pattern="/socialprofile/display.do"
+			access="isAuthenticated()" />
+		<security:intercept-url pattern="/socialprofile/create.do"
+			access="isAuthenticated()" />
+
 		<security:logout 
 			logout-success-url="/" 
 			invalidate-session="true" />

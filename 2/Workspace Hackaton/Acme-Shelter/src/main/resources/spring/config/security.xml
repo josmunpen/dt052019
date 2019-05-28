@@ -41,10 +41,10 @@
 
 		<!-- ANON -->
 		<security:intercept-url pattern="/adopter/register.do" access="permitAll" /> 		
-		<security:intercept-url pattern="/petowner/register.do" access="permitAll" />
 		<security:intercept-url pattern="/pet/list.do" access="permitAll" /> 	
 		<security:intercept-url pattern="/petowner/show.do" access="permitAll" /> 	 		
 		<security:intercept-url pattern="/pet/show.do" access="permitAll" />
+		<security:intercept-url pattern="/petowner/register.do" access="permitAll" /> 		
 
 		<!-- ADOPTER -->
 		<security:intercept-url pattern="/adopter/adopter/edit.do" access="hasRole('ADOPTER')" /> 
@@ -67,7 +67,21 @@
 		<security:intercept-url pattern="/veterinarian/veterinarian/edit.do" access="hasRole('VETERINARIAN')" /> 
 		<security:intercept-url pattern="/veterinarian/veterinarian/show.do" access="hasRole('VETERINARIAN')" /> 
 		
-	
+		<security:intercept-url pattern="/application/adopter/list.do"
+			access="hasRole('ADOPTER')" />
+		<security:intercept-url pattern="/application/adopter/show.do"
+			access="hasRole('ADOPTER')" />
+		<security:intercept-url pattern="/application/adopter/create.do"
+			access="hasRole('ADOPTER')" />
+
+		<security:intercept-url pattern="/socialprofile/list.do"
+			access="isAuthenticated()" />
+		<security:intercept-url pattern="/socialprofile/edit.do"
+			access="isAuthenticated()" />
+		<security:intercept-url pattern="/socialprofile/display.do"
+			access="isAuthenticated()" />
+		<security:intercept-url pattern="/socialprofile/create.do"
+			access="isAuthenticated()" />
 
 		<security:intercept-url pattern="/welcome/index.do" access="permitAll" /> 
 
