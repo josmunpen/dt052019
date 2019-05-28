@@ -3,6 +3,7 @@ package controllers;
 import java.util.Collection;
 
 import javax.validation.Valid;
+import javax.validation.ValidationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,7 @@ import services.PetService;
 
 @Controller
 @RequestMapping("/history/petowner")
-public class HistoryController {
+public class HistoryController extends AbstractController{
 	
 	@Autowired
 	private HistoryService	historyService;
@@ -81,13 +82,17 @@ public class HistoryController {
 	public ModelAndView save(@Valid final History history, final BindingResult binding) {
 		ModelAndView result;
 		History h = history;
-		if(history.getId()!=0) {
-			h = this.historyService.reconstructHistory(history);
+		if(history.getStartMoment()==null){
+			return this.createEditModelAndView(history,"history.commit.error");
 		}
-
-		if (binding.hasErrors())
+		
+		
+		try{
+			h = this.historyService.reconstructHistory(history, binding);
+		
+		}catch (final ValidationException oops) {
 			result = this.createEditModelAndView(history);
-		else
+		}
 			try {
 				
 				this.thisPet=this.historyService.save(h, this.thisPet);
@@ -97,14 +102,14 @@ public class HistoryController {
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(history, "history.commit.error");
 			}
-
+		
 		return result;
 	}
 	
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
 	public ModelAndView delete(History history, final BindingResult binding) {
 		ModelAndView result;
-		History h = this.historyService.reconstructHistory(history);
+		History h = this.historyService.reconstructHistory(history,binding);
 
 		try {
 			this.historyService.deleteHistoryOfPet(h, this.thisPet);

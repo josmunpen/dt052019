@@ -21,7 +21,7 @@ import services.HistoryService;
 
 @Controller
 @RequestMapping("/application/petowner")
-public class ApplicationStatusController {
+public class ApplicationStatusController extends AbstractController{
 	
 	@Autowired
 	private ApplicationService as;
