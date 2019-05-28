@@ -40,7 +40,8 @@
 		<bean class="converters.StringToActorConverter" />
 		<bean class="converters.StringToAdopterConverter" />
 		
-		
+		<bean class="converters.StringToAuthorityConverter" /> 
+		<bean class="converters.AuthorityToStringConverter" /> 
 	</util:list>
 	
 </beans>

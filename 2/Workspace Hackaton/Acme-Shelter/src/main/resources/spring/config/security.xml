@@ -53,6 +53,18 @@
 		<security:intercept-url pattern="/history/petowner/**" access="hasRole('PETOWNER')" />
 		<security:intercept-url pattern="/application/petowner/**" access="hasRole('PETOWNER')" />
 		
+				
+		<!-- ADMIN -->
+		<security:intercept-url pattern="/administrator/administrator/edit.do" access="hasRole('ADMIN')" /> 
+		<security:intercept-url pattern="/administrator/administrator/create.do" access="hasRole('ADMIN')" /> 
+		<security:intercept-url pattern="/administrator/administrator/show.do" access="hasRole('ADMIN')" /> 
+		<security:intercept-url pattern="/veterinarian/administrator/create.do" access="hasRole('ADMIN')" /> 
+			
+		<!-- VETERINARIAN -->
+		<security:intercept-url pattern="/veterinarian/veterinarian/edit.do" access="hasRole('VETERINARIAN')" /> 
+		<security:intercept-url pattern="/veterinarian/veterinarian/show.do" access="hasRole('VETERINARIAN')" /> 
+		
+	
 
 		<security:intercept-url pattern="/welcome/index.do" access="permitAll" /> 
 

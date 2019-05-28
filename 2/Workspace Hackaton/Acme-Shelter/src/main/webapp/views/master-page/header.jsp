@@ -26,6 +26,19 @@
 					<li class="arrow"></li>
 					<li><a href="dashboard/administrator/dashboard.do"><spring:message code="master.page.administrator.dashboard" /></a></li>
 					<li><a href="customisation/administrator/edit.do"><spring:message code="master.page.administrator.customisation" /></a></li>					
+					<li><a href="administrator/administrator/create.do"><spring:message code="master.page.register.admin" /></a></li>
+					<li><a href="administrator/administrator/edit.do"><spring:message code="master.page.edit.admin" /></a></li>
+					<li><a href="veterinarian/administrator/create.do"><spring:message code="master.page.register.veterinarian" /></a></li>
+				</ul>
+			</li>
+		</security:authorize>
+		
+		<security:authorize access="hasRole('VETERINARIAN')">
+			<li><a class="fNiv"><spring:message	code="master.page.veterinarian" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="veterinarian/veterinarian/edit.do"><spring:message code="master.page.edit.veterinarian" /></a></li>
+				
 				</ul>
 			</li>
 		</security:authorize>

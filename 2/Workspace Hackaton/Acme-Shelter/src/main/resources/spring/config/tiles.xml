@@ -34,6 +34,10 @@
 		<value>/views/search/tiles.xml</value>
 		<value>/views/customisation/tiles.xml</value>
 		<value>/views/finder/tiles.xml</value>
+
+		<value>/views/administrator/tiles.xml</value>
+		<value>/views/veterinarian/tiles.xml</value>
+		
 	</util:list>
 
 </beans>
