@@ -10,7 +10,7 @@
 <form:form modelAttribute="history" action="history/petowner/edit.do">
 		<form:hidden path="id"/>
 		<form:hidden path="version"/>
-		<form:hidden path="actor"/>
+		
 		
 		<form:label path="description">
 			<spring:message code="history.description" />:*
@@ -20,14 +20,14 @@
 		<br />	
 		
 		<form:label path="startMoment">
-			<spring:message code="history.startMoment" />:*
+			<spring:message code="history.startMoment" />:(yyyy-mm-dd)*
 		</form:label>
 		<form:input path="startMoment" />
 		<form:errors cssClass="error" path="startMoment" />
 		<br />	
 		
 		<form:label path="endMoment">
-			<spring:message code="history.endMoment" />:*
+			<spring:message code="history.endMoment" />:(yyyy-mm-dd)*
 		</form:label>
 		<form:input path="endMoment" />
 		<form:errors cssClass="error" path="endMoment" />

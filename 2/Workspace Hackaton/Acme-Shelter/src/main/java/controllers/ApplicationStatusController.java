@@ -65,6 +65,10 @@ public class ApplicationStatusController extends AbstractController{
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid final Application application, final BindingResult binding) {
 		ModelAndView result;
+		Application check = this.as.findOne(application.getId());
+		if(check.getStatus().equals("ACCEPTED") || check.getStatus().equals("REJECTED")){
+			return this.list();
+		}
 		Application a = this.as.reconstructStatus(application);
 
 		if (binding.hasErrors()){

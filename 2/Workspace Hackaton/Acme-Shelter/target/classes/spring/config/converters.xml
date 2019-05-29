@@ -42,7 +42,14 @@
 		<bean class="converters.StringToActorConverter" />
 		<bean class="converters.StringToAdopterConverter" />
 		
-		
+		<bean class="converters.StringToAuthorityConverter" /> 
+		<bean class="converters.AuthorityToStringConverter" /> 
+		<bean class="converters.ActorToStringConverter" />
+		<bean class="converters.BoxToStringConverter" />
+		<bean class="converters.MessageToStringConverter" />
+		<bean class="converters.StringToActorConverter" />
+		<bean class="converters.StringToBoxConverter" />
+		<bean class="converters.StringToMessageConverter" />
 	</util:list>
 	
 </beans>

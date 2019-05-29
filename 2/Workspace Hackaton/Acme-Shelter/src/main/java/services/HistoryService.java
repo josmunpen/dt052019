@@ -6,14 +6,11 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import javax.validation.ValidationException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.Validator;
+
 
 import repositories.HistoryRepository;
 import repositories.PetOwnerRepository;
@@ -122,26 +119,19 @@ public class HistoryService {
 
 	}
 	
-	@Autowired
-	private Validator	validator;
 	
-	public History reconstructHistory(History history, final BindingResult binding){
+	
+
+	
+	public History reconstructHistory(History history){
 		History res;
 		if(history.getId()==0) {
-			if (binding.hasErrors())
-				throw new ValidationException();
 			return history;
 		}
-		
-		
 		res = this.findOne(history.getId());
 		res.setDescription(history.getDescription());
 		res.setStartMoment(history.getStartMoment());
 		res.setEndMoment(history.getEndMoment());
-		
-		this.validator.validate(res, binding);
-		if (binding.hasErrors())
-			throw new ValidationException();
 		
 		return res;
 	}
