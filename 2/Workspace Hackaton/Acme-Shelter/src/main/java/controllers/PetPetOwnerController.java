@@ -16,28 +16,33 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ActorService;
-import services.PetOwnerService;
+import services.MedicalCheckUpService;
 import services.PetService;
 import services.PetTypeService;
+import services.TreatmentService;
 import domain.Actor;
+import domain.MedicalCheckUp;
 import domain.Pet;
 import domain.PetType;
+import domain.Treatment;
 
 @Controller
 @RequestMapping("/pet/petOwner")
 public class PetPetOwnerController extends AbstractController {
 
 	@Autowired
-	private PetService		petService;
+	private PetService				petService;
 
 	@Autowired
-	private PetTypeService	petTypeService;
+	private MedicalCheckUpService	medicalCheckUpService;
+	@Autowired
+	private PetTypeService			petTypeService;
 
 	@Autowired
-	private PetOwnerService	petOwnerService;
+	private TreatmentService		treatmentService;
 
 	@Autowired
-	private ActorService	actorService;
+	private ActorService			actorService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -69,15 +74,26 @@ public class PetPetOwnerController extends AbstractController {
 		Pet pet;
 
 		pet = this.petService.findOne(petId);
-
+		final List<MedicalCheckUp> lm = this.medicalCheckUpService.findByPet(pet);
+		final List<Treatment> ltt = this.treatmentService.findByPet(pet);
 		Assert.notNull(pet);
 
 		result = new ModelAndView("pet/show");
+
+		Boolean lmsize = false;
+		Boolean ltsize = false;
+		if (lm.size() > 0)
+			lmsize = true;
+		if (ltt.size() > 0)
+			ltsize = true;
+		result.addObject("lmsize", lmsize);
+		result.addObject("ltsize", ltsize);
+		result.addObject("lm", lm);
+		result.addObject("ltt", ltt);
 		result.addObject("pet", pet);
 
 		return result;
 	}
-
 	//crear
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create() {

@@ -7,20 +7,20 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import repositories.PetTypeRepository;
-import domain.PetType;
+import repositories.TreatmentRepository;
+import domain.Treatment;
 
 @Component
 @Transactional
-public class StringToPetTypeConverter implements Converter<String, PetType> {
+public class StringToTreatmentConverter implements Converter<String, Treatment> {
 
 	@Autowired
-	PetTypeRepository	pr;
+	TreatmentRepository	pr;
 
 
 	@Override
-	public PetType convert(final String text) {
-		PetType result;
+	public Treatment convert(final String text) {
+		Treatment result;
 		int id;
 
 		try {
@@ -36,5 +36,4 @@ public class StringToPetTypeConverter implements Converter<String, PetType> {
 		return result;
 
 	}
-
 }

@@ -19,7 +19,7 @@ public class Treatment extends DomainEntity {
 
 	private Date	moment;
 	private String	illness;
-	private String	treatment;
+	private String	treatmentC;
 	private String	comment;
 
 
@@ -45,12 +45,12 @@ public class Treatment extends DomainEntity {
 
 	@SafeHtml
 	@NotBlank
-	public String getTreatment() {
-		return this.treatment;
+	public String getTreatmentC() {
+		return this.treatmentC;
 	}
 
-	public void setTreatment(final String treatment) {
-		this.treatment = treatment;
+	public void setTreatmentC(final String treatment) {
+		this.treatmentC = treatment;
 	}
 
 	public String getComment() {

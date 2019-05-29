@@ -566,14 +566,18 @@
 		<property name="stateOfHealth" value="GOOD"/>
 		<property name="pet" ref="pet1"/>
 		<property name="veterinarian" ref="veterinarian1"/>
-		
+		<property name="treatments">
+		<list>
+		<ref bean="treatment1"/>
+		</list>
+		</property>
 	</bean>
 	
 	<!-- Treatments -->
 	<bean id="treatment1" class="domain.Treatment">
 		<property name="moment" value="2019/02/01"/>
 		<property name="illness" value="Tiene pulgas"/>
-		<property name="treatment" value="Dos pipetas para pulgas al año"/>
+		<property name="treatmentC" value="Dos pipetas para pulgas al año"/>
 	</bean>
 	
 	<!-- Finders -->

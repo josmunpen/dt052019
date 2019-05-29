@@ -6,14 +6,14 @@ import javax.transaction.Transactional;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import domain.PetType;
+import domain.Treatment;
 
 @Component
 @Transactional
-public class PetTypeToStringConverter implements Converter<PetType, String> {
+public class TreatmentToStringConverter implements Converter<Treatment, String> {
 
 	@Override
-	public String convert(final PetType a) {
+	public String convert(final Treatment a) {
 		String result;
 
 		if (a == null)

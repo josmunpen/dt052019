@@ -124,6 +124,58 @@
 	<br/>
 	<br/>
 	<security:authorize access="hasRole('PETOWNER')">
+	<jstl:if test="${lmsize==true }">
+	<jstl:forEach items="${lm}" var="lm1">
+	
+	<h3 style="color:blue;">
+		<spring:message code="pet.checkUp" />:
+	</h3>
+	
+	<h3 style="color:blue;">
+		<spring:message code="checkUp.moment" />:
+	</h3>
+	<jstl:out value="${lm1.moment}"/>
+	
+	<h3 style="color:blue;">
+		<spring:message code="checkUp.description" />:
+	</h3>
+	<jstl:out value="${lm1.description}"></jstl:out>
+	
+	<h3 style="color:blue;">
+		<spring:message code="checkUp.stateOfHealth" />:
+	</h3>
+	<jstl:out value="${lm1.stateOfHealth}"></jstl:out>
+	
+	</jstl:forEach>
+	</jstl:if>
+	
+	<br/><br/>
+	
+	<jstl:if test="${ltsize==true }">
+	<jstl:forEach items="${ltt}" var="lt1">
+	
+	<h3 style="color:blue;">
+		<spring:message code="pet.treatment" /> <jstl:out value="${lt1.moment}"></jstl:out>:
+	</h3>
+	
+	<h3 style="color:blue;">
+		<spring:message code="t.illness" />:
+	</h3>
+	<jstl:out value="${lt1.illness}"></jstl:out>
+	
+	<h3 style="color:blue;">
+		<spring:message code="t.treatmentC" />:
+	</h3>
+	<jstl:out value="${lt1.treatmentC}"/>
+	
+	<h3 style="color:blue;">
+		<spring:message code="t.comment" />:
+	</h3>
+	<jstl:out value="${lt1.comment}"></jstl:out>
+	
+	</jstl:forEach>
+	</jstl:if>
+	
 	<form:form action="pet/petOwner/edit.do" modelAttribute="pet">
 	<form:hidden path="id"/>
 	<input type="submit" name="delete"
