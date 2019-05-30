@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,8 @@ import org.springframework.util.Assert;
 import repositories.MedicalCheckUpRepository;
 import domain.MedicalCheckUp;
 import domain.Pet;
-import domain.Veterinarian;
 import domain.Treatment;
+import domain.Veterinarian;
 
 @Service
 @Transactional
@@ -23,6 +24,9 @@ public class MedicalCheckUpService {
 
 	@Autowired
 	ActorService2				actorService;
+
+	@Autowired
+	VeterinarianService			veterinarianService;
 
 
 	public void delete(final MedicalCheckUp m) {
@@ -35,6 +39,7 @@ public class MedicalCheckUpService {
 
 	public List<MedicalCheckUp> findByVeterinarian(final int id) {
 		return this.medicalCheckUpRepository.findByVeterinarian(id);
+	}
 
 	public MedicalCheckUp create() {
 		Assert.isTrue(this.actorService.checkVeterinarian());
@@ -43,13 +48,6 @@ public class MedicalCheckUpService {
 		now.add(Calendar.SECOND, -1);
 		res.setMoment(now.getTime());
 		return res;
-	}
-	
-
-	
-		public MedicalCheckUp findByTreatment(final Treatment t1) {
-		return this.medicalCheckUpRepository.findByTreatment(t1.getId());
-
 	}
 
 	public MedicalCheckUp save(final MedicalCheckUp checkUp) {
@@ -65,17 +63,22 @@ public class MedicalCheckUpService {
 			Assert.notNull(logVeterinarian);
 			Assert.notNull(logVeterinarian.getId());
 
-	}
+		}
+		// Restrictions
+		MedicalCheckUp res = new MedicalCheckUp();
 
+		if (checkUp.getId() == 0) {
+			final Calendar now = Calendar.getInstance();
+			now.add(Calendar.SECOND, -1);
+			checkUp.setMoment(now.getTime());
+			checkUp.setVeterinarian(logVeterinarian);
+		}
+		res = this.medicalCheckUpRepository.save(checkUp);
+		return res;
+	}
 	public MedicalCheckUp findByTreatment(final Treatment t1) {
 		return this.medicalCheckUpRepository.findByTreatment(t1.getId());
 
 	}
 
-	public void save(final MedicalCheckUp m1) {
-		Assert.isTrue(this.actorService.checkVeterinarian());
-		Assert.isTrue(this.findByVeterinarian(this.actorService.findByPrincipal().getId()).contains(m1));
-
-		this.medicalCheckUpRepository.save(m1);
-	}
 }
