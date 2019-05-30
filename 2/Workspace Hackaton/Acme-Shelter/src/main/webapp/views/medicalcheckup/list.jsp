@@ -20,6 +20,12 @@
 			<spring:message code="checkup.edit"/>
 		</a>
 	</display:column>
+	
+	<display:column>
+		<a href="treatment/veterinarian/create.do?medicalCheckUpId=${row.id}">
+			<spring:message code="treatment.create"/>
+		</a>
+	</display:column>
 </display:table>
 
 	<a href="checkup/veterinarian/create.do">
