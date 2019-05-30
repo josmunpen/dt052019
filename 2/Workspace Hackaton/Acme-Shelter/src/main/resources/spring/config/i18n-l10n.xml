@@ -31,6 +31,9 @@
 		<value>/views/petowner/messages</value>
 		<value>/views/history/messages</value>
 		<value>/views/application/messages</value>
+		<value>/views/application/messages</value>
+		<value>/views/pet/messages</value>
+		<value>/views/socialprofile/messages</value>
 		<value>/views/dashboard/messages</value>
 		<value>/views/search/messages</value>
 		<value>/views/customisation/messages</value>
@@ -39,6 +42,10 @@
 		<value>/views/veterinarian/messages</value>
 		<value>/views/medicalcheckup/messages</value>
 		
+		<value>/views/box/messages</value>
+		<value>/views/message/messages</value>
+		<value>/views/type/messages</value>
+		<value>/views/treatment/messages</value>
 	</util:list>
 
 </beans>
