@@ -155,6 +155,10 @@
 		<property name="userAccount" ref="userAccount2" />
 		<property name="socialProfiles">
 			<list>
+				<ref bean="socialProfile1"/>
+				<ref bean="socialProfile3"/>
+				<ref bean="socialProfile8"/>
+				
 			</list>
 		</property>
 		<property name="boxes">
@@ -186,6 +190,8 @@
 		<property name="description" value="Me encanta realizar ejercicio al aire libre con perros"/>
 		<property name="socialProfiles">
 			<list>
+				<ref bean="socialProfile6"/>
+				<ref bean="socialProfile7"/>
 			</list>
 		</property>
 		<property name="boxes">
@@ -218,6 +224,7 @@
 		<property name="description" value="Adoro las iguanas y los coches"/>
 		<property name="socialProfiles">
 			<list>
+				<ref bean="socialProfile5"/>
 			</list>
 		</property>
 		<property name="boxes">
@@ -249,6 +256,8 @@
 		<property name="description" value="Mis hobbies favoritos son la programación y la pintura"/>
 		<property name="socialProfiles">
 			<list>
+				<ref bean="socialProfile2"/>
+				<ref bean="socialProfile4"/>
 			</list>
 		</property>
 		<property name="boxes">
@@ -293,6 +302,8 @@
 		<property name="curriculums">
 			<list>
 				<ref bean="curriculum1"/>
+				<ref bean="curriculum3"/>
+				
 			</list>
 		</property>
 		
@@ -363,6 +374,7 @@
 		<property name="petOwner" ref="petowner1"/>
 		<property name="histories">
 			<list>
+					<ref bean="history5"/>
 			</list>
 		</property>
 		
@@ -389,6 +401,7 @@
 		<property name="petOwner" ref="petowner1"/>
 		<property name="histories">
 			<list>
+					<ref bean="history2"/>
 			</list>
 		</property>
 	</bean>
@@ -414,6 +427,7 @@
 		<property name="identifier" value="Q1W21"/>
 		<property name="histories">
 			<list>
+					<ref bean="history6"/>
 			</list>
 		</property>
 	</bean>
@@ -443,11 +457,123 @@
 		<property name="identifier" value="Q1W25"/>
 	</bean>
 	
+	<bean id="pet5" class="domain.Pet">
+		<property name="name" value="Nora" />
+		<property name="status" value="LOW" />
+		<property name="age" value="5" />
+		<property name="sex" value="FEMALE" />
+		<property name="nature" value="Afable" />
+		<property name="address" value="c/Maicena, 60, El hierro" />
+		<property name="dietRequirements" value="¡Come de todo!" />
+		<property name="petsRequirements" value="Preferible que esté sola en casa, es territorial." />
+		<property name="careRequirements" value="Requiere cepillado un par de veces en semana" />
+		<property name="managementCost" value="75" />
+		<property name="photos">
+			<list>
+				<value>https://www.webconsultas.com/sites/default/files/styles/wc_adaptive_image__small/public/temas/westie_p.jpg</value>
+			</list>
+		</property>
+		<property name="histories">
+			<list>
+					<ref bean="history3"/>
+			</list>
+		</property>
+		<property name="petType" ref="petType10"/>
+		<property name="petOwner" ref="petowner1"/>
+		<property name="identifier" value="Q1W26"/>
+	</bean>
+	
+	<bean id="pet6" class="domain.Pet">
+		<property name="name" value="Guantes" />
+		<property name="status" value="MEDIUM" />
+		<property name="age" value="6" />
+		<property name="sex" value="MALE" />
+		<property name="nature" value="Altivo" />
+		<property name="address" value="c/Megalodón, nº30, Barcelona" />
+		<property name="dietRequirements" value="Si come plantas, vomita" />
+		<property name="careRequirements" value="Requiere cepillado una vez al día." />
+		<property name="managementCost" value="5" />
+		<property name="photos">
+			<list>
+				<value>https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Persian_in_Cat_Cafe.jpg/800px-Persian_in_Cat_Cafe.jpg</value>
+			</list>
+		</property>
+		<property name="histories">
+			<list>
+					<ref bean="history7"/>
+			</list>
+		</property>
+		<property name="petType" ref="petType13"/>
+		<property name="petOwner" ref="petowner2"/>
+		<property name="identifier" value="Q1W36"/>
+	</bean>
+	
+	<bean id="pet7" class="domain.Pet">
+		<property name="name" value="Flaco" />
+		<property name="status" value="HIGH" />
+		<property name="age" value="8" />
+		<property name="sex" value="MALE" />
+		<property name="nature" value="Cariñoso" />
+		<property name="address" value="c/Megalodón, nº30, Barcelona" />
+		<property name="careRequirements" value="Adora estar con otros animales." />
+		<property name="managementCost" value="1" />
+		<property name="familyRequirements" value="Requiere mucho cariño." />
+		<property name="photos">
+			<list>
+				<value>https://www.elmundodelperro.net/fotos/91/3009_DSC_0217.jpg</value>
+			</list>
+		</property>
+		<property name="histories">
+			<list>
+				<ref bean="history4"/>
+			</list>
+		</property>
+		<property name="petType" ref="petType10"/>
+		<property name="petOwner" ref="petowner2"/>
+		<property name="identifier" value="Q2W36"/>
+	</bean>
 	<!-- History -->
+	
 	<bean id="history1" class="domain.History">
 		<property name="startMoment" value="2019/02/16" />
 		<property name="description" value="Nació en el refugio." />
 		<property name="actor"		 ref="petowner1" />
+	</bean>
+
+	<bean id="history2" class="domain.History">
+		<property name="startMoment" value="2019/03/12" />
+		<property name="description" value="Lo recogimos en el refugio." />
+		<property name="actor"		 ref="petowner1" />
+	</bean>
+	
+	<bean id="history3" class="domain.History">
+		<property name="startMoment" value="2015/03/12" />
+		<property name="description" value="Lo recogimos en el refugio." />
+		<property name="actor"		 ref="petowner1" />
+	</bean>
+	
+	<bean id="history4" class="domain.History">
+		<property name="startMoment" value="2011/03/12" />
+		<property name="description" value="Lo encontramos abandonado." />
+		<property name="actor"		 ref="petowner2" />
+	</bean>
+	
+	<bean id="history5" class="domain.History">
+		<property name="startMoment" value="2017/03/12" />
+		<property name="description" value="Lo encontramos abandonado." />
+		<property name="actor"		 ref="petowner1" />
+	</bean>
+	
+	<bean id="history6" class="domain.History">
+		<property name="startMoment" value="2015/03/12" />
+		<property name="description" value="Lo encontramos abandonado." />
+		<property name="actor"		 ref="petowner2" />
+	</bean>
+	
+	<bean id="history7" class="domain.History">
+		<property name="startMoment" value="2017/03/12" />
+		<property name="description" value="Lo encontramos abandonado." />
+		<property name="actor"		 ref="petowner2" />
 	</bean>
 	
 	<!-- Application -->
@@ -477,6 +603,43 @@
 		<property name="adopter" ref="adopter2" />
 	</bean>
 	
+	<bean id="application3" class="domain.Application">
+		<property name="moment" value="2019/01/02 21:00:00" />
+		<property name="status" value="PENDING" />
+		<property name="comment" value="Tengo un campo donde el galgo podrá estar libre y correr siempre que queira." />
+		<property name="photos">
+			<list>		
+			</list>
+		</property>
+		<property name="pet" ref="pet7" />
+		<property name="adopter" ref="adopter2" />
+	</bean>
+	
+	<bean id="application4" class="domain.Application">
+		<property name="moment" value="2019/01/02 21:00:00" />
+		<property name="status" value="PENDING" />
+		<property name="comment" value="Tengo un montón de perros y es de los pocos que me falta" />
+		<property name="photos">
+			<list>		
+			</list>
+		</property>
+		<property name="pet" ref="pet5" />
+		<property name="adopter" ref="adopter2" />
+	</bean>
+	
+	<bean id="application5" class="domain.Application">
+		<property name="moment" value="2019/01/02 21:00:00" />
+		<property name="status" value="PENDING" />
+		<property name="comment" value="Tengo varios gatos y una casa grande donde Guantes se encontrará como en casa." />
+		<property name="photos">
+			<list>		
+			</list>
+		</property>
+		<property name="pet" ref="pet6" />
+		<property name="adopter" ref="adopter1" />
+	</bean>
+	
+	
 	<!-- PetTypes -->
 	<bean id="petType1" class="domain.PetType">
 		<property name="name" value="PET"/>
@@ -490,11 +653,16 @@
 	<bean id="petType2" class="domain.PetType">
 		<property name="name" value="DOG"/>
 		<property name="nombre" value="DOG"/>
+		<property name="scientificTerm" value="Canis lupus familiaris"/>
 		<property name="childs">
 			<list>
 				<ref bean="petType3"/>
 				<ref bean="petType4"/>
 				<ref bean="petType5"/>
+				<ref bean="petType8"/>
+				<ref bean="petType9"/>
+				<ref bean="petType10"/>
+				<ref bean="petType11"/>
 			</list>
 		</property>
 	</bean>
@@ -514,23 +682,80 @@
 	<bean id="petType6" class="domain.PetType">
 		<property name="name" value="CAT"/>
 		<property name="nombre" value="CAT"/>
+		<property name="scientificTerm" value="Felis silvestris catus"/>
 		<property name="childs">
 			<list>
 				<ref bean="petType7"/>
+				<ref bean="petType12"/>
+				<ref bean="petType13"/>
 			</list>
 		</property>
 	</bean>
+	
 	<bean id="petType7" class="domain.PetType">
 		<property name="name" value="Unknown Cat"/>
 		<property name="nombre" value="Gato Desconocido"/>
 	</bean>
 	
+	<bean id="petType8" class="domain.PetType">
+		<property name="name" value="West Highland white terrier"/>
+		<property name="nombre" value="West Highland white terrier"/>
+		<property name="description" value="Es un perro conocido por su personalidad y color blanco brillante"/>
+		<property name="zone" value="Escocia" />
+		<property name="finalMode" value="true" />
+	</bean>
+	
+	<bean id="petType9" class="domain.PetType">
+		<property name="name" value="Welsh Pembroke Corgi"/>
+		<property name="nombre" value="Corgi galés de Pembroke"/>
+		<property name="description" value=" Se ha desempeñado durante siglos como perro pastor, y se le considera uno de los perros más antiguos de Gran Bretaña."/>
+		<property name="zone" value="Gales" />
+		<property name="finalMode" value="true" />
+	</bean>
+	
+	<bean id="petType10" class="domain.PetType">
+		<property name="nombre" value="Lebrel (Galgo)"/>
+		<property name="name" value="Sighthound"/>
+		<property name="description" value="Los lebreles​ son un conjunto de razas de perros cuya constitución física les hace estar muy bien dotados para la carrera (carrera de galgos), en la que pueden alcanzar una gran velocidad."/>
+		<property name="zone" value="Europa" />
+		<property name="finalMode" value="true" />
+	</bean>
+	
+	<bean id="petType11" class="domain.PetType">
+		<property name="nombre" value="Fox terrier"/>
+		<property name="name" value="Fox terrier"/>
+		<property name="description" value="El fox terrier​ es una raza de perro utilizada antiguamente para hacer salir a los zorros de sus madrigueras para poder ser perseguidos por perros de rastreo."/>
+		<property name="zone" value="Inglaterra" />
+		<property name="finalMode" value="true" />
+	</bean>
+	
+	<bean id="petType12" class="domain.PetType">
+		<property name="nombre" value="Gato común europeo"/>
+		<property name="name" value="European Shorthair"/>
+		<property name="description" value="Es fuerte, tiene un sólido sistema inmunológico y se adapta fácilmente a cualquier ambiente."/>
+		<property name="zone" value="Europa" />
+		<property name="finalMode" value="true" />
+	</bean>
+	
+	<bean id="petType13" class="domain.PetType">
+		<property name="nombre" value="Gato persa"/>
+		<property name="name" value="Persian cat"/>
+		<property name="description" value="El Persa es una raza de gato caracterizada por tener una cara ancha y plana y un gran abundante pelaje de variados colores."/>
+		<property name="zone" value="Persia" />
+		<property name="finalMode" value="true" />
+	</bean>
+	
+	
 	<!-- Curricula -->
 	<bean id="curriculum1" class="domain.Curriculum">
-		<property name="qualifications" value="Licenciado en veterinaria en la Universidad de Sevilla en 2010"/>
+		<property name="qualifications" value="Licenciado en veterinaria en la Universidad de Sevilla en 2010."/>
 	</bean>
+	<bean id="curriculum3" class="domain.Curriculum">
+		<property name="qualifications" value="Máster en veterinaria de animales domésticos"/>
+	</bean>
+	
 	<bean id="curriculum2" class="domain.Curriculum">
-		<property name="qualifications" value="Licenciado en veterinaria en la Universidad de Sevilla en 2011"/>
+		<property name="qualifications" value="Licenciado en veterinaria en la Universidad de Sevilla en 2011. Especializado en gatos."/>
 	</bean>
 	
 	<!-- Tips -->
@@ -647,8 +872,6 @@
 	<bean id="trash1" class="domain.Box">
 
 		<property name="name" value="trash box" />
-
-		
 
 		<property name="predefined" value="true" /> <property name="messages">
 
@@ -1046,5 +1269,59 @@
 		<property name="subject" value="Prueba" />
 		<property name="tag" value="Prueba" />
 	</bean>
+	
+	<!-- SOCIAL PROFILE -->
+	
+	<bean id="socialProfile1" class="domain.SocialProfile">
+		<property name="nick" value="tomcablop" />
+		<property name="socialNetwork" value="Twitter" />
+		<property name="link" value="http://www.twitter.com/tomcablop" />
+	</bean>
+	
+	<bean id="socialProfile2" class="domain.SocialProfile">
+		<property name="nick" value="albbur" />
+		<property name="socialNetwork" value="Twitter" />
+		<property name="link" value="http://www.twitter.com/albbur" />
+	</bean>
+	
+	<bean id="socialProfile3" class="domain.SocialProfile">
+		<property name="nick" value="Tomás Cabello López" />
+		<property name="socialNetwork" value="Facebook" />
+		<property name="link" value="http://www.facebook.com/tomascabellolopez" />
+	</bean>
+	
+	<bean id="socialProfile4" class="domain.SocialProfile">
+		<property name="nick" value="Alba Burdallo" />
+		<property name="socialNetwork" value="Facebook" />
+		<property name="link" value="http://www.facebook.com/albaburdallo" />
+	</bean>
+	
+	<bean id="socialProfile5" class="domain.SocialProfile">
+		<property name="nick" value="Juan Antonio De la Cruz" />
+		<property name="socialNetwork" value="Facebook" />
+		<property name="link" value="http://www.facebook.com/juanandelacruz" />
+	</bean>
+	
+	<bean id="socialProfile6" class="domain.SocialProfile">
+		<property name="nick" value="Manuel Recio" />
+		<property name="socialNetwork" value="Facebook" />
+		<property name="link" value="http://www.facebook.com/manuelrecio" />
+	</bean>
+	
+	<bean id="socialProfile7" class="domain.SocialProfile">
+		<property name="nick" value="manuelrec" />
+		<property name="socialNetwork" value="Instagram" />
+		<property name="link" value="http://www.instagram.com/manuelrec" />
+	</bean>
+	
+	<bean id="socialProfile8" class="domain.SocialProfile">
+		<property name="nick" value="tomascab" />
+		<property name="socialNetwork" value="Instagram" />
+		<property name="link" value="http://www.instagram.com/tomcab" />
+	</bean>
+	
+	
+	
+	
 	
 </beans>
