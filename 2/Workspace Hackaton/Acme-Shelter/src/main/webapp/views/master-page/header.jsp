@@ -76,7 +76,6 @@
 		</security:authorize>
 		
 		<security:authorize access="isAuthenticated()">
-			<li><a class="fNiv" href="pet/list.do"><spring:message code="master.page.pet.list" /></a></li>
 			<li><a class="fNiv" href="socialprofile/list.do"><spring:message code="master.page.socialprofile.list" /></a></li>
 			<li>
 				<a class="fNiv"> 
