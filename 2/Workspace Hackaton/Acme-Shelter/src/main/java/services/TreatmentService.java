@@ -93,6 +93,7 @@ public class TreatmentService {
 
 	public void save(final Treatment t) {
 		Assert.isTrue(this.actorService.checkVeterinarian());
+		Assert.isTrue(this.medicalCheckUpService.findByVeterinarian(this.actorService.findByPrincipal().getId()).contains(t.getMedicalCheckUp()));
 		if (t.getId() != 0)
 			Assert.isTrue(this.findAllByVeterinarian(this.actorService.findByPrincipal().getId()).contains(t));
 
