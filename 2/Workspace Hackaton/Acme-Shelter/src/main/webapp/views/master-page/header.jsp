@@ -29,7 +29,6 @@
 					<li><a href="administrator/administrator/create.do"><spring:message code="master.page.register.admin" /></a></li>
 					<li><a href="administrator/administrator/edit.do"><spring:message code="master.page.edit.admin" /></a></li>
 					<li><a href="veterinarian/administrator/create.do"><spring:message code="master.page.register.veterinarian" /></a></li>
-					<li><a href="type/administrator/list.do"><spring:message code="master.page.types.list" /></a></li>
 				</ul>
 			</li>
 		</security:authorize>
@@ -39,7 +38,7 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="veterinarian/veterinarian/edit.do"><spring:message code="master.page.edit.veterinarian" /></a></li>
-				
+					<li><a href="checkup/veterinarian/list.do"><spring:message code="master.page.list.checkups" /></a></li>
 				</ul>
 			</li>
 		</security:authorize>
@@ -50,7 +49,6 @@
 					<li class="arrow"></li>
 					<li><a href="finder/adopter/show.do"><spring:message code="master.page.adopter.finder" /></a></li>
 					<li><a href="adopter/adopter/edit.do"><spring:message code="master.page.edit.adopter" /></a></li>
-					<li><a href="application/adopter/list.do"><spring:message code="master.page.application.list" /></a></li>
 			</ul>
 		</li>
 		</security:authorize>
@@ -67,7 +65,6 @@
 		</security:authorize>
 		<security:authorize access="permitAll">
 			<li><a class="fNiv" href="search/search.do"><spring:message code="master.page.search" /></a></li>
-			<li><a class="fNiv" href="pet/list.do"><spring:message code="master.page.pet.list" /></a></li>
 		</security:authorize>
 		<security:authorize access="isAnonymous()">
 			<li><a class="fNiv" href="adopter/register.do"><spring:message code="master.page.register.adopter" /></a></li>
@@ -76,8 +73,6 @@
 		</security:authorize>
 		
 		<security:authorize access="isAuthenticated()">
-			<li><a class="fNiv" href="pet/list.do"><spring:message code="master.page.pet.list" /></a></li>
-			<li><a class="fNiv" href="socialprofile/list.do"><spring:message code="master.page.socialprofile.list" /></a></li>
 			<li>
 				<a class="fNiv"> 
 					<spring:message code="master.page.profile" /> 
@@ -86,15 +81,6 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
-				</ul>
-			</li>
-			<li>
-				<a class="fNiv"> 
-					<spring:message code="master.page.messages.main" /> 
-				</a>
-				<ul>
-					<li class="arrow"></li>
-					<li><a href="boxes/list.do"><spring:message code="master.page.messages.list" /> </a></li>
 				</ul>
 			</li>
 		</security:authorize>
