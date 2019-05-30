@@ -32,14 +32,12 @@ public class MedicalCheckUpService {
 	@Autowired
 	VeterinarianService			veterinarianService;
 
-	@Autowired
-	TreatmentService			treatmentService;
-
 
 	public void delete(final MedicalCheckUp m) {
 
 		this.medicalCheckUpRepository.delete(m.getId());
 	}
+
 	public List<MedicalCheckUp> findByPet(final Pet p) {
 		return this.medicalCheckUpRepository.findByPet(p.getId());
 	}
@@ -90,6 +88,11 @@ public class MedicalCheckUpService {
 		return res;
 	}
 
+	public MedicalCheckUp findOne(final int medicalId) {
+		Assert.isTrue(this.actorService.checkVeterinarian());
+		return this.medicalCheckUpRepository.findOne(medicalId);
+	}
+
 
 	@Autowired
 	private Validator	validator;
@@ -112,7 +115,4 @@ public class MedicalCheckUpService {
 		return res;
 	}
 
-	public MedicalCheckUp findOne(final int medicalCheckUpId) {
-		return this.medicalCheckUpRepository.findOne(medicalCheckUpId);
-	}
 }

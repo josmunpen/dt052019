@@ -28,28 +28,28 @@
 		<br /> <br />
 		
 		<form:label path="age">
-			<spring:message code="pet.age" />* :
+			<spring:message code="pet.age" />:
 		</form:label>
 		<form:input path="age" />
 		<form:errors cssClass="error" path="age" />
 		<br /> <br />
 		
 		<form:label path="careRequirements">
-			<spring:message code="pet.care.requirements" />* :
+			<spring:message code="pet.care.requirements" />:
 		</form:label>
 		<form:input path="careRequirements" />
 		<form:errors cssClass="error" path="careRequirements" />
 		<br /> <br />
 		
 		<form:label path="dietRequirements">
-			<spring:message code="pet.diet.requirements" />* :
+			<spring:message code="pet.diet.requirements" />:
 		</form:label>
 		<form:input path="dietRequirements" />
 		<form:errors cssClass="error" path="dietRequirements" />
 		<br /> <br />
 		
 		<form:label path="familyRequirements">
-			<spring:message code="pet.family.requirements" />* :
+			<spring:message code="pet.family.requirements" />:
 		</form:label>
 		<form:input path="familyRequirements" />
 		<form:errors cssClass="error" path="familyRequirements" />
@@ -70,21 +70,21 @@
 		<br /> <br />
 		
 		<form:label path="nature">
-			<spring:message code="pet.nature" />* :
+			<spring:message code="pet.nature" />:
 		</form:label>
 		<form:input path="nature" />
 		<form:errors cssClass="error" path="nature" />
 		<br /> <br />
 		
 		<form:label path="pedigree">
-			<spring:message code="pet.pedigree" />* :
+			<spring:message code="pet.pedigree" />:
 		</form:label>
 		<form:input path="pedigree" />
 		<form:errors cssClass="error" path="pedigree" />
 		<br /> <br />
 		
 		<form:label path="petsRequirements">
-			<spring:message code="pet.requirements" />* :
+			<spring:message code="pet.requirements" />:
 		</form:label>
 		<form:input path="petsRequirements" />
 		<form:errors cssClass="error" path="petsRequirements" />
@@ -108,7 +108,7 @@
 		<br /> <br />
 		
 		<form:label path="photos">
-			<spring:message code="pet.photos" />* :
+			<spring:message code="pet.photos" />:
 		</form:label>
 		<form:input path="photos" />
 		<form:errors cssClass="error" path="photos" />

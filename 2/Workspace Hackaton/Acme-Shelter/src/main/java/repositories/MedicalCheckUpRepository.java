@@ -18,7 +18,7 @@ public interface MedicalCheckUpRepository extends JpaRepository<MedicalCheckUp, 
 	@Query("select m from MedicalCheckUp m where m.veterinarian.id=?1")
 	List<MedicalCheckUp> findByVeterinarian(int id);
 
-	@Query("select m from MedicalCheckUp m join m.treatments t where t.id=?1")
+	@Query("select t.medicalCheckUp from Treatment t where t.id=?1")
 	MedicalCheckUp findByTreatment(int id);
 
 }

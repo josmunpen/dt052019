@@ -8,20 +8,20 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import repositories.HistoryRepository;
-import domain.History;
+import repositories.MedicalCheckUpRepository;
+import domain.MedicalCheckUp;
 
 @Component
 @Transactional
-public class StringToHistoryConverter implements Converter<String, History> {
+public class StringToMedicalCheckUpConverter implements Converter<String, MedicalCheckUp> {
 
 	@Autowired
-	HistoryRepository	mr;
+	MedicalCheckUpRepository	mr;
 
 
 	@Override
-	public History convert(final String text) {
-		History result;
+	public MedicalCheckUp convert(final String text) {
+		MedicalCheckUp result;
 		int id;
 
 		try {
@@ -37,5 +37,4 @@ public class StringToHistoryConverter implements Converter<String, History> {
 		return result;
 
 	}
-
 }

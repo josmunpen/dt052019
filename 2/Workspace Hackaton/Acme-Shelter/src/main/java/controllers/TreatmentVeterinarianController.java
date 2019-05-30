@@ -15,10 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ActorService;
-import services.MedicalCheckUpService;
 import services.TreatmentService;
 import domain.Actor;
-import domain.MedicalCheckUp;
 import domain.Treatment;
 
 @Controller
@@ -26,13 +24,10 @@ import domain.Treatment;
 public class TreatmentVeterinarianController extends AbstractController {
 
 	@Autowired
-	private TreatmentService		treatmentService;
+	private TreatmentService	treatmentService;
 
 	@Autowired
-	private MedicalCheckUpService	medicalCheckUpService;
-
-	@Autowired
-	private ActorService			actorService;
+	private ActorService		actorService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -75,9 +70,9 @@ public class TreatmentVeterinarianController extends AbstractController {
 
 	//crear
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public ModelAndView create() {
+	public ModelAndView create(@RequestParam final int medicalCheckUpId) {
 		final ModelAndView res;
-		final Treatment t = this.treatmentService.create();
+		final Treatment t = this.treatmentService.create(medicalCheckUpId);
 
 		res = this.createEditModelAndView(t);
 
@@ -109,7 +104,6 @@ public class TreatmentVeterinarianController extends AbstractController {
 		res = new ModelAndView("treatment/edit");
 
 		Assert.notNull(t);
-		final MedicalCheckUp m = this.medicalCheckUpService.findByTreatment(t);
 		res = this.createEditModelAndView(t);
 
 		return res;

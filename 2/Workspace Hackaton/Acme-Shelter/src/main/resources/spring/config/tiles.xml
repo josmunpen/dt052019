@@ -42,6 +42,7 @@
 		<value>/views/box/tiles.xml</value>
 		<value>/views/message/tiles.xml</value>
 		<value>/views/type/tiles.xml</value>
+		<value>/views/medicalcheckup/tiles.xml</value>
 	</util:list>
 
 </beans>

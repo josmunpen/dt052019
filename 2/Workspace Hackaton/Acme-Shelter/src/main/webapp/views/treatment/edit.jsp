@@ -13,6 +13,9 @@
 	<jstl:if test="${treatment.id!=0 }">
 	<form:hidden path="moment"/>
 	</jstl:if>
+	<jstl:if test="${treatment.id==0 }">
+	<form:hidden path="medicalCheckUp"/>
+	</jstl:if>
 	<form:hidden path="id" />
 
 	<fieldset>
