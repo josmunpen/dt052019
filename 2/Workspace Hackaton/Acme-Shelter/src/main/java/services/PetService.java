@@ -193,4 +193,8 @@ public class PetService {
 		this.petRepository.delete(p1);
 	}
 
+	public Collection<Pet> findWithoutMedicalCheckUp() {
+		return this.petRepository.findWithoutMedicalCheckUp();
+	}
+
 }

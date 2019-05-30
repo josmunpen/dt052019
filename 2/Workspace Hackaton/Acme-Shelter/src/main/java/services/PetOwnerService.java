@@ -21,6 +21,7 @@ import security.LoginService;
 import security.UserAccount;
 import utilities.TickerGenerator;
 import domain.Actor;
+import domain.Customisation;
 import domain.PetOwner;
 import domain.SocialProfile;
 import forms.PetOwnerForm;
@@ -30,17 +31,19 @@ import forms.PetOwnerForm;
 public class PetOwnerService {
 
 	@Autowired
-	PetOwnerRepository		petOwnerRepository;
+	PetOwnerRepository			petOwnerRepository;
 
 	@Autowired
-	public ActorService		actorServiceT;
+	public ActorService			actorServiceT;
 	@Autowired
-	public ActorService2	actorService;
+	public ActorService2		actorService;
 
+	@Autowired
+	public SocialProfileService	socialprofileService;
 
-	//TODO: DESCOMENTAR
-	//	@Autowired
-	//	public SocialProfileService	socialprofileService;
+	@Autowired
+	public CustomisationService	customisationService;
+
 
 	//Constructor
 	public PetOwnerService() {
@@ -54,7 +57,7 @@ public class PetOwnerService {
 
 		final UserAccount newUser = new UserAccount();
 		final Authority f = new Authority();
-		f.setAuthority(Authority.ADOPTER);
+		f.setAuthority(Authority.PETOWNER);
 		newUser.addAuthority(f);
 		result.setUserAccount(newUser);
 
@@ -100,11 +103,11 @@ public class PetOwnerService {
 		Assert.notNull(PetOwner);
 
 		final String pnumber = PetOwner.getPhoneNumber();
-		//TODO: DESCCOMENTAR
-		//		final Customisation cus = ((List<Customisation>) this.customisationService.findAll()).get(0);
-		//		final String cc = cus.getPhoneNumberCode();
-		//		if (pnumber.matches("^[0-9]{4,}$"))
-		//			PetOwner.setPhoneNumber(cc.concat(pnumber));
+
+		final Customisation cus = ((List<Customisation>) this.customisationService.findAll()).get(0);
+		final String cc = cus.getPhoneNumberCode();
+		if (pnumber.matches("^[0-9]{4,}$"))
+			PetOwner.setPhoneNumber(cc.concat(pnumber));
 
 		if (PetOwner.getId() != 0) {
 			Assert.isTrue(this.actorService.checkPetOwner());
@@ -161,7 +164,7 @@ public class PetOwnerService {
 		//Assert.isTrue(PetOwnerForm.getUserAccount().getAuthorities() == colMem);
 		//Damos valores a los atributos de la hermandad con los datos que nos llegan
 		final Authority com = new Authority();
-		com.setAuthority(Authority.ADOPTER);
+		com.setAuthority(Authority.PETOWNER);
 		final List<Authority> aus = new ArrayList<>();
 		aus.add(com);
 		final UserAccount ua = petOwnerForm.getUserAccount();
@@ -251,10 +254,9 @@ public class PetOwnerService {
 
 		final UserAccount ua = logPetOwner.getUserAccount();
 		final String tick1 = TickerGenerator.tickerLeave();
-		//TODO: DESCOMENTAR
-		//		if (logPetOwner.getSocialProfiles() != null)
-		//			for (final SocialProfile sp : logPetOwner.getSocialProfiles())
-		//				this.socialprofileService.deleteLeave(sp);
+		if (logPetOwner.getSocialProfiles() != null)
+			for (final SocialProfile sp : logPetOwner.getSocialProfiles())
+				this.socialprofileService.deleteLeave(sp);
 		ua.setUsername("Unknown" + tick1);
 		final String pass1 = TickerGenerator.generateTicker();
 		final Md5PasswordEncoder encoder = new Md5PasswordEncoder();

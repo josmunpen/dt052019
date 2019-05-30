@@ -16,8 +16,8 @@ import org.springframework.validation.Validator;
 import repositories.MedicalCheckUpRepository;
 import domain.MedicalCheckUp;
 import domain.Pet;
-import domain.Veterinarian;
 import domain.Treatment;
+import domain.Veterinarian;
 
 @Service
 @Transactional
@@ -32,11 +32,14 @@ public class MedicalCheckUpService {
 	@Autowired
 	VeterinarianService			veterinarianService;
 
+	@Autowired
+	TreatmentService			treatmentService;
+
 
 	public void delete(final MedicalCheckUp m) {
+
 		this.medicalCheckUpRepository.delete(m.getId());
 	}
-
 	public List<MedicalCheckUp> findByPet(final Pet p) {
 		return this.medicalCheckUpRepository.findByPet(p.getId());
 	}
@@ -49,13 +52,13 @@ public class MedicalCheckUpService {
 		res.setMoment(now.getTime());
 		return res;
 	}
-	
-		public List<MedicalCheckUp> findByVeterinarian(final int id) {
+
+	public List<MedicalCheckUp> findByVeterinarian(final int id) {
 		return this.medicalCheckUpRepository.findByVeterinarian(id);
 
 	}
-	
-		public MedicalCheckUp findByTreatment(final Treatment t1) {
+
+	public MedicalCheckUp findByTreatment(final Treatment t1) {
 		return this.medicalCheckUpRepository.findByTreatment(t1.getId());
 
 	}

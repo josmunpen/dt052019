@@ -44,7 +44,7 @@ public class MedicalCheckUpVeterinarianController extends AbstractController {
 
 		final Veterinarian logVet = this.veterinarianService.findByPrincipal();
 
-		final Collection<MedicalCheckUp> medicalCheckUps = this.medicalCheckUpRepository.findByVet(logVet.getId());
+		final Collection<MedicalCheckUp> medicalCheckUps = this.medicalCheckUpRepository.findByVeterinarian(logVet.getId());
 
 		result = new ModelAndView("checkup/veterinarian/list");
 		result.addObject("medicalCheckUps", medicalCheckUps);

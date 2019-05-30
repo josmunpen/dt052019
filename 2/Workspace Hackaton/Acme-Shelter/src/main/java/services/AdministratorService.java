@@ -23,6 +23,7 @@ import utilities.TickerGenerator;
 import domain.Actor;
 import domain.Administrator;
 import domain.Box;
+import domain.Customisation;
 import domain.SocialProfile;
 import forms.AdministratorForm;
 
@@ -36,12 +37,11 @@ public class AdministratorService {
 	@Autowired
 	public ActorService2			actorService;
 
-	//TODO:DESCOMENTAR
-	//	@Autowired
-	//	public CustomisationService		customisationService;
-	//
-	//	@Autowired
-	//	public SocialProfileService		socialprofileService;
+	@Autowired
+	public CustomisationService		customisationService;
+
+	@Autowired
+	public SocialProfileService		socialprofileService;
 
 	@Autowired
 	private MessageService			messageService;
@@ -106,11 +106,11 @@ public class AdministratorService {
 		Assert.notNull(Administrator);
 
 		final String pnumber = Administrator.getPhoneNumber();
-		//TODO: Descomentar
-		//		final Customisation cus = ((List<Customisation>) this.customisationService.findAll()).get(0);
-		//		final String cc = cus.getPhoneNumberCode();
-		//		if (pnumber.matches("^[0-9]{4,}$"))
-		//			Administrator.setPhoneNumber(cc.concat(pnumber));
+
+		final Customisation cus = ((List<Customisation>) this.customisationService.findAll()).get(0);
+		final String cc = cus.getPhoneNumberCode();
+		if (pnumber.matches("^[0-9]{4,}$"))
+			Administrator.setPhoneNumber(cc.concat(pnumber));
 
 		if (Administrator.getId() != 0) {
 			Assert.isTrue(this.actorService.checkAdmin());
@@ -279,10 +279,10 @@ public class AdministratorService {
 
 		final UserAccount ua = logAdministrator.getUserAccount();
 		final String tick1 = TickerGenerator.tickerLeave();
-		//TODO: DESCOMENTAR
-		//		if (logAdministrator.getSocialProfiles() != null)
-		//			for (final SocialProfile sp : logAdministrator.getSocialProfiles())
-		//				this.socialprofileService.deleteLeave(sp);
+
+		if (logAdministrator.getSocialProfiles() != null)
+			for (final SocialProfile sp : logAdministrator.getSocialProfiles())
+				this.socialprofileService.deleteLeave(sp);
 		ua.setUsername("Unknown" + tick1);
 		final String pass1 = TickerGenerator.generateTicker();
 		final Md5PasswordEncoder encoder = new Md5PasswordEncoder();

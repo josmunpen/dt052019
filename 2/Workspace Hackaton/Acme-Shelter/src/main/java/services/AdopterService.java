@@ -22,6 +22,7 @@ import security.UserAccount;
 import utilities.TickerGenerator;
 import domain.Actor;
 import domain.Adopter;
+import domain.Customisation;
 import domain.SocialProfile;
 import forms.AdopterForm;
 
@@ -35,14 +36,12 @@ public class AdopterService {
 	@Autowired
 	public ActorService2		actorService;
 
+	@Autowired
+	public CustomisationService	customisationService;
 
-	//TODO: DESCOMENTAR
-	//	@Autowired
-	//	public CustomisationService	customisationService;
+	@Autowired
+	public SocialProfileService	socialprofileService;
 
-	//TODO: DESCOMENTAR
-	//	@Autowired
-	//	public SocialProfileService	socialprofileService;
 
 	//Constructor
 	public AdopterService() {
@@ -102,11 +101,10 @@ public class AdopterService {
 		Assert.notNull(Adopter);
 
 		final String pnumber = Adopter.getPhoneNumber();
-		//TODO: DESCCOMENTAR
-		//		final Customisation cus = ((List<Customisation>) this.customisationService.findAll()).get(0);
-		//		final String cc = cus.getPhoneNumberCode();
-		//		if (pnumber.matches("^[0-9]{4,}$"))
-		//			Adopter.setPhoneNumber(cc.concat(pnumber));
+		final Customisation cus = ((List<Customisation>) this.customisationService.findAll()).get(0);
+		final String cc = cus.getPhoneNumberCode();
+		if (pnumber.matches("^[0-9]{4,}$"))
+			Adopter.setPhoneNumber(cc.concat(pnumber));
 
 		if (Adopter.getId() != 0) {
 			Assert.isTrue(this.actorService.checkAdopter());
@@ -253,10 +251,10 @@ public class AdopterService {
 
 		final UserAccount ua = logAdopter.getUserAccount();
 		final String tick1 = TickerGenerator.tickerLeave();
-		//TODO: DESCOMENTAR
-		//		if (logAdopter.getSocialProfiles() != null)
-		//			for (final SocialProfile sp : logAdopter.getSocialProfiles())
-		//				this.socialprofileService.deleteLeave(sp);
+
+		if (logAdopter.getSocialProfiles() != null)
+			for (final SocialProfile sp : logAdopter.getSocialProfiles())
+				this.socialprofileService.deleteLeave(sp);
 		ua.setUsername("Unknown" + tick1);
 		final String pass1 = TickerGenerator.generateTicker();
 		final Md5PasswordEncoder encoder = new Md5PasswordEncoder();

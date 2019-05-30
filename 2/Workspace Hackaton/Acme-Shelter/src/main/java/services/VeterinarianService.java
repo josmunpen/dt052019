@@ -22,6 +22,7 @@ import security.UserAccount;
 import utilities.TickerGenerator;
 import domain.Actor;
 import domain.Box;
+import domain.Customisation;
 import domain.SocialProfile;
 import domain.Veterinarian;
 import forms.VeterinarianForm;
@@ -36,12 +37,11 @@ public class VeterinarianService {
 	@Autowired
 	public ActorService2			actorService;
 
-	//TODO:DESCOMENTAR
-	//	@Autowired
-	//	public CustomisationService		customisationService;
-	//
-	//	@Autowired
-	//	public SocialProfileService		socialprofileService;
+	@Autowired
+	public CustomisationService		customisationService;
+
+	@Autowired
+	public SocialProfileService		socialprofileService;
 
 	@Autowired
 	private MessageService			messageService;
@@ -106,11 +106,11 @@ public class VeterinarianService {
 		Assert.notNull(Veterinarian);
 
 		final String pnumber = Veterinarian.getPhoneNumber();
-		//TODO: Descomentar
-		//		final Customisation cus = ((List<Customisation>) this.customisationService.findAll()).get(0);
-		//		final String cc = cus.getPhoneNumberCode();
-		//		if (pnumber.matches("^[0-9]{4,}$"))
-		//			Veterinarian.setPhoneNumber(cc.concat(pnumber));
+
+		final Customisation cus = ((List<Customisation>) this.customisationService.findAll()).get(0);
+		final String cc = cus.getPhoneNumberCode();
+		if (pnumber.matches("^[0-9]{4,}$"))
+			Veterinarian.setPhoneNumber(cc.concat(pnumber));
 
 		if (Veterinarian.getId() != 0) {
 			Assert.isTrue(this.actorService.checkAdmin() || this.actorService.checkVeterinarian());
@@ -281,10 +281,10 @@ public class VeterinarianService {
 
 		final UserAccount ua = logVeterinarian.getUserAccount();
 		final String tick1 = TickerGenerator.tickerLeave();
-		//TODO: DESCOMENTAR
-		//		if (logVeterinarian.getSocialProfiles() != null)
-		//			for (final SocialProfile sp : logVeterinarian.getSocialProfiles())
-		//				this.socialprofileService.deleteLeave(sp);
+
+		if (logVeterinarian.getSocialProfiles() != null)
+			for (final SocialProfile sp : logVeterinarian.getSocialProfiles())
+				this.socialprofileService.deleteLeave(sp);
 		ua.setUsername("Unknown" + tick1);
 		final String pass1 = TickerGenerator.generateTicker();
 		final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
