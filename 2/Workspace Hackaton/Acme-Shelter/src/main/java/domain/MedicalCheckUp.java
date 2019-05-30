@@ -64,7 +64,7 @@ public class MedicalCheckUp extends DomainEntity {
 
 
 	private Veterinarian			veterinarian;
-	private Pet					pet;
+	private Pet						pet;
 	private Collection<Treatment>	treatments;
 
 
