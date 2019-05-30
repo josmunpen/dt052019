@@ -40,6 +40,7 @@
 					<li class="arrow"></li>
 					<li><a href="veterinarian/veterinarian/edit.do"><spring:message code="master.page.edit.veterinarian" /></a></li>
 					<li><a href="checkup/veterinarian/list.do"><spring:message code="master.page.list.checkups" /></a></li>
+					<li><a href="treatment/veterinarian/list.do"><spring:message code="master.page.list.treatment" /></a></li>
 				</ul>
 			</li>
 		</security:authorize>
