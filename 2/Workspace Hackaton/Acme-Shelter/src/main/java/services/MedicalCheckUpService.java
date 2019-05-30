@@ -54,6 +54,10 @@ public class MedicalCheckUpService {
 		return this.medicalCheckUpRepository.findByVeterinarian(id);
 
 	}
+		public List<MedicalCheckUp> findByVeterinarian(final int id) {
+		return this.medicalCheckUpRepository.findByVeterinarian(id);
+
+	}
 	
 		public MedicalCheckUp findByTreatment(final Treatment t1) {
 		return this.medicalCheckUpRepository.findByTreatment(t1.getId());
@@ -87,6 +91,9 @@ public class MedicalCheckUpService {
 		return res;
 	}
 
+	public MedicalCheckUp findOne(final int medicalId) {
+		Assert.isTrue(this.actorService.checkVeterinarian());
+		return this.medicalCheckUpRepository.findOne(medicalId);
 
 	@Autowired
 	private Validator	validator;

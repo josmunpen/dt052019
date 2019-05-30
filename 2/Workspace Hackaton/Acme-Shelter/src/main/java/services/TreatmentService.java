@@ -52,15 +52,8 @@ public class TreatmentService {
 		Assert.isTrue(this.actorService.checkVeterinarian() || this.actorService.checkPetOwner());
 
 		final Treatment t = this.treatmentRepository.findOne(treatmentId);
-		if (this.actorService.checkVeterinarian()) {
-			Boolean contiene = false;
-			for (final MedicalCheckUp m : this.medicalCheckUpService.findByVeterinarian(this.actorService.findByPrincipal().getId()))
-				if (m.getTreatments().contains(t)) {
-					contiene = true;
-					break;
-				}
-			Assert.isTrue(contiene == true);
-		}
+		if (this.actorService.checkVeterinarian())
+			Assert.isTrue(t.getMedicalCheckUp().getVeterinarian().getId() == this.actorService.findByPrincipal().getId());
 		if (this.actorService.checkPetOwner())
 			Assert.isTrue(this.petService.findAllByPetOwner(this.actorService.findByPrincipal().getId()).contains(this.findPetByTreatmentId(t.getId())));
 		return t;
@@ -70,9 +63,10 @@ public class TreatmentService {
 		return this.treatmentRepository.findPetByTreatmentId(id);
 	}
 
-	public Treatment create() {
+	public Treatment create(final int medicalId) {
 		this.actorService.checkVeterinarian();
 		final Treatment res = new Treatment();
+		res.setMedicalCheckUp(this.medicalCheckUpService.findOne(medicalId));
 		res.setId(0);
 
 		return res;
@@ -106,19 +100,22 @@ public class TreatmentService {
 	}
 
 	public void delete(final Treatment t1) {
-		Assert.isTrue(this.actorService.checkVeterinarian());
-		Assert.isTrue(this.findAllByVeterinarian(this.actorService.findByPrincipal().getId()).contains(t1));
-
-		final MedicalCheckUp m1 = this.medicalCheckUpService.findByTreatment(t1);
-		m1.getTreatments().remove(t1);
-		this.medicalCheckUpService.save(m1);
+		Assert.isTrue(this.actorService.checkVeterinarian() || this.actorService.checkPetOwner());
+		if (this.actorService.checkVeterinarian())
+			Assert.isTrue(this.findAllByVeterinarian(this.actorService.findByPrincipal().getId()).contains(t1));
+		if (this.actorService.checkPetOwner())
+			Assert.isTrue(this.petService.findAllByPetOwner(this.actorService.findByPrincipal().getId()).contains(t1.getMedicalCheckUp().getPet()));
 		this.treatmentRepository.delete(t1.getId());
 
 	}
-
 	public List<Treatment> findByPet(final Pet pet) {
 
 		return this.treatmentRepository.findByPet(pet.getId());
+	}
+
+	public List<Treatment> findByMedicalCheckUp(final MedicalCheckUp m) {
+		// TODO Auto-generated method stub
+		return this.treatmentRepository.findByMedicalCheckUp(m.getId());
 	}
 
 }

@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -17,11 +18,21 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Access(AccessType.PROPERTY)
 public class Treatment extends DomainEntity {
 
-	private Date	moment;
-	private String	illness;
-	private String	treatmentC;
-	private String	comment;
+	private Date			moment;
+	private String			illness;
+	private String			treatmentC;
+	private String			comment;
+	private MedicalCheckUp	medicalCheckUp;
 
+
+	@ManyToOne(optional = false)
+	public MedicalCheckUp getMedicalCheckUp() {
+		return this.medicalCheckUp;
+	}
+
+	public void setMedicalCheckUp(final MedicalCheckUp medicalCheckUp) {
+		this.medicalCheckUp = medicalCheckUp;
+	}
 
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")

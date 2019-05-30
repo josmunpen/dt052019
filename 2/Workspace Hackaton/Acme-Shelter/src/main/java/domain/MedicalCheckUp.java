@@ -1,15 +1,12 @@
 
 package domain;
 
-import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -63,10 +60,11 @@ public class MedicalCheckUp extends DomainEntity {
 	}
 
 
-	private Veterinarian			veterinarian;
-	private Pet					pet;
-	private Collection<Treatment>	treatments;
+	private Veterinarian	veterinarian;
+	private Pet				pet;
 
+
+	//	private Collection<Treatment>	treatments;
 
 	@Valid
 	@ManyToOne(optional = false)
@@ -88,13 +86,13 @@ public class MedicalCheckUp extends DomainEntity {
 		this.pet = pet;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL)
-	public Collection<Treatment> getTreatments() {
-		return this.treatments;
-	}
-
-	public void setTreatments(final Collection<Treatment> treatments) {
-		this.treatments = treatments;
-	}
+	//	@OneToMany(cascade = CascadeType.ALL)
+	//	public Collection<Treatment> getTreatments() {
+	//		return this.treatments;
+	//	}
+	//
+	//	public void setTreatments(final Collection<Treatment> treatments) {
+	//		this.treatments = treatments;
+	//	}
 
 }

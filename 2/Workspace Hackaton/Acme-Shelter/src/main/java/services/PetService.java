@@ -26,6 +26,7 @@ import domain.MedicalCheckUp;
 import domain.Pet;
 import domain.PetOwner;
 import domain.PetType;
+import domain.Treatment;
 
 @Service
 @Transactional
@@ -186,7 +187,9 @@ public class PetService {
 		for (final History h : p1.getHistories())
 			this.historyService.delete(h);
 		for (final MedicalCheckUp m : this.medicalCheckUpService.findByPet(p1)) {
-			this.treatmentService.delete(m);
+			for (final Treatment t : this.treatmentService.findByMedicalCheckUp(m))
+				this.treatmentService.delete(t);
+
 			this.medicalCheckUpService.delete(m);
 		}
 		this.applicationService.delete(p1);
