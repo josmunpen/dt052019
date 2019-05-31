@@ -33,6 +33,8 @@
 		<bean class="converters.ApplicationToStringConverter" />
 		<bean class="converters.ActorToStringConverter" />
 		<bean class="converters.AdopterToStringConverter" />
+		<bean class="converters.TreatmentToStringConverter" />
+		<bean class="converters.MedicalCheckUpToStringConverter" />
 		
 		<bean class="converters.StringToPetConverter" /> 
 		<bean class="converters.StringToPetOwnerConverter" />  
@@ -41,6 +43,9 @@
 		<bean class="converters.StringToApplicationConverter" />
 		<bean class="converters.StringToActorConverter" />
 		<bean class="converters.StringToAdopterConverter" />
+		<bean class="converters.StringToTreatmentConverter" />
+		<bean class="converters.StringToMedicalCheckUpConverter" /> 
+		
 		
 		<bean class="converters.StringToAuthorityConverter" /> 
 		<bean class="converters.AuthorityToStringConverter" /> 

@@ -1,3 +1,4 @@
+
 package controllers;
 
 import java.util.Collection;
@@ -6,30 +7,28 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import domain.Application;
-
-
 import services.ApplicationService;
 import services.HistoryService;
-
+import domain.Application;
 
 @Controller
 @RequestMapping("/application/petowner")
-public class ApplicationStatusController extends AbstractController{
-	
+public class ApplicationStatusController extends AbstractController {
+
 	@Autowired
-	private ApplicationService as;
-	
+	private ApplicationService	as;
+
 	@Autowired
-	private HistoryService hs;
-	
-	
+	private HistoryService		hs;
+
+
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
 		ModelAndView result;
@@ -42,61 +41,60 @@ public class ApplicationStatusController extends AbstractController{
 
 		return result;
 	}
-	
+
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public ModelAndView edit(@RequestParam final int applicationId) {
 		ModelAndView result;
 		Application application;
 		application = this.as.findOne(applicationId);
-		if(application.getPet().getPetOwner().getId()!= this.hs.getThisPetOwner().getId()){
+		if (application.getPet().getPetOwner().getId() != this.hs.getThisPetOwner().getId())
 			return new ModelAndView("redirect:/welcome/index.do");
-		}
-		
-		if(application.getStatus().equals("ACCEPTED") || application.getStatus().equals("REJECTED")){
+
+		if (application.getStatus().equals("ACCEPTED") || application.getStatus().equals("REJECTED"))
 			return this.list();
-		}
-		
+
 		application.setRejectCause("");
 		result = this.createEditModelAndView(application);
-		
+
 		return result;
 	}
-	
+
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid final Application application, final BindingResult binding) {
 		ModelAndView result;
-		Application check = this.as.findOne(application.getId());
-		if(check.getStatus().equals("ACCEPTED") || check.getStatus().equals("REJECTED")){
+		final Application check = this.as.findOne(application.getId());
+		if (check.getStatus().equals("ACCEPTED") || check.getStatus().equals("REJECTED"))
 			return this.list();
-		}
-		Application a = this.as.reconstructStatus(application);
+		final Application a = this.as.reconstructStatus(application);
 
-		if (binding.hasErrors()){
+		if (binding.hasErrors())
 			result = this.createEditModelAndView(a);
-		}
 		else
 			try {
-				
+				if (a.getStatus() == "REJECTED" || a.getStatus().contains("REJECTED"))
+					Assert.isTrue(a.getRejectCause().isEmpty() || a.getRejectCause() == ",", "mandatoryRejectReason");
+
 				this.as.saveStatus(a);
 				result = new ModelAndView("redirect:list.do");
 
 			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(application, "application.commit.error");
+				if (oops.getMessage() == "mandatoryRejectReason")
+					result = this.createEditModelAndView(application, "application.error.reject");
+				else
+					result = this.createEditModelAndView(application, "application.commit.error");
 			}
 
 		return result;
 	}
 
-	
-
-	protected ModelAndView createEditModelAndView(Application application) {
+	protected ModelAndView createEditModelAndView(final Application application) {
 		ModelAndView result;
 		result = this.createEditModelAndView(application, null);
 
 		return result;
 	}
-	
-	protected ModelAndView createEditModelAndView(Application application, String messageCode) {
+
+	protected ModelAndView createEditModelAndView(final Application application, final String messageCode) {
 		ModelAndView result;
 
 		result = new ModelAndView("application/petowner/edit");
@@ -105,6 +103,5 @@ public class ApplicationStatusController extends AbstractController{
 
 		return result;
 	}
-	
 
 }

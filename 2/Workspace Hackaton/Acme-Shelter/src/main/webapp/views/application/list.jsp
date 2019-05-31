@@ -16,11 +16,11 @@
 	<display:column property="moment" titleKey="application.moment" />
 	<display:column property="pet.name" titleKey="pet.name" />
 
-	<jstl:if test="${idioma == 'en'}">
+	<jstl:if test="${pageContext.response.locale.language=='en'}">
 		<display:column property="status" titleKey="application.status" />
 	</jstl:if>
 
-	<jstl:if test="${idioma == 'es'}">
+	<jstl:if test="${pageContext.response.locale.language=='es'}">
 		<display:column titleKey="application.status">
 			<jstl:if test="${row.status == 'ACCEPTED' }">
 				<spring:message code="application.accepted" />

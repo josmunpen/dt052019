@@ -41,25 +41,38 @@
 <jstl:if test="${lang!='en' }">
 <display:table name="types" id="row" requestURI="${requestURI}" pagesize="5" class ="displaytag">
 
-<display:column property="nombre" titleKey="type.name"/>
-<display:column property="scientificTerm" titleKey="type.scientificTerm"/>
-<display:column property="description" titleKey="type.description"/>
-<display:column property="zone" titleKey="type.zone"/>
-<display:column property="childs" titleKey ="type.childs" />
-<display:column property="finalMode" titleKey="type.finalMode"/>
+	<display:column property="nombre" titleKey="type.name"/>
+	<display:column property="scientificTerm" titleKey="type.scientificTerm"/>
+	<display:column property="description" titleKey="type.description"/>
+	<display:column property="zone" titleKey="type.zone"/>
 
-<display:column>
-<jstl:if test ="${row.finalMode == false }">
-<a href="type/administrator/edit.do?typeId=${row.id}">
-<spring:message code="type.edit"/>
-</a>
-</jstl:if>
-</display:column>
-<display:column>
-<a href="type/administrator/display.do?typeId=${row.id}">
-<spring:message code="type.display"/>
-</a>
-</display:column>
+	
+	<display:column titleKey="type.childs">
+		<jstl:forEach var = "child" items="${row.childs}">
+			<jstl:if test="${pageContext.response.locale.language=='en'}">
+				<jstl:out value="${child.name}"/>
+			</jstl:if>
+			<jstl:if test="${pageContext.response.locale.language=='es'}">
+				<jstl:out value="${child.nombre}"/>
+			</jstl:if>
+			<br/>
+		</jstl:forEach>
+	</display:column>
+	
+	<display:column property="finalMode" titleKey="type.finalMode"/>
+	
+	<display:column>
+		<jstl:if test ="${row.finalMode == false }">
+			<a href="type/administrator/edit.do?typeId=${row.id}">
+			<spring:message code="type.edit"/>
+			</a>
+		</jstl:if>
+	</display:column>
+	<display:column>
+		<a href="type/administrator/display.do?typeId=${row.id}">
+		<spring:message code="type.display"/>
+		</a>
+	</display:column>
 </display:table>
 
 </jstl:if>

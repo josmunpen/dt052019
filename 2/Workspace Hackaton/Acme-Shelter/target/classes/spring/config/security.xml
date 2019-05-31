@@ -41,10 +41,10 @@
 
 		<!-- ANON -->
 		<security:intercept-url pattern="/adopter/register.do" access="permitAll" /> 		
+		<security:intercept-url pattern="/petowner/register.do" access="permitAll" />
 		<security:intercept-url pattern="/pet/list.do" access="permitAll" /> 	
 		<security:intercept-url pattern="/petowner/show.do" access="permitAll" /> 	 		
-		<security:intercept-url pattern="/pet/show.do" access="permitAll" />
-		<security:intercept-url pattern="/petowner/register.do" access="permitAll" /> 		
+		<security:intercept-url pattern="/pet/show.do" access="permitAll" />		
 
 		<!-- ADOPTER -->
 		<security:intercept-url pattern="/adopter/adopter/edit.do" access="hasRole('ADOPTER')" /> 
@@ -67,6 +67,10 @@
 		<!-- VETERINARIAN -->
 		<security:intercept-url pattern="/veterinarian/veterinarian/edit.do" access="hasRole('VETERINARIAN')" /> 
 		<security:intercept-url pattern="/veterinarian/veterinarian/show.do" access="hasRole('VETERINARIAN')" /> 
+		<security:intercept-url pattern="/checkup/veterinarian/list.do" access="hasRole('VETERINARIAN')" /> 
+		<security:intercept-url pattern="/checkup/veterinarian/edit.do" access="hasRole('VETERINARIAN')" /> 
+		<security:intercept-url pattern="/checkup/veterinarian/create.do" access="hasRole('VETERINARIAN')" /> 
+		<security:intercept-url pattern="/treatment/veterinarian/**" access="hasRole('VETERINARIAN')" />
 		
 		<security:intercept-url pattern="/application/adopter/list.do"
 			access="hasRole('ADOPTER')" />

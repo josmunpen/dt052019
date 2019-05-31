@@ -644,6 +644,7 @@
 	<bean id="petType1" class="domain.PetType">
 		<property name="name" value="PET"/>
 		<property name="nombre" value="PET"/>
+		<property name="finalMode" value="true"/>
 		<property name="childs">
 			<list>
 				<ref bean="petType2"/>
@@ -653,6 +654,7 @@
 	<bean id="petType2" class="domain.PetType">
 		<property name="name" value="DOG"/>
 		<property name="nombre" value="DOG"/>
+		<property name="finalMode" value="true"/>
 		<property name="scientificTerm" value="Canis lupus familiaris"/>
 		<property name="childs">
 			<list>
@@ -669,14 +671,17 @@
 	<bean id="petType3" class="domain.PetType">
 		<property name="name" value="Unknown Dog"/>
 		<property name="nombre" value="Perro Desconocido"/>
+		<property name="finalMode" value="true"/>
 	</bean>
 	<bean id="petType4" class="domain.PetType">
 		<property name="name" value="Bulldog"/>
 		<property name="nombre" value="Bulldog"/>
+		<property name="finalMode" value="true"/>
 	</bean>
 	<bean id="petType5" class="domain.PetType">
 		<property name="name" value="Bodeguero"/>
 		<property name="nombre" value="Bodeguero"/>
+		<property name="finalMode" value="true"/>
 	</bean>
 	
 	<bean id="petType6" class="domain.PetType">
@@ -690,11 +695,13 @@
 				<ref bean="petType13"/>
 			</list>
 		</property>
+		<property name="finalMode" value="true"/>
 	</bean>
 	
 	<bean id="petType7" class="domain.PetType">
 		<property name="name" value="Unknown Cat"/>
 		<property name="nombre" value="Gato Desconocido"/>
+		<property name="finalMode" value="true"/>
 	</bean>
 	
 	<bean id="petType8" class="domain.PetType">

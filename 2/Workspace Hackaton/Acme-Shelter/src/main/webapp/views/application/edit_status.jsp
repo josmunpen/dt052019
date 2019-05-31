@@ -21,19 +21,38 @@
 		<form:label path="status">
 		<spring:message code="application.status" />:
 	    </form:label>
-	    <form:select path="status">
-
-		<form:option value="ACCEPTED"></form:option>
-		<form:option value="REJECTED"></form:option>
+	    <form:select path="status" name="status" id="status">
+			<form:option value="ACCEPTED"></form:option>
+			<form:option value="REJECTED"></form:option>
 		</form:select>
 		
-		<form:label path="rejectCause">
+		<br />
+		<br />
+		<form:label path="rejectCause" id="reject2">
 		<spring:message code="application.rejectCause" />:*
 		</form:label>
-		<form:input path="rejectCause" />
+		<form:input path="rejectCause" name="reject" id="reject"/>
 		<form:errors cssClass="error" path="rejectCause" />
 		<br />
 
+		<script>
+	window.onload=myFunction;
+	document.getElementById("status").onchange = function() {myFunction()};	
+	
+    function myFunction() {
+       var sta = document.getElementById('status').value;
+	   var rej = new String('REJECTED');
+
+      if (sta == rej) {
+        document.getElementById("reject").style.display = "block";
+        document.getElementById("reject2").style.display = "block";
+      } else {
+        document.getElementById("reject").style.display = "none";
+        document.getElementById("reject2").style.display = "none";  
+      }
+    }
+  </script>
+	
 	
 			
 	<input type ="submit" name="save" value="<spring:message code="application.save"/>" />

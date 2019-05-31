@@ -116,7 +116,8 @@ public class PetPetOwnerController extends AbstractController {
 		ModelAndView res;
 		res = new ModelAndView("pet/edit");
 
-		final List<PetType> lpt = this.petTypeService.findAll();
+		final List<PetType> lpt = this.petTypeService.findPetsFinalMode();
+
 		res.addObject("pet", p);
 		res.addObject("lpt", lpt);
 		res.addObject("message", messageCode);

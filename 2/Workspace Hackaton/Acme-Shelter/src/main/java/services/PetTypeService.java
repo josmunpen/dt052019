@@ -53,4 +53,8 @@ public class PetTypeService {
 	public List<PetType> findAll() {
 		return this.typeRepository.findAll();
 	}
+
+	public List<PetType> findPetsFinalMode() {
+		return (List<PetType>) this.typeRepository.findPetsFinalMode();
+	}
 }

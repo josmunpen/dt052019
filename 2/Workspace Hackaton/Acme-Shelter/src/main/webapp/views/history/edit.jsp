@@ -27,7 +27,7 @@
 		<br />	
 		
 		<form:label path="endMoment">
-			<spring:message code="history.endMoment" />:(yyyy-mm-dd)*
+			<spring:message code="history.endMoment" />:(yyyy-mm-dd)
 		</form:label>
 		<form:input path="endMoment" />
 		<form:errors cssClass="error" path="endMoment" />

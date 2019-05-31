@@ -15,31 +15,8 @@
 	name="pets" requestURI="${requestURI}" id="row">
 
 	<display:column property="identifier" titleKey="pet.identifier"  />
-	<security:authorize access="hasRole('PETOWNER')">
-	<display:column property="address" titleKey="pet.address"  />
-	</security:authorize>
-	<display:column property="age" titleKey="pet.age" />
-	<security:authorize access="hasRole('PETOWNER')">	
-	<display:column property="careRequirements" titleKey="pet.care.requirements"  />
-	<display:column property="dietRequirements" titleKey="pet.diet.requirements"  />
-	<display:column property="familyRequirements" titleKey="pet.family.requirements"  />
-	<display:column property="managementCost" titleKey="pet.management.cost"  />
-	<display:column property="petsRequirements" titleKey="pet.requirements"  />
-	</security:authorize>
-	<display:column property="name" titleKey="pet.name"  />
-	<display:column property="nature" titleKey="pet.nature"  />
-	<display:column property="pedigree" titleKey="pet.pedigree"  />
-	
-	<jstl:if test="${pageContext.response.locale.language=='es'}">
-	<display:column property="petType.nombre" titleKey="pet.type"  />
-	</jstl:if>
-	
-	<jstl:if test="${pageContext.response.locale.language=='en'}">
-	<display:column property="petType.name" titleKey="pet.type"  />
-	</jstl:if>
-	<display:column property="photos" titleKey="pet.photos"  />
-	
-	<jstl:if test="${pageContext.response.locale.language=='es'}">
+	<display:column property="name" titleKey="pet.name"  />	
+		<jstl:if test="${pageContext.response.locale.language=='es'}">
 	<jstl:if test="${row.sex=='MALE'}">
 	<display:column titleKey="pet.sex" value="Macho"/>
 	</jstl:if>
@@ -54,6 +31,14 @@
 	<display:column property="sex" titleKey="pet.sex"  />
 	</jstl:if>
 	
+	
+	<jstl:if test="${pageContext.response.locale.language=='es'}">
+	<display:column property="petType.nombre" titleKey="pet.type"  />
+	</jstl:if>
+	
+	<jstl:if test="${pageContext.response.locale.language=='en'}">
+	<display:column property="petType.name" titleKey="pet.type"  />
+	</jstl:if>
 	<jstl:if test="${pageContext.response.locale.language=='es'}">
 	<jstl:if test="${row.status=='LOW'}">
 	<display:column titleKey="pet.status" value="Malo"/>
@@ -71,6 +56,16 @@
 	<jstl:if test="${pageContext.response.locale.language=='en'}">
 	<display:column property="status" titleKey="pet.status"  />
 	</jstl:if>
+	
+	<display:column property="address" titleKey="pet.address"  />
+	<display:column property="age" titleKey="pet.age" />
+	<security:authorize access="hasRole('PETOWNER')">	
+	<display:column property="careRequirements" titleKey="pet.care.requirements"  />
+	<display:column property="dietRequirements" titleKey="pet.diet.requirements"  />
+	<display:column property="familyRequirements" titleKey="pet.family.requirements"  />
+	<display:column property="petsRequirements" titleKey="pet.requirements"  />
+	</security:authorize>
+
 	
 	<jstl:if test="${Anon==true}">
 	<display:column>
@@ -100,6 +95,12 @@
 			</a>
 	</display:column>
 </security:authorize>
+<jstl:if test="${Anon==true }">
+<display:column><a href="petowner/show.do?petOwnerId=${row.petOwner.id}">
+			<spring:message code="pet.petowner" />
+			</a></display:column>
+</jstl:if>		
+
 <security:authorize access="hasRole('ADOPTER')">
 	<display:column>
 	<a href="application/adopter/create.do?petId=${row.id}">
@@ -107,11 +108,7 @@
 	</a>
 	</display:column>
 </security:authorize>
-<jstl:if test="${Anon==true }">
-<display:column><a href="petowner/show.do?petOwnerId=${row.petOwner.id}">
-			<spring:message code="pet.petowner" />
-			</a></display:column>
-</jstl:if>		
+
 </display:table>
 <security:authorize access="hasRole('PETOWNER')">
 <a href="pet/petOwner/create.do">
