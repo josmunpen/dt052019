@@ -100,6 +100,13 @@
 			</a>
 	</display:column>
 </security:authorize>
+<security:authorize access="hasRole('ADOPTER')">
+	<display:column>
+	<a href="application/adopter/create.do?petId=${row.id}">
+		<spring:message code="pet.apply"/>
+	</a>
+	</display:column>
+</security:authorize>
 <jstl:if test="${Anon==true }">
 <display:column><a href="petowner/show.do?petOwnerId=${row.petOwner.id}">
 			<spring:message code="pet.petowner" />
