@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import services.ActorService;
+import repositories.PetRepository;
+import services.ActorService2;
+import services.AdopterService;
 import services.PetOwnerService;
 import services.PetService;
 import services.PetTypeService;
@@ -26,13 +28,19 @@ public class PetAnonController extends AbstractController {
 	private PetService		petService;
 
 	@Autowired
+	private PetRepository	petRepository;
+
+	@Autowired
 	private PetTypeService	petTypeService;
 
 	@Autowired
 	private PetOwnerService	petOwnerService;
 
 	@Autowired
-	private ActorService	actorService;
+	private ActorService2	actorService2;
+
+	@Autowired
+	private AdopterService	adopterService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -47,7 +55,19 @@ public class PetAnonController extends AbstractController {
 	public ModelAndView list() {
 		ModelAndView result;
 
-		final List<Pet> pets = new ArrayList<Pet>(this.petService.findAll());
+		List<Pet> pets = new ArrayList<Pet>(this.petService.findAll());
+
+		//Si el actor logeado es un adopter
+		//if (this.actorService2.checkAdopter())
+		//		if (this.actorService2.findByPrincipal2() != null)
+		//			pets = new ArrayList<Pet>(this.petRepository.findWithoutApplicationAccepted());
+
+		try {
+			if (this.actorService2.findByPrincipal() != null)
+				pets = new ArrayList<Pet>(this.petRepository.findWithoutApplicationAccepted());
+		} catch (final Throwable oops) {
+			pets = new ArrayList<Pet>(this.petService.findAll());
+		}
 
 		result = new ModelAndView("pet/list");
 		result.addObject("pets", pets);

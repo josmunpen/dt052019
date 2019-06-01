@@ -36,4 +36,7 @@ public interface PetRepository extends JpaRepository<Pet, Integer> {
 	@Query("select p from Pet p where p not in (select m.pet from MedicalCheckUp m))")
 	public Collection<Pet> findWithoutMedicalCheckUp();
 
+	@Query("select p from Pet p where p not in (select a.pet from Application a where a.status = 'ACCEPTED')")
+	public Collection<Pet> findWithoutApplicationAccepted();
+
 }

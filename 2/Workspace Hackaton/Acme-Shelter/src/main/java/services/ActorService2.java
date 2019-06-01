@@ -41,6 +41,16 @@ public class ActorService2 {
 		return res;
 	}
 
+	public Actor findByPrincipal2() {
+		Actor res;
+		UserAccount userAccount;
+
+		userAccount = LoginService.getPrincipal();
+		res = this.findByUserAccount(userAccount);
+
+		return res;
+	}
+
 	//Returns logged actor from his or her userAccount
 	public Actor findByUserAccount(final UserAccount userAccount) {
 		Actor res;

@@ -67,13 +67,12 @@
 	</security:authorize>
 
 	
-	<jstl:if test="${Anon==true}">
 	<display:column>
 			<a href="pet/show.do?petId=${row.id}">
 			<spring:message code="pet.show" />
 			</a>
 	</display:column>
-	</jstl:if>
+
 	
 	<security:authorize access="hasRole('PETOWNER')">
 	<display:column>
