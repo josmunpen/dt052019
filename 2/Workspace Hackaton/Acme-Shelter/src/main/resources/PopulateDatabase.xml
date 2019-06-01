@@ -107,7 +107,7 @@
 	
 	<bean id="customisation1" class="domain.Customisation">
 		  <property name="systemName" value="Acme Shelter" /> 
-		  <property name="bannerUrl" value="https://tinyurl.com/acme-rookies" /> 
+		  <property name="bannerUrl" value="http://oi64.tinypic.com/23r5owj.jpg" /> 
 		  <property name="welcomeMessageEng" value="Welcome to Acme Shelter We're pet lovers favourite place!" /> 
 		  <property name="welcomeMessageEsp" value="¡Bienvenidos a Acme Shelter! ¡Somos el mercado de trabajo favorito de los amantes de las mascotas!" /> 
 		  <property name="phoneNumberCode" value="+34" /> 
