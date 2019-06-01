@@ -358,6 +358,7 @@
 		<property name="sex" value="FEMALE" />
 		<property name="status" value="LOW" />
 		<property name="nature" value="Tranquila" />
+		<property name="pedigree" value="Tranquila" />
 		<property name="careRequirements" value="Cepillado una vez a la semana" />
 		<property name="dietRequirements" value="No puede comer hierba. Adora el pescado" />
 		<property name="petsRequirements" value="Se lleva bien con otros animales" />
@@ -452,6 +453,7 @@
 			</list>
 		</property>
 		<property name="petType" ref="petType4"/>
+		<property name="pedigree" value="Abuelos y padres bulldogs con pedigree."/>
 		
 		<property name="petOwner" ref="petowner2"/>
 		<property name="identifier" value="Q1W25"/>
@@ -503,6 +505,7 @@
 					<ref bean="history7"/>
 			</list>
 		</property>
+		<property name="pedigree" value="Sus padres fueron angoras con pedigrí"/>
 		<property name="petType" ref="petType13"/>
 		<property name="petOwner" ref="petowner2"/>
 		<property name="identifier" value="Q1W36"/>
@@ -579,7 +582,7 @@
 	<!-- Application -->
 	<bean id="application1" class="domain.Application">
 		<property name="moment" value="2019/02/02 21:00:00" />
-		<property name="status" value="PENDING" />
+		<property name="status" value="ACCEPTED" />
 		<property name="comment" value="Tengo otros gatitos y una casa grande." />
 		<property name="photos">
 			<list>

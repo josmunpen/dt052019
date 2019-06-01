@@ -64,7 +64,7 @@ public class PetAnonController extends AbstractController {
 
 		try {
 			if (this.actorService2.findByPrincipal() != null)
-				pets = new ArrayList<Pet>(this.petRepository.findWithoutApplicationAccepted());
+				pets = new ArrayList<Pet>(this.petRepository.findWithoutApplicationAcceptedAndNotApplied(this.actorService2.findByPrincipal().getId()));
 		} catch (final Throwable oops) {
 			pets = new ArrayList<Pet>(this.petService.findAll());
 		}

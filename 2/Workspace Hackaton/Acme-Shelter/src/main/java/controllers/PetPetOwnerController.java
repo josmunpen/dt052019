@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import repositories.PetTypeRepository;
 import services.ActorService;
 import services.MedicalCheckUpService;
 import services.PetService;
@@ -43,6 +44,9 @@ public class PetPetOwnerController extends AbstractController {
 
 	@Autowired
 	private ActorService			actorService;
+
+	@Autowired
+	private PetTypeRepository		petTypeRepository;
 
 
 	// Constructors -----------------------------------------------------------
@@ -117,6 +121,9 @@ public class PetPetOwnerController extends AbstractController {
 		res = new ModelAndView("pet/edit");
 
 		final List<PetType> lpt = this.petTypeService.findPetsFinalMode();
+		final Collection<PetType> pre = this.petTypeRepository.findStandard();
+
+		lpt.removeAll(pre);
 
 		res.addObject("pet", p);
 		res.addObject("lpt", lpt);
