@@ -1,7 +1,7 @@
 
 package services;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -23,7 +23,7 @@ public class PetTypeService {
 
 	public PetType create() {
 		final PetType res = new PetType();
-		res.setChilds(new ArrayList<PetType>());
+		//res.setChilds(new ArrayList<PetType>());
 		res.setFinalMode(false);
 		return res;
 	}
@@ -44,9 +44,16 @@ public class PetTypeService {
 	}
 
 	public void delete(final PetType petType) {
-		if (petType.getChilds() != null)
-			for (final PetType p : petType.getChilds())
+		//		if (petType.getChilds != null)
+		//			for (final PetType p : petType.getChilds())
+		//				this.delete(p);
+		Assert.isTrue(!petType.isFinalMode());
+		final Collection<PetType> childs = this.typeRepository.findChilds(petType.getName());
+
+		if (childs != null)
+			for (final PetType p : childs)
 				this.delete(p);
+
 		this.typeRepository.delete(petType.getId());
 
 	}

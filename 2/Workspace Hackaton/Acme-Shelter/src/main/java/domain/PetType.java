@@ -1,12 +1,10 @@
 
 package domain;
 
-import java.util.Collection;
-
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
@@ -79,16 +77,16 @@ public class PetType extends DomainEntity {
 	}
 
 
-	private Collection<PetType>	childs;
+	private PetType	parent;
 
 
-	@OneToMany
-	public Collection<PetType> getChilds() {
-		return this.childs;
+	@ManyToOne(optional = true)
+	public PetType getParent() {
+		return this.parent;
 	}
 
-	public void setChilds(final Collection<PetType> childs) {
-		this.childs = childs;
+	public void setParent(final PetType parent) {
+		this.parent = parent;
 	}
 
 }

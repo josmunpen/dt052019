@@ -37,18 +37,15 @@
 <jstl:out value="${type.zone}"/>
 <br/>
 
-<b><spring:message code="type.childs"/>: </b>
-	<jstl:forEach var = "child" items="${type.childs}">
-	
+<b><spring:message code="type.parent"/>: </b>
+
 	<jstl:if test="${pageContext.response.locale.language=='en'}">
-		<jstl:out value="${child.name}"/>
+		<jstl:out value="${type.parent.name}"/>
 	</jstl:if>
 	<jstl:if test="${pageContext.response.locale.language=='es'}">
-		<jstl:out value="${child.nombre}"/>
+		<jstl:out value="${type.parent.nombre}"/>
 	</jstl:if>
 	
-		<br/>
-	</jstl:forEach>
 <br/>
 
 <b><spring:message code="type.finalMode"/>: </b>

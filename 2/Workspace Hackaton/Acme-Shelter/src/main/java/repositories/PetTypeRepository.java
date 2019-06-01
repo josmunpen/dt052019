@@ -17,4 +17,8 @@ public interface PetTypeRepository extends JpaRepository<PetType, Integer> {
 
 	@Query("select p from PetType p where p.finalMode = 1")
 	public Collection<PetType> findPetsFinalMode();
+
+	@Query("select p from PetType p where p.parent.name = ?1 or p.parent.nombre = ?1")
+	public Collection<PetType> findChilds(String name);
+
 }

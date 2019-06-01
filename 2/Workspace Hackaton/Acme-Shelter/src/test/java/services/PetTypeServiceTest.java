@@ -1,8 +1,6 @@
 
 package services;
 
-import java.util.ArrayList;
-
 import javax.transaction.Transactional;
 
 import org.junit.Test;
@@ -48,7 +46,7 @@ public class PetTypeServiceTest extends AbstractTest {
 	public void createMessage() {
 		this.authenticate("admin");
 		final PetType p1 = this.pts.create();
-		p1.setChilds(new ArrayList<PetType>());
+		//p1.setChilds(new ArrayList<PetType>());
 		p1.setDescription("Description");
 		p1.setFinalMode(false);
 		p1.setName("Name");
@@ -57,7 +55,7 @@ public class PetTypeServiceTest extends AbstractTest {
 		p1.setZone("zone");
 
 		final PetType p2 = this.pts.create();
-		p2.setChilds(new ArrayList<PetType>());
+		//p2.setChilds(new ArrayList<PetType>());
 		p2.setDescription("Description");
 		p2.setFinalMode(false);
 		p2.setName("");

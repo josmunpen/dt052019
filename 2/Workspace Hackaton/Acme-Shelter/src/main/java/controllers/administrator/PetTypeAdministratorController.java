@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import repositories.PetTypeRepository;
 import services.PetTypeService;
 import controllers.AbstractController;
 import domain.PetType;
@@ -24,7 +25,10 @@ import domain.PetType;
 public class PetTypeAdministratorController extends AbstractController {
 
 	@Autowired
-	private PetTypeService	pts;
+	private PetTypeService		pts;
+
+	@Autowired
+	private PetTypeRepository	ptr;
 
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -79,7 +83,8 @@ public class PetTypeAdministratorController extends AbstractController {
 		ModelAndView result;
 		Collection<PetType> typelist;
 
-		typelist = this.pts.findAll();
+		typelist = this.pts.findPetsFinalMode();
+
 		if (typelist.contains(c))
 			typelist.remove(c);
 
@@ -122,7 +127,8 @@ public class PetTypeAdministratorController extends AbstractController {
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
 	public ModelAndView delete(@Valid final PetType type, final BindingResult binding) {
 		ModelAndView result;
-		final Collection<PetType> children = type.getChilds();
+
+		final Collection<PetType> children = this.ptr.findChilds(type.getName());
 		if (children != null)
 			try {
 				Assert.isTrue(children != null);

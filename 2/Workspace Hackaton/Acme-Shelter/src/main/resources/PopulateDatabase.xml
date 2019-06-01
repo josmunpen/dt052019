@@ -645,56 +645,43 @@
 		<property name="name" value="PET"/>
 		<property name="nombre" value="PET"/>
 		<property name="finalMode" value="true"/>
-		<property name="childs">
-			<list>
-				<ref bean="petType2"/>
-			</list>
-		</property>
 	</bean>
+	
 	<bean id="petType2" class="domain.PetType">
 		<property name="name" value="DOG"/>
 		<property name="nombre" value="DOG"/>
 		<property name="finalMode" value="true"/>
 		<property name="scientificTerm" value="Canis lupus familiaris"/>
-		<property name="childs">
-			<list>
-				<ref bean="petType3"/>
-				<ref bean="petType4"/>
-				<ref bean="petType5"/>
-				<ref bean="petType8"/>
-				<ref bean="petType9"/>
-				<ref bean="petType10"/>
-				<ref bean="petType11"/>
-			</list>
-		</property>
+		<property name="parent" ref="petType1" />
 	</bean>
+	
 	<bean id="petType3" class="domain.PetType">
 		<property name="name" value="Unknown Dog"/>
 		<property name="nombre" value="Perro Desconocido"/>
 		<property name="finalMode" value="true"/>
+		
+		<property name="parent" ref="petType2"/>
 	</bean>
+	
 	<bean id="petType4" class="domain.PetType">
 		<property name="name" value="Bulldog"/>
 		<property name="nombre" value="Bulldog"/>
 		<property name="finalMode" value="true"/>
+		<property name="parent" ref="petType2" />
+
 	</bean>
 	<bean id="petType5" class="domain.PetType">
 		<property name="name" value="Bodeguero"/>
 		<property name="nombre" value="Bodeguero"/>
 		<property name="finalMode" value="true"/>
+		<property name="parent" ref="petType2" />
 	</bean>
 	
 	<bean id="petType6" class="domain.PetType">
 		<property name="name" value="CAT"/>
 		<property name="nombre" value="CAT"/>
 		<property name="scientificTerm" value="Felis silvestris catus"/>
-		<property name="childs">
-			<list>
-				<ref bean="petType7"/>
-				<ref bean="petType12"/>
-				<ref bean="petType13"/>
-			</list>
-		</property>
+		<property name="parent" ref="petType1" />
 		<property name="finalMode" value="true"/>
 	</bean>
 	
@@ -702,6 +689,7 @@
 		<property name="name" value="Unknown Cat"/>
 		<property name="nombre" value="Gato Desconocido"/>
 		<property name="finalMode" value="true"/>
+		<property name="parent" ref="petType6" />
 	</bean>
 	
 	<bean id="petType8" class="domain.PetType">
@@ -710,6 +698,7 @@
 		<property name="description" value="Es un perro conocido por su personalidad y color blanco brillante"/>
 		<property name="zone" value="Escocia" />
 		<property name="finalMode" value="true" />
+		<property name="parent" ref="petType2" />
 	</bean>
 	
 	<bean id="petType9" class="domain.PetType">
@@ -718,6 +707,7 @@
 		<property name="description" value=" Se ha desempeñado durante siglos como perro pastor, y se le considera uno de los perros más antiguos de Gran Bretaña."/>
 		<property name="zone" value="Gales" />
 		<property name="finalMode" value="true" />
+		<property name="parent" ref="petType2" />
 	</bean>
 	
 	<bean id="petType10" class="domain.PetType">
@@ -726,6 +716,7 @@
 		<property name="description" value="Los lebreles​ son un conjunto de razas de perros cuya constitución física les hace estar muy bien dotados para la carrera (carrera de galgos), en la que pueden alcanzar una gran velocidad."/>
 		<property name="zone" value="Europa" />
 		<property name="finalMode" value="true" />
+		<property name="parent" ref="petType2" />
 	</bean>
 	
 	<bean id="petType11" class="domain.PetType">
@@ -734,6 +725,7 @@
 		<property name="description" value="El fox terrier​ es una raza de perro utilizada antiguamente para hacer salir a los zorros de sus madrigueras para poder ser perseguidos por perros de rastreo."/>
 		<property name="zone" value="Inglaterra" />
 		<property name="finalMode" value="true" />
+		<property name="parent" ref="petType2" />
 	</bean>
 	
 	<bean id="petType12" class="domain.PetType">
@@ -742,6 +734,7 @@
 		<property name="description" value="Es fuerte, tiene un sólido sistema inmunológico y se adapta fácilmente a cualquier ambiente."/>
 		<property name="zone" value="Europa" />
 		<property name="finalMode" value="true" />
+		<property name="parent" ref="petType6" />
 	</bean>
 	
 	<bean id="petType13" class="domain.PetType">
@@ -750,6 +743,7 @@
 		<property name="description" value="El Persa es una raza de gato caracterizada por tener una cara ancha y plana y un gran abundante pelaje de variados colores."/>
 		<property name="zone" value="Persia" />
 		<property name="finalMode" value="true" />
+		<property name="parent" ref="petType6" />
 	</bean>
 	
 	

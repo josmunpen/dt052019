@@ -25,7 +25,7 @@
 <display:column property="scientificTerm" titleKey="type.scientificTerm"/>
 <display:column property="description" titleKey="type.description"/>
 <display:column property="zone" titleKey="type.zone"/>
-<display:column property="childs" titleKey ="type.childs" />
+<display:column property="parent" titleKey ="type.parent" />
 <display:column property="finalMode" titleKey="type.finalMode"/>
 
 <display:column>
@@ -46,17 +46,13 @@
 	<display:column property="description" titleKey="type.description"/>
 	<display:column property="zone" titleKey="type.zone"/>
 
-	
-	<display:column titleKey="type.childs">
-		<jstl:forEach var = "child" items="${row.childs}">
+	<display:column titleKey="type.parent">
 			<jstl:if test="${pageContext.response.locale.language=='en'}">
-				<jstl:out value="${child.name}"/>
+				<jstl:out value="${row.parent.name}"/>
 			</jstl:if>
 			<jstl:if test="${pageContext.response.locale.language=='es'}">
-				<jstl:out value="${child.nombre}"/>
+				<jstl:out value="${row.parent.nombre}"/>
 			</jstl:if>
-			<br/>
-		</jstl:forEach>
 	</display:column>
 	
 	<display:column property="finalMode" titleKey="type.finalMode"/>

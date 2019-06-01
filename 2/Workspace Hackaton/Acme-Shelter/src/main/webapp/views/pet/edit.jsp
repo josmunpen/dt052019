@@ -94,14 +94,14 @@
 			<spring:message code="pet.type" />* :
 		</form:label>
 		<form:select path="petType" >
-		<jstl:forEach items="${lpt}" var="pt">
-		<jstl:if test="${pageContext.response.locale.language=='es'}">
-		<form:option value="${pt}"><jstl:out value="${pt.nombre}"/></form:option>
-		</jstl:if>
-		<jstl:if test="${pageContext.response.locale.language=='en'}">
-		<form:option value="${pt}"><jstl:out value="${pt.name}"/></form:option>
-		</jstl:if>
-		</jstl:forEach>
+			<jstl:forEach items="${lpt}" var="pt">
+				<jstl:if test="${pageContext.response.locale.language=='es'}">
+				<form:option value="${pt}"><jstl:out value="${pt.nombre}"/></form:option>
+				</jstl:if>
+				<jstl:if test="${pageContext.response.locale.language=='en'}">
+				<form:option value="${pt}"><jstl:out value="${pt.name}"/></form:option>
+				</jstl:if>
+			</jstl:forEach>
 		</form:select>
 		
 		<form:errors cssClass="error" path="petType" />

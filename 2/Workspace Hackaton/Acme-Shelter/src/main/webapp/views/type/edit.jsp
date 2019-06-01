@@ -42,15 +42,22 @@
 <form:errors cssClass="error" path="nombre" />
 		<br />
 
-<form:label path="childs">
-<spring:message code="type.childs"/>
-</form:label>
-<form:select path="childs">
-		    <form:option label="----" value="0" />
-		    <form:options items="${list}"  itemValue ="id"/>
-		    </form:select>
-<form:errors cssClass="error" path="childs" />
-<br />
+	<form:label path="parent">
+		<spring:message code="type.parent"/>
+	</form:label>
+	<form:select path="parent">
+		<form:option label="----" value="0" />
+			<jstl:forEach items="${list}" var="pt">
+				<jstl:if test="${pageContext.response.locale.language=='es'}">
+				<form:option value="${pt}"><jstl:out value="${pt.nombre}"/></form:option>
+				</jstl:if>
+				<jstl:if test="${pageContext.response.locale.language=='en'}">
+				<form:option value="${pt}"><jstl:out value="${pt.name}"/></form:option>
+				</jstl:if>
+			</jstl:forEach>
+	</form:select>
+	<form:errors cssClass="error" path="parent" />
+	<br />
 
 
 
