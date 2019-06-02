@@ -31,4 +31,9 @@
 		<put-attribute name="body" value="/views/medicalcheckup/edit.jsp" />
 	</definition>
 	
+	<definition name="checkup/veterinarian/show" extends="master.page">	
+		<put-attribute name="title" value="Mostrar revisión médica" />
+		<put-attribute name="body" value="/views/medicalcheckup/show.jsp" />
+	</definition>
+	
 </tiles-definitions>

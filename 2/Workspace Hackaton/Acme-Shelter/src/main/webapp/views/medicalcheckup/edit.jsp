@@ -44,12 +44,8 @@
 			</form:label>
 			<form:select path="pet" >
 			<jstl:forEach items="${pets}" var="pet">
-			<jstl:if test="${pageContext.response.locale.language=='es'}">
-			<form:option value="${pet}"><jstl:out value="${pet.nombre}"/></form:option>
-			</jstl:if>
-			<jstl:if test="${pageContext.response.locale.language=='en'}">
 			<form:option value="${pet}"><jstl:out value="${pet.name}"/></form:option>
-			</jstl:if>
+
 			</jstl:forEach>
 			</form:select>
 			<form:errors cssClass="error" path="pet" />

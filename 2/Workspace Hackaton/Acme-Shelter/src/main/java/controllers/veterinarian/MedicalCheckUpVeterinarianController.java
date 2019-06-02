@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import repositories.MedicalCheckUpRepository;
+import repositories.TreatmentRepository;
 import services.MedicalCheckUpService;
 import services.PetService;
 import services.VeterinarianService;
@@ -36,6 +37,9 @@ public class MedicalCheckUpVeterinarianController extends AbstractController {
 
 	@Autowired
 	private PetService					petService;
+
+	@Autowired
+	private TreatmentRepository			treatmentRepository;
 
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -130,4 +134,14 @@ public class MedicalCheckUpVeterinarianController extends AbstractController {
 		return result;
 	}
 
+	@RequestMapping(value = "/show", method = RequestMethod.GET)
+	public ModelAndView display(@RequestParam final int medicalCheckUpId) {
+		ModelAndView result;
+		final MedicalCheckUp checkup = this.medicalCheckUpRepository.findOne(medicalCheckUpId);
+		result = new ModelAndView("checkup/veterinarian/show");
+		result.addObject("checkup", checkup);
+		result.addObject("treatments", this.treatmentRepository.findByMedicalCheckUp(medicalCheckUpId));
+		return result;
+
+	}
 }

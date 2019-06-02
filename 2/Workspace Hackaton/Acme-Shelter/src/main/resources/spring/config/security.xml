@@ -71,6 +71,7 @@
 		<security:intercept-url pattern="/checkup/veterinarian/edit.do" access="hasRole('VETERINARIAN')" /> 
 		<security:intercept-url pattern="/checkup/veterinarian/create.do" access="hasRole('VETERINARIAN')" /> 
 		<security:intercept-url pattern="/treatment/veterinarian/**" access="hasRole('VETERINARIAN')" />
+		<security:intercept-url pattern="/checkup/veterinarian/show.do" access="hasRole('VETERINARIAN')" /> 
 		
 		<security:intercept-url pattern="/application/adopter/list.do"
 			access="hasRole('ADOPTER')" />
