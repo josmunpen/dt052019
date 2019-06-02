@@ -55,6 +55,12 @@
 		<bean class="converters.StringToActorConverter" />
 		<bean class="converters.StringToBoxConverter" />
 		<bean class="converters.StringToMessageConverter" />
+		<bean class="converters.TipToStringConverter" />
+		<bean class="converters.CommentToStringConverter" />
+		<bean class="converters.StringToTipConverter" />
+		<bean class="converters.StringToCommentConverter" />
+		<bean class="converters.VeterinarianToStringConverter" />
+		<bean class="converters.StringToVeterinarianConverter" />
 	</util:list>
 	
 </beans>

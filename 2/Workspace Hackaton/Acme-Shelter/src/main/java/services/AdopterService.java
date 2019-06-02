@@ -84,6 +84,16 @@ public class AdopterService {
 		return res;
 	}
 
+	public Adopter findByPrincipalNoAssert() {
+		Adopter res;
+		UserAccount userAccount;
+
+		userAccount = LoginService.getPrincipal();
+		Assert.notNull(userAccount);
+		res = this.findByUserAccount(userAccount);
+		return res;
+	}
+
 	public Adopter findOnePrincipal() {
 		final Actor a = this.actorService.findByPrincipal();
 		return this.adopterRepository.findOne(a.getId());

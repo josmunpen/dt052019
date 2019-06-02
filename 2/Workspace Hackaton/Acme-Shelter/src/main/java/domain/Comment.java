@@ -21,19 +21,19 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Access(AccessType.PROPERTY)
 public class Comment extends DomainEntity {
 
-	private String	comment;
+	private String	commentText;
 	private Date	moment;
 	private int		score;
 
 
 	@NotBlank
 	@SafeHtml
-	public String getComment() {
-		return this.comment;
+	public String getCommentText() {
+		return this.commentText;
 	}
 
-	public void setComment(final String comment) {
-		this.comment = comment;
+	public void setCommentText(final String commentText) {
+		this.commentText = commentText;
 	}
 
 	@NotNull
@@ -80,6 +80,22 @@ public class Comment extends DomainEntity {
 
 	public void setAdopter(final Adopter adopter) {
 		this.adopter = adopter;
+	}
+
+
+	//01-06-2019
+
+	private Tip	tip;
+
+
+	@Valid
+	@ManyToOne(optional = false)
+	public Tip getTip() {
+		return this.tip;
+	}
+
+	public void setTip(final Tip tip) {
+		this.tip = tip;
 	}
 
 }

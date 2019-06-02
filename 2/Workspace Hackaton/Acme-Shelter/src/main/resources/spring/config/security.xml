@@ -39,12 +39,25 @@
 		<security:intercept-url pattern="/security/login.do" access="permitAll" /> 
 		<security:intercept-url pattern="/security/loginFailure.do" access="permitAll" /> 
 
+
+		<security:intercept-url pattern="/comment/tip/create.do" access="hasRole('PETOWNER') || hasRole('ADOPTER')" />
+		<security:intercept-url pattern="/comment/tip/edit.do" access="hasRole('PETOWNER') || hasRole('ADOPTER')" />
+		<security:intercept-url pattern="/comment/tip/delete.do" access="hasRole('PETOWNER') || hasRole('ADOPTER')" />
+		<security:intercept-url pattern="/comment/tip/show.do" access="permitAll" />
+		<security:intercept-url pattern="/tip/veterinarian/**" access="hasRole('VETERINARIAN')" /> 
+		
+		
+		
 		<!-- ANON -->
 		<security:intercept-url pattern="/adopter/register.do" access="permitAll" /> 		
 		<security:intercept-url pattern="/petowner/register.do" access="permitAll" />
 		<security:intercept-url pattern="/pet/list.do" access="permitAll" /> 	
 		<security:intercept-url pattern="/petowner/show.do" access="permitAll" /> 	 		
-		<security:intercept-url pattern="/pet/show.do" access="permitAll" />		
+		<security:intercept-url pattern="/pet/show.do" access="permitAll" />
+		<security:intercept-url pattern="/tip/list.do" access="permitAll" />
+		<security:intercept-url pattern="/tip/show.do" access="permitAll" />
+		<security:intercept-url pattern="/comment/tip/list.do" access="permitAll" />		
+	
 
 		<!-- ADOPTER -->
 		<security:intercept-url pattern="/adopter/adopter/edit.do" access="hasRole('ADOPTER')" /> 

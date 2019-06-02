@@ -107,7 +107,7 @@
 	
 	<bean id="customisation1" class="domain.Customisation">
 		  <property name="systemName" value="Acme Shelter" /> 
-		  <property name="bannerUrl" value="https://tinyurl.com/acme-rookies" /> 
+		  <property name="bannerUrl" value="http://oi64.tinypic.com/23r5owj.jpg" /> 
 		  <property name="welcomeMessageEng" value="Welcome to Acme Shelter We're pet lovers favourite place!" /> 
 		  <property name="welcomeMessageEsp" value="¡Bienvenidos a Acme Shelter! ¡Somos el mercado de trabajo favorito de los amantes de las mascotas!" /> 
 		  <property name="phoneNumberCode" value="+34" /> 
@@ -773,19 +773,16 @@
 				<ref bean="petType2"/>
 			</list>
 		</property>
-		<property name="comments">
-			<list>
-				<ref bean="comment1"/>
-			</list>
-		</property>
 	</bean>
 	
 	
 	<!-- Comments -->
 	<bean id="comment1" class="domain.Comment">
 		<property name="moment" value="2019/02/02 23:00:00"/>
-		<property name="comment" value="¡Muy útil!"/>
+		<property name="commentText" value="¡Muy útil!"/>
 		<property name="score" value="4"/>
+		<property name="tip" ref="tip1" />
+		<property name="adopter" ref="adopter1" />
 	</bean>	
 	
 	<!-- Medical Check-ups -->

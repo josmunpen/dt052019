@@ -41,6 +41,7 @@
 					<li><a href="veterinarian/veterinarian/edit.do"><spring:message code="master.page.edit.veterinarian" /></a></li>
 					<li><a href="checkup/veterinarian/list.do"><spring:message code="master.page.list.checkups" /></a></li>
 					<li><a href="treatment/veterinarian/list.do"><spring:message code="master.page.list.treatment" /></a></li>
+					<li><a href="tip/veterinarian/list.do"><spring:message code="master.page.list.veterinarian.tips" /></a></li>
 				</ul>
 			</li>
 		</security:authorize>
@@ -69,6 +70,7 @@
 		<security:authorize access="permitAll">
 			<li><a class="fNiv" href="search/search.do"><spring:message code="master.page.search" /></a></li>
 			<li><a class="fNiv" href="pet/list.do"><spring:message code="master.page.pet.list" /></a></li>
+			<li><a class="fNiv" href="tip/list.do"><spring:message code="master.page.tip.list" /></a></li>
 		</security:authorize>
 		<security:authorize access="isAnonymous()">
 			<li><a class="fNiv" href="adopter/register.do"><spring:message code="master.page.register.adopter" /></a></li>

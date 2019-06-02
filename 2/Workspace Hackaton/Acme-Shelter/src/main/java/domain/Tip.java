@@ -6,11 +6,9 @@ import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -62,7 +60,6 @@ public class Tip extends DomainEntity {
 
 
 	private Collection<PetType>	petTypes;
-	private Collection<Comment>	comments;
 	private Veterinarian		veterinarian;
 
 
@@ -75,17 +72,8 @@ public class Tip extends DomainEntity {
 		this.petTypes = petTypes;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL)
-	public Collection<Comment> getComments() {
-		return this.comments;
-	}
-
-	public void setComments(final Collection<Comment> comments) {
-		this.comments = comments;
-	}
-
 	@Valid
-	@OneToOne(optional = false)
+	@ManyToOne(optional = false)
 	public Veterinarian getVeterinarian() {
 		return this.veterinarian;
 	}
