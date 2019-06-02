@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -54,6 +55,13 @@ public class HistoryController extends AbstractController{
 	public ModelAndView create() {
 		ModelAndView result;
 		History history;
+		
+		if(this.historyService.getLastHistory(thisPet)==null);
+		else if(this.historyService.getLastHistory(this.thisPet).getEndMoment()==null){
+			result = new ModelAndView("redirect:list.do");
+			result.addObject("petId", this.thisPet.getId());
+			return result;
+		}
 
 		history = this.historyService.create();
 
@@ -72,7 +80,13 @@ public class HistoryController extends AbstractController{
 		}
 		
 		history = this.historyService.findOne(historyId);
-
+		if(this.historyService.getLastHistory(thisPet)==null);
+		else if(this.historyService.getLastHistory(thisPet).getId()!= history.getId()){
+			result = new ModelAndView("redirect:list.do");
+			result.addObject("petId", this.thisPet.getId());
+			return result;
+		}
+		
 		result = this.createEditModelAndView(history);
 		
 		return result;
@@ -86,6 +100,12 @@ public class HistoryController extends AbstractController{
 		if (binding.hasErrors())
 			result = this.createEditModelAndView(history);
 		else
+			try {
+				Assert.isTrue(this.historyService.checkAnterior(history, this.thisPet));
+			} catch(final Throwable oops) {
+				return this.createEditModelAndView(history, "history.commit.error.fechas");
+			}
+			
 			try {
 				h = historyService.reconstructHistory(history);
 				this.thisPet=this.historyService.save(h, this.thisPet);
@@ -103,7 +123,6 @@ public class HistoryController extends AbstractController{
 	public ModelAndView delete(History history, final BindingResult binding) {
 		ModelAndView result;
 		History h = this.historyService.findOne(history.getId());
-
 		try {
 			this.historyService.deleteHistoryOfPet(h, this.thisPet);
 			result = new ModelAndView("redirect:list.do");

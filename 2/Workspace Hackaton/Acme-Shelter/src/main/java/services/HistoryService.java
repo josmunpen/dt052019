@@ -57,6 +57,10 @@ public class HistoryService {
 		history.setActor(getThisPetOwner());
 		History res = null;
 		Pet p = this.petService.findOne(pet.getId());
+		if(p.getHistories()==null){
+			Collection<History> his = new ArrayList<History>();
+			p.setHistories(his);
+		}
 		res = historyRepository.save(history);
 		Collection<History> histories = p.getHistories();
 		if(histories.contains(history)){
@@ -119,10 +123,6 @@ public class HistoryService {
 
 	}
 	
-	
-	
-
-	
 	public History reconstructHistory(History history){
 		History res;
 		if(history.getId()==0) {
@@ -134,5 +134,29 @@ public class HistoryService {
 		res.setEndMoment(history.getEndMoment());
 		
 		return res;
+	}
+
+	public boolean checkAnterior(History history, Pet pet) {
+	    Boolean res = true;
+		List<History> list = new ArrayList<History>();
+		History ant = null;
+		list.addAll(this.getHistoriesByPet(pet));
+		if(list.isEmpty()) return true;
+		if(list.size()==1) return true;
+		if(history.getId()==0){
+			ant = list.get(list.size()-1);
+			if(ant.getEndMoment().after(history.getStartMoment())) return false;
+		}else{
+			ant = list.get(list.indexOf(history)-1);
+			if(ant.getEndMoment().after(history.getStartMoment())) return false;
+		}
+		return res;
+	}
+	
+	public History getLastHistory(Pet pet){
+		if(pet.getHistories().isEmpty()) return null;
+		List<History> list = new ArrayList<History>();
+		list.addAll(this.getHistoriesByPet(pet));
+		return list.get(list.size()-1);
 	}
 }
