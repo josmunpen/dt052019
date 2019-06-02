@@ -1,3 +1,4 @@
+
 package controllers;
 
 import java.util.ArrayList;
@@ -24,50 +25,51 @@ import domain.Pet;
 
 @Controller
 @RequestMapping("/application/adopter")
-public class ApplicationAdopterController {
-	
+public class ApplicationAdopterController extends AbstractController {
+
 	@Autowired
-	private ApplicationService applicationService;
+	private ApplicationService	applicationService;
 	@Autowired
-	private AdopterService adopterService;
+	private AdopterService		adopterService;
 	@Autowired
-	private PetService petService;
-	
-	@RequestMapping(value="/list", method=RequestMethod.GET)
+	private PetService			petService;
+
+
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
 		ModelAndView res;
 		Collection<Application> applications = new ArrayList<>();
-		UserAccount ua = LoginService.getPrincipal();
-		Adopter a = adopterService.findByUserAccount(ua);
-		
-		applications = applicationService.findAppsByAdopter(a);
-		
+		final UserAccount ua = LoginService.getPrincipal();
+		final Adopter a = this.adopterService.findByUserAccount(ua);
+
+		applications = this.applicationService.findAppsByAdopter(a);
+
 		res = new ModelAndView("application/adopter/list");
-		
+
 		final String idioma = LocaleContextHolder.getLocale().getLanguage();
 		res.addObject("idioma", idioma);
-		
+
 		res.addObject("applications", applications);
 		res.addObject("requestURI", "application/adopter/list.do");
-		
+
 		return res;
-		
+
 	}
 
-	@RequestMapping(value="/show", method=RequestMethod.GET)
-	public ModelAndView show(@RequestParam int applicationId) {
+	@RequestMapping(value = "/show", method = RequestMethod.GET)
+	public ModelAndView show(@RequestParam final int applicationId) {
 		ModelAndView res;
-		UserAccount ua = LoginService.getPrincipal();
-		Adopter a = adopterService.findByUserAccount(ua);
-		Application ap = applicationService.findOne(applicationId);
-		
+		final UserAccount ua = LoginService.getPrincipal();
+		final Adopter a = this.adopterService.findByUserAccount(ua);
+		final Application ap = this.applicationService.findOne(applicationId);
+
 		try {
 			Assert.isTrue(ap.getAdopter().getId() == a.getId());
 		} catch (final Throwable oops) {
 			res = new ModelAndView("redirect:/application/adopter/list.do");
 			return res;
 		}
-		
+
 		res = new ModelAndView("application/adopter/show");
 		final String idioma = LocaleContextHolder.getLocale().getLanguage();
 		res.addObject("idioma", idioma);
@@ -75,61 +77,59 @@ public class ApplicationAdopterController {
 
 		return res;
 	}
-	
-	@RequestMapping(value="/create", method=RequestMethod.GET)
-	public ModelAndView create(@RequestParam int petId) {
+
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	public ModelAndView create(@RequestParam final int petId) {
 		ModelAndView res;
-		Pet p = petService.findOne(petId);
-		Adopter a = adopterService.findByUserAccount(LoginService.getPrincipal());
-		
-		Application application = applicationService.create();
+		final Pet p = this.petService.findOne(petId);
+		final Adopter a = this.adopterService.findByUserAccount(LoginService.getPrincipal());
+
+		final Application application = this.applicationService.create();
 		try {
-			Assert.isTrue(applicationService.checkAdopterPets(petId));
-		} catch (Throwable oops) {
-			Collection<Pet> pets = petService.findAll();
+			Assert.isTrue(this.applicationService.checkAdopterPets(petId));
+		} catch (final Throwable oops) {
+			final Collection<Pet> pets = this.petService.findAll();
 			res = new ModelAndView("pet/list");
 			res.addObject("pets", pets);
 			res.addObject("requestURI", "pet/list.do");
-//			res = new ModelAndView("redirect:/pet/list.do");
-			Boolean showError = true;
+			//			res = new ModelAndView("redirect:/pet/list.do");
+			final Boolean showError = true;
 			res.addObject("showError", showError);
-			
+
 			return res;
 		}
-		
+
 		application.setAdopter(a);
 		application.setPet(p);
-		
-		
-		res = createEditModelAndView(application);
+
+		res = this.createEditModelAndView(application);
 		res.addObject(application);
 		res.addObject("p", p);
-				
+
 		return res;
 	}
-	
-	@RequestMapping(value="/create", method=RequestMethod.POST, params="save")
-	public ModelAndView save(Application application, BindingResult binding, @RequestParam int petId) {
+
+	@RequestMapping(value = "/create", method = RequestMethod.POST, params = "save")
+	public ModelAndView save(Application application, final BindingResult binding, @RequestParam final int petId) {
 		ModelAndView res;
-		Adopter a = adopterService.findByUserAccount(LoginService.getPrincipal());
-		Pet p = petService.findOne(petId);
+		final Adopter a = this.adopterService.findByUserAccount(LoginService.getPrincipal());
+		final Pet p = this.petService.findOne(petId);
 		application.setAdopter(a);
 		application.setPet(p);
-		application = applicationService.reconstruct(application, binding);
-		if (binding.hasErrors()) {
+		application = this.applicationService.reconstruct(application, binding);
+		if (binding.hasErrors())
 			res = this.createEditModelAndView(application);
-		} else {
+		else
 			try {
-				Application apli = this.applicationService.save(application);
-				Assert.isTrue(applicationService.findAppsByAdopter(a).contains(apli));
+				final Application apli = this.applicationService.save(application);
+				Assert.isTrue(this.applicationService.findAppsByAdopter(a).contains(apli));
 				res = new ModelAndView("redirect:list.do");
-			} catch (Throwable oops) {
-				res = createEditModelAndView(application, "application.commit.error");
+			} catch (final Throwable oops) {
+				res = this.createEditModelAndView(application, "application.commit.error");
 			}
-		}
 		return res;
 	}
-	
+
 	protected ModelAndView createEditModelAndView(final Application application) {
 		ModelAndView result;
 		result = this.createEditModelAndView(application, null);

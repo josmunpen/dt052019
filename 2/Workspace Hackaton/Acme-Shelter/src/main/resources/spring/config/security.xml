@@ -55,8 +55,9 @@
 		<security:intercept-url pattern="/petowner/show.do" access="permitAll" /> 	 		
 		<security:intercept-url pattern="/pet/show.do" access="permitAll" />
 		<security:intercept-url pattern="/tip/list.do" access="permitAll" />
-		<security:intercept-url pattern="/tip/show.do" access="permitAll" />
+		<security:intercept-url pattern="/tip/show.do" access="permitAll" />	
 		<security:intercept-url pattern="/comment/tip/list.do" access="permitAll" />		
+		<security:intercept-url pattern="/security/termsAndConditions.do" access="permitAll" />		
 	
 
 		<!-- ADOPTER -->

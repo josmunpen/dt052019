@@ -21,6 +21,7 @@ import security.LoginService;
 import security.UserAccount;
 import utilities.TickerGenerator;
 import domain.Actor;
+import domain.Box;
 import domain.Customisation;
 import domain.PetOwner;
 import domain.SocialProfile;
@@ -120,9 +121,8 @@ public class PetOwnerService {
 
 		} else {
 
-			//TODO: DESCOMENTAR
-			//			final Collection<Box> boxes = this.actorService.createPredefinedBoxes();
-			//			PetOwner.setBoxes(boxes);
+			final Collection<Box> boxes = this.actorServiceT.createPredefinedBoxes();
+			PetOwner.setBoxes(boxes);
 			final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 			final String oldpass = PetOwner.getUserAccount().getPassword();
 			final String hash = encoder.encodePassword(oldpass, null);

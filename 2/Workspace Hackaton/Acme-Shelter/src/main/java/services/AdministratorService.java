@@ -38,6 +38,9 @@ public class AdministratorService {
 	public ActorService2			actorService;
 
 	@Autowired
+	public ActorService				actorService1;
+
+	@Autowired
 	public CustomisationService		customisationService;
 
 	@Autowired
@@ -123,9 +126,8 @@ public class AdministratorService {
 
 		} else {
 
-			//TODO: DESCOMENTAR
-			//			final Collection<Box> boxes = this.actorService.createPredefinedBoxes();
-			//	Administrator.setBoxes(boxes);
+			final Collection<Box> boxes = this.actorService1.createPredefinedBoxes();
+			Administrator.setBoxes(boxes);
 			final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 			final String oldpass = Administrator.getUserAccount().getPassword();
 			final String hash = encoder.encodePassword(oldpass, null);

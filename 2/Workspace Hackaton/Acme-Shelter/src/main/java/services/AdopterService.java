@@ -3,6 +3,7 @@ package services;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -16,13 +17,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
 import repositories.AdopterRepository;
+import repositories.FinderRepository;
 import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import utilities.TickerGenerator;
 import domain.Actor;
 import domain.Adopter;
+import domain.Box;
 import domain.Customisation;
+import domain.Finder;
 import domain.SocialProfile;
 import forms.AdopterForm;
 
@@ -37,10 +41,16 @@ public class AdopterService {
 	public ActorService2		actorService;
 
 	@Autowired
+	public ActorService			actorService1;
+
+	@Autowired
 	public CustomisationService	customisationService;
 
 	@Autowired
 	public SocialProfileService	socialprofileService;
+
+	@Autowired
+	public FinderRepository		finderRepository;
 
 
 	//Constructor
@@ -107,16 +117,16 @@ public class AdopterService {
 		return this.adopterRepository.findAll();
 	}
 
-	public Adopter save(final Adopter Adopter) {
-		Assert.notNull(Adopter);
+	public Adopter save(final Adopter adopter) {
+		Assert.notNull(adopter);
 
-		final String pnumber = Adopter.getPhoneNumber();
+		final String pnumber = adopter.getPhoneNumber();
 		final Customisation cus = ((List<Customisation>) this.customisationService.findAll()).get(0);
 		final String cc = cus.getPhoneNumberCode();
 		if (pnumber.matches("^[0-9]{4,}$"))
-			Adopter.setPhoneNumber(cc.concat(pnumber));
+			adopter.setPhoneNumber(cc.concat(pnumber));
 
-		if (Adopter.getId() != 0) {
+		if (adopter.getId() != 0) {
 			Assert.isTrue(this.actorService.checkAdopter());
 
 			// Modified Adopter must be logged Adopter
@@ -126,22 +136,27 @@ public class AdopterService {
 			Assert.notNull(logAdopter.getId());
 
 		} else {
-
-			//TODO: DESCOMENTAR
-			//			final Collection<Box> boxes = this.actorService.createPredefinedBoxes();
-			//			Adopter.setBoxes(boxes);
+			final Collection<Box> boxes = this.actorService1.createPredefinedBoxes();
+			adopter.setBoxes(boxes);
 			final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
-			final String oldpass = Adopter.getUserAccount().getPassword();
+			final String oldpass = adopter.getUserAccount().getPassword();
 			final String hash = encoder.encodePassword(oldpass, null);
 
-			final UserAccount cuenta = Adopter.getUserAccount();
+			final UserAccount cuenta = adopter.getUserAccount();
 			cuenta.setPassword(hash);
-			Adopter.setUserAccount(cuenta);
+			adopter.setUserAccount(cuenta);
+
+			final Finder find = new Finder();
+
+			find.setMoment(new Date());
+			final Finder find2 = this.finderRepository.save(find);
+
+			adopter.setFinder(find2);
 		}
 		// Restrictions
 		Adopter res;
 
-		res = this.adopterRepository.save(Adopter);
+		res = this.adopterRepository.save(adopter);
 		return res;
 	}
 

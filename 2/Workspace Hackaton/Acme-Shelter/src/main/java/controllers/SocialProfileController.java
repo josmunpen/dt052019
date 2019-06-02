@@ -21,7 +21,7 @@ import domain.SocialProfile;
 
 @Controller
 @RequestMapping("/socialprofile")
-public class SocialProfileController {
+public class SocialProfileController extends AbstractController {
 
 	@Autowired
 	private SocialProfileService	socialprofileService;
