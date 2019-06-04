@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -75,12 +76,12 @@ public class MedicalCheckUpVeterinarianController extends AbstractController {
 		MedicalCheckUp medicalCheckUp;
 
 		medicalCheckUp = this.medicalCheckUpService.findOne(medicalCheckUpId);
-
+		final Veterinarian v = this.veterinarianService.findByPrincipal();
+		Assert.isTrue(medicalCheckUp.getVeterinarian().getId() == v.getId());
 		result = this.createEditModelAndView(medicalCheckUp);
 
 		return result;
 	}
-
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid MedicalCheckUp medicalCheckUp, final BindingResult binding) {
 		ModelAndView result;
