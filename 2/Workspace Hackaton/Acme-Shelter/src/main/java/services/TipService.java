@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import repositories.TipRepository;
 import domain.PetType;
@@ -37,6 +38,8 @@ public class TipService {
 	}
 
 	public Tip save(final Tip pt) {
+		Assert.notNull(pt.getBody());
+		Assert.notNull(pt.getTitle());
 		this.tipRepository.flush();
 		return this.tipRepository.save(pt);
 	}

@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import repositories.CommentRepository;
 import domain.Comment;
@@ -41,6 +42,7 @@ public class CommentService {
 
 	public Comment save(final Comment pt) {
 		this.commentRepository.flush();
+		Assert.isTrue(pt.getScore() < 6 && pt.getScore() > 0);
 		return this.commentRepository.save(pt);
 	}
 	public Comment findOne(final int id) {
