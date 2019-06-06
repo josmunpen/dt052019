@@ -58,7 +58,7 @@
 	</jstl:if>
 	
 	<display:column property="address" titleKey="pet.address"  />
-	<display:column property="age" titleKey="pet.age" />
+	<display:column property="age" titleKey="pet.age" sortable="true" />
 	<security:authorize access="hasRole('PETOWNER')">	
 	<display:column property="careRequirements" titleKey="pet.care.requirements"  />
 	<display:column property="dietRequirements" titleKey="pet.diet.requirements"  />
