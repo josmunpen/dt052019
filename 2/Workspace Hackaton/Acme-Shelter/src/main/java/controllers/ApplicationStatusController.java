@@ -65,14 +65,17 @@ public class ApplicationStatusController extends AbstractController {
 		final Application check = this.as.findOne(application.getId());
 		if (check.getStatus().equals("ACCEPTED") || check.getStatus().equals("REJECTED"))
 			return this.list();
-		final Application a = this.as.reconstructStatus(application);
 
 		if (binding.hasErrors())
-			result = this.createEditModelAndView(a);
+			result = this.createEditModelAndView(application);
 		else
 			try {
-				if (a.getStatus() == "REJECTED" || a.getStatus().contains("REJECTED"))
-					Assert.isTrue(a.getRejectCause().isEmpty() || a.getRejectCause() == ",", "mandatoryRejectReason");
+				final char comma2 = ',';
+				if (application.getStatus() == "REJECTED" || application.getStatus().contains("REJECTED"))
+					if (application.getRejectCause().length() == 1)
+						Assert.isTrue(application.getRejectCause().charAt(0) != comma2, "mandatoryRejectReason");
+
+				final Application a = this.as.reconstructStatus(application);
 
 				this.as.saveStatus(a);
 				result = new ModelAndView("redirect:list.do");
@@ -86,7 +89,6 @@ public class ApplicationStatusController extends AbstractController {
 
 		return result;
 	}
-
 	protected ModelAndView createEditModelAndView(final Application application) {
 		ModelAndView result;
 		result = this.createEditModelAndView(application, null);

@@ -138,7 +138,11 @@ public class MedicalCheckUpVeterinarianController extends AbstractController {
 	@RequestMapping(value = "/show", method = RequestMethod.GET)
 	public ModelAndView display(@RequestParam final int medicalCheckUpId) {
 		ModelAndView result;
-		final MedicalCheckUp checkup = this.medicalCheckUpRepository.findOne(medicalCheckUpId);
+
+		final MedicalCheckUp checkup = this.medicalCheckUpService.findOne(medicalCheckUpId);
+		final Veterinarian v = this.veterinarianService.findByPrincipal();
+		Assert.isTrue(checkup.getVeterinarian().getId() == v.getId());
+
 		result = new ModelAndView("checkup/veterinarian/show");
 		result.addObject("checkup", checkup);
 		result.addObject("treatments", this.treatmentRepository.findByMedicalCheckUp(medicalCheckUpId));
