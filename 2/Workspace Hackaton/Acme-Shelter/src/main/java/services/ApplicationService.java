@@ -1,3 +1,4 @@
+
 package services;
 
 import java.util.ArrayList;
@@ -24,18 +25,18 @@ public class ApplicationService {
 
 	@Autowired
 	ApplicationRepository	ar;
-	
-	@Autowired
-	private HistoryService hs;
 
 	@Autowired
-	private AdopterService adopterService;
-	
+	private HistoryService	hs;
+
 	@Autowired
-	private PetService petService;
-	
+	private AdopterService	adopterService;
+
 	@Autowired
-	Validator validator;
+	private PetService		petService;
+
+	@Autowired
+	Validator				validator;
 
 
 	public void delete(final Pet p) {
@@ -43,113 +44,107 @@ public class ApplicationService {
 			this.ar.delete(a.getId());
 
 	}
-	
-	public Application findOne(int applicationid) {
+
+	public Application findOne(final int applicationid) {
 		return this.ar.findOne(applicationid);
 	}
-	
-	public Collection<Application> findAll(){
-		return ar.findAll();
+
+	public Collection<Application> findAll() {
+		return this.ar.findAll();
 	}
-	
-	public Application save(Application ap) {
+
+	public Application save(final Application ap) {
 		ap.setStatus("PENDING");
 		final Calendar now = Calendar.getInstance();
 		now.add(Calendar.SECOND, -1);
 		ap.setMoment(now.getTime());
-		
-		Assert.isTrue(checkAdopterPets(ap.getPet().getId()));
-		
-		Application res = ar.save(ap);
+
+		Assert.isTrue(this.checkAdopterPets(ap.getPet().getId()));
+
+		final Application res = this.ar.save(ap);
 		return res;
 	}
-	
-	public Collection<Application> myApplicationList(){
-		Collection<Application> all = new ArrayList<Application>();
-		Collection<Application> applications = new ArrayList<Application>();
+
+	public Collection<Application> myApplicationList() {
+		final Collection<Application> all = new ArrayList<Application>();
+		final Collection<Application> applications = new ArrayList<Application>();
 		all.addAll(this.findAll());
-		for(Application a : all){
-			if(a.getPet().getPetOwner().getId()==hs.getThisPetOwner().getId()){
-				if(!a.getStatus().equals("SUBMITTED")){
+		for (final Application a : all)
+			if (a.getPet().getPetOwner().getId() == this.hs.getThisPetOwner().getId())
+				if (!a.getStatus().equals("SUBMITTED"))
 					applications.add(a);
-				}
-			}
-		}
-		
+
 		return applications;
 	}
-	
+
 	public Application create() {
-		Application a = new Application();
+		final Application a = new Application();
 		a.setStatus("PENDING");
-//		a.setRejectCause("");
-		Date moment = new Date(System.currentTimeMillis()-1);
+		//		a.setRejectCause("");
+		final Date moment = new Date(System.currentTimeMillis() - 1);
 		a.setMoment(moment);
 		return a;
 	}
-	
-	public Application saveStatus(Application application){
-		Application a = checkRejected(application);
-		
-		return ar.save(a);
-	}
-	
-	public Collection<Application> findAppsByAdopter(Adopter a) {
-		return ar.findAppsByAdopter(a);
+
+	public Application saveStatus(final Application application) {
+		final Application a = this.checkRejected(application);
+
+		return this.ar.save(a);
 	}
 
-	public Application checkRejected(Application a) {
-		if(a.getRejectCause().equals(",")) a.setRejectCause("");
-		
-		if(a.getStatus().equals("REJECTED") && a.getRejectCause().isEmpty()){
-			a.setStatus("PENDING");
-		}
-		if(a.getStatus().equals("ACCEPTED")){
+	public Collection<Application> findAppsByAdopter(final Adopter a) {
+		return this.ar.findAppsByAdopter(a);
+	}
+
+	public Application checkRejected(final Application a) {
+		if (a.getRejectCause().equals(","))
 			a.setRejectCause("");
-		}
+
+		if (a.getStatus().equals("REJECTED") && a.getRejectCause().isEmpty())
+			a.setStatus("PENDING");
+		if (a.getStatus().equals("ACCEPTED"))
+			a.setRejectCause("");
 		return a;
 	}
 
-	public Boolean checkAdopterPets(int petId) {
+	public Boolean checkAdopterPets(final int petId) {
 		Boolean res = true;
-		Pet p = petService.findOne(petId);
-		Adopter a = adopterService.findByUserAccount(LoginService.getPrincipal());
-		Collection<Application> appsByAdopter = this.findAppsByAdopter(a);
-		
-		for (Application app : appsByAdopter) {
+		final Pet p = this.petService.findOne(petId);
+		final Adopter a = this.adopterService.findByUserAccount(LoginService.getPrincipal());
+		final Collection<Application> appsByAdopter = this.findAppsByAdopter(a);
+
+		for (final Application app : appsByAdopter)
 			if (app.getPet().equals(p) && !app.getStatus().equals("REJECTED")) {
 				res = false;
 				return res;
 			}
-		}
 		return res;
 	}
-	
-	public Application checkRejectedTest(Application a) {
-		if(a.getRejectCause().equals(",")) a.setRejectCause("");
-		
-		if(a.getStatus().equals("REJECTED") && a.getRejectCause().isEmpty()){
-			throw new IllegalArgumentException();
-		}
-		if(a.getStatus().equals("ACCEPTED")){
+
+	public Application checkRejectedTest(final Application a) {
+		if (a.getRejectCause().equals(","))
 			a.setRejectCause("");
-		}
+
+		if (a.getStatus().equals("REJECTED") && a.getRejectCause().isEmpty())
+			throw new IllegalArgumentException();
+		if (a.getStatus().equals("ACCEPTED"))
+			a.setRejectCause("");
 		return a;
 	}
-	
-	public Application reconstructStatus(Application a){
-		Application res = this.findOne(a.getId());
+
+	public Application reconstructStatus(final Application a) {
+		final Application res = this.findOne(a.getId());
 		res.setStatus(a.getStatus());
 		res.setRejectCause(a.getRejectCause());
-		
+
 		return res;
 	}
-	
-	public Application reconstruct(Application ap, BindingResult binding) {
+
+	public Application reconstruct(final Application ap, final BindingResult binding) {
 		Application res;
-		
-		if (ap.getId()==0) {
-			Date moment = new Date(System.currentTimeMillis()-1);
+
+		if (ap.getId() == 0) {
+			final Date moment = new Date(System.currentTimeMillis() - 1);
 			ap.setMoment(moment);
 			ap.setStatus("PENDING");
 			res = ap;
@@ -163,6 +158,24 @@ public class ApplicationService {
 		}
 		this.validator.validate(res, binding);
 		return res;
+	}
+
+	public String deleteWeirdCommas(final String s) {
+		final int n = s.length();
+		int i = 0;
+		final char comma = ',';
+		String result = s;
+		if (n != 0)
+			while (i < n)
+				if (!s.isEmpty() && s != null) {
+					final char testComma = s.charAt(i);
+					if (testComma == comma)
+						result = s.substring(i + 1);
+					else
+						break;
+					i++;
+				}
+		return result;
 	}
 
 }
