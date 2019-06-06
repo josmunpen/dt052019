@@ -70,11 +70,14 @@ public class ApplicationStatusController extends AbstractController {
 			result = this.createEditModelAndView(application);
 		else
 			try {
+				final String newRejectCause = this.as.deleteWeirdCommas(application.getRejectCause());
+				application.setRejectCause(newRejectCause);
 				final char comma2 = ',';
-				if (application.getStatus() == "REJECTED" || application.getStatus().contains("REJECTED"))
+				if (application.getStatus() == "REJECTED" || application.getStatus().contains("REJECTED")) {
+					Assert.isTrue(!newRejectCause.isEmpty(), "mandatoryRejectReason");
 					if (application.getRejectCause().length() == 1)
 						Assert.isTrue(application.getRejectCause().charAt(0) != comma2, "mandatoryRejectReason");
-
+				}
 				final Application a = this.as.reconstructStatus(application);
 
 				this.as.saveStatus(a);
