@@ -102,7 +102,18 @@
 		</property>
 	</bean>
 	
-		
+	<bean id="userAccount8" class="security.UserAccount">
+		<property name="username" value="admin2" />
+		<property name="password" value="c84258e9c39059a89ab77d846ddab909" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="VETERINARIAN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
 	<!-- Other domain beans come here -->	
 	
 	<bean id="customisation1" class="domain.Customisation">
@@ -143,6 +154,34 @@
 		  <property name="expirationMonth" value="5" /> 
 		  <property name="cvv" value="583" /> 
 		  <property name="description" value="Me gustan muchísimo los gatos!" />
+	</bean>
+	
+	<bean id="admin2" class="domain.Administrator">
+		  <property name="name" value="Administrator2" /> 
+		  <property name="surname" value="Admin2" /> 
+		  <property name="photo" value="http://www.foto2.com" /> 
+		  <property name="email" value="admin2@" /> 
+		  <property name="phoneNumber" value="+34 676676676" /> 
+		  <property name="address" value="Address 2" /> 
+		  <property name="userAccount" ref="userAccount8" /> 
+		  <property name="socialProfiles">
+			  <list /> 
+			  </property>
+		  <property name="boxes">
+				<list>
+				<ref bean="in8" />
+				<ref bean="notification8" />
+				<ref bean="out8" />
+				<ref bean="trash8" />
+			</list>
+		  </property>
+		  <property name="holderName" value="Admin2 Admin2" /> 
+		  <property name="makeName" value="VISA" /> 
+		  <property name="number" value="4083602396731593" /> 
+		  <property name="expirationYear" value="2025" /> 
+		  <property name="expirationMonth" value="5" /> 
+		  <property name="cvv" value="583" /> 
+		  <property name="description" value="Me gustan muchísimo los loros!" />
 	</bean>
 	
 	<bean id="petowner1" class="domain.PetOwner">
@@ -1252,6 +1291,54 @@
 
 
 
+	</bean>
+	<bean id="in8" class="domain.Box">
+
+		<property name="name" value="in box" />
+		<property name="predefined" value="true" /> <property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<bean id="notification8" class="domain.Box">
+
+		<property name="name" value="notification box" />
+		<property name="predefined" value="true" /> <property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+
+	</bean>
+
+	<bean id="out8" class="domain.Box">
+
+		<property name="name" value="out box" />
+
+		<property name="predefined" value="true" /> <property name="messages">
+
+			<list>
+
+			</list>
+		</property>
+
+
+	</bean>
+
+	<bean id="trash8" class="domain.Box">
+
+		<property name="name" value="trash box" />
+
+		<property name="predefined" value="true" /> <property name="messages">
+		<list>
+			</list>
+		</property>
 	</bean>
 
 	
