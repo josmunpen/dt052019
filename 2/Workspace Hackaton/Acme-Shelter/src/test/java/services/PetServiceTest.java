@@ -39,10 +39,12 @@ public class PetServiceTest extends AbstractTest {
 
 
 	/**
-	 * TESTING REQUIREMENT #? and #? (Manage Pet:CREATE)
+	 * TESTING REQUIREMENT #11.1 (Manage Pet:CREATE)
 	 * POSITIVE TEST
 	 * COVERED INSTRUCTIONS IN THIS TEST: 100%
-	 * COVERED INSTRUCTIONS IN AuditService: 66.8%
+	 * COVERED INSTRUCTIONS IN PetService: 32.6%
+	 * COVERED INSTRUCTIONS IN PetTypeService: 10.0%
+	 * COVERED INSTRUCTIONS IN PetOwnerService: 13.2%
 	 * COVERED DATA IN THIS TEST: 12%
 	 * */
 
@@ -97,7 +99,7 @@ public class PetServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 
 			/**
-			 * TESTING REQUIREMENT #3.1 and #3.2
+			 * TESTING REQUIREMENT #11.1
 			 * POSITIVE TEST
 			 * COVERED INSTRUCTIONS: 100%
 			 * COVERED DATA: 10%
@@ -106,7 +108,7 @@ public class PetServiceTest extends AbstractTest {
 				"petowner1", p, null
 			},
 			/**
-			 * TESTING REQUIREMENT #3.1 and #3.2
+			 * TESTING REQUIREMENT #11.1
 			 * POSITIVE TEST
 			 * COVERED INSTRUCTIONS: 100%
 			 * COVERED DATA: 10%
@@ -117,7 +119,7 @@ public class PetServiceTest extends AbstractTest {
 			},
 
 			/**
-			 * TESTING REQUIREMENT #3.1 and #3.2
+			 * TESTING REQUIREMENT #11.1
 			 * NEGATIVE TEST (YOU CAN NOT CREATE A PET WITH NO IDENTIFIER)
 			 * (Expected ConstraintViolationException)
 			 * COVERED INSTRUCTIONS: 100%
@@ -129,7 +131,7 @@ public class PetServiceTest extends AbstractTest {
 			},
 
 			/**
-			 * TESTING REQUIREMENT #3.1 and #3.2
+			 * TESTING REQUIREMENT #11.1
 			 * NEGATIVE TEST (YOU CAN NOT CREATE A PET WITH NO NAME)
 			 * (Expected ConstraintViolationException)
 			 * COVERED INSTRUCTIONS: 100%
@@ -145,10 +147,12 @@ public class PetServiceTest extends AbstractTest {
 			this.template2((String) testingData[i][0], (Pet) testingData[i][1], (Class<?>) testingData[i][2]);
 	}
 	/**
-	 * TESTING REQUIREMENT #3.2 (Manage Audit:EDIT)
+	 * TESTING REQUIREMENT #11.1 (Manage Pet:EDIT)
 	 * POSITIVE TEST
 	 * COVERED INSTRUCTIONS IN THIS TEST: 100%
-	 * COVERED INSTRUCTIONS IN AuditService: 66.8%
+	 * COVERED INSTRUCTIONS IN PetService: 32.6%
+	 * COVERED INSTRUCTIONS IN PetTypeService: 10.0%
+	 * COVERED INSTRUCTIONS IN PetOwnerService: 13.2%
 	 * COVERED DATA IN THIS TEST: 12%
 	 * */
 
@@ -167,7 +171,7 @@ public class PetServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 
 			/**
-			 * TESTING REQUIREMENT #3.2
+			 * TESTING REQUIREMENT #11.1
 			 * POSITIVE TEST
 			 * COVERED INSTRUCTIONS: 100%
 			 * COVERED DATA: 10%
@@ -176,7 +180,7 @@ public class PetServiceTest extends AbstractTest {
 				"petowner1", p5, null
 			},
 			/**
-			 * TESTING REQUIREMENT #3.2
+			 * TESTING REQUIREMENT #11.1
 			 * POSITIVE TEST
 			 * COVERED INSTRUCTIONS: 100%
 			 * COVERED DATA: 10%
@@ -205,7 +209,7 @@ public class PetServiceTest extends AbstractTest {
 
 		final Object testingData[][] = {
 			/**
-			 * TESTING REQUIREMENT #15
+			 * TESTING REQUIREMENT #11.1
 			 * NEGATIVE TEST: SEX CAN BE JUST MALE OR FEMALE
 			 * (Expected ConstraintViolationException)
 			 * COVERED INSTRUCTIONS: 100%
@@ -216,7 +220,7 @@ public class PetServiceTest extends AbstractTest {
 			},
 
 			/**
-			 * TESTING REQUIREMENT #15
+			 * TESTING REQUIREMENT #11.1
 			 * NEGATIVE TEST: STATUS CAN BE JUST LOW OR MEDIUM OR HIGH
 			 * (Expected ConstraintViolationException)
 			 * COVERED INSTRUCTIONS: 100%
@@ -233,10 +237,12 @@ public class PetServiceTest extends AbstractTest {
 	}
 
 	/**
-	 * TESTING REQUIREMENT #3.2 (Manage Pet: DELETE)
+	 * TESTING REQUIREMENT #11.1 (Manage Pet: DELETE)
 	 * POSITIVE TEST
 	 * COVERED INSTRUCTIONS IN THIS TEST: 100%
-	 * COVERED INSTRUCTIONS IN AuditService: 66.8%
+	 * COVERED INSTRUCTIONS IN PetService: 32.6%
+	 * COVERED INSTRUCTIONS IN PetTypeService: 10.0%
+	 * COVERED INSTRUCTIONS IN PetOwnerService: 13.2%
 	 * COVERED DATA IN THIS TEST: 12%
 	 * */
 
@@ -252,7 +258,7 @@ public class PetServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 
 			/**
-			 * TESTING REQUIREMENT #3.2
+			 * TESTING REQUIREMENT #11.1
 			 * POSITIVE TEST
 			 * COVERED INSTRUCTIONS: 100%
 			 * COVERED DATA: 10%
@@ -261,7 +267,7 @@ public class PetServiceTest extends AbstractTest {
 				"petowner1", p10, null
 			},
 			/**
-			 * TESTING REQUIREMENT #15
+			 * TESTING REQUIREMENT #11.1
 			 * NEGATIVE TEST: YOU CANNOT DELETE A PET BEING A VETERINARIAN
 			 * (Expected NullPointerException)
 			 * COVERED INSTRUCTIONS: 100%

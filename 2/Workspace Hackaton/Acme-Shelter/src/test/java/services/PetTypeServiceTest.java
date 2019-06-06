@@ -21,29 +21,18 @@ public class PetTypeServiceTest extends AbstractTest {
 
 	//SUT
 	@Autowired
-	private MessageService			messageService;
-
-	@Autowired
-	private AdministratorService	as;
-
-	@Autowired
-	private BoxService				bs;
-
-	@Autowired
-	private PetTypeService			pts;
+	private PetTypeService	pts;
 
 
 	/**
-	 * TESTING REQUIREMENT #23 (Messages)
-	 * POSITIVE TEST
+	 * TESTING REQUIREMENT #13.6 (Manages PetTypes)
 	 * COVERED INSTRUCTIONS IN THIS TEST: 100%
-	 * COVERED INSTRUCTIONS IN MessageService: 7.1%
-	 * COVERED INSTRUCTIONS IN BoxService: 15.8%
+	 * COVERED INSTRUCTIONS IN PetTypeService: 33.0%
 	 * COVERED DATA IN THIS TEST: 40%
 	 * */
 
 	@Test
-	public void createMessage() {
+	public void createPetType() {
 		this.authenticate("admin");
 		final PetType p1 = this.pts.create();
 		//p1.setChilds(new ArrayList<PetType>());
@@ -68,7 +57,7 @@ public class PetTypeServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 
 			/**
-			 * TESTING REQUIREMENT #23
+			 * TESTING REQUIREMENT #13.6
 			 * POSITIVE TEST
 			 * COVERED INSTRUCTIONS: 100%
 			 * COVERED DATA: 21%
@@ -78,12 +67,12 @@ public class PetTypeServiceTest extends AbstractTest {
 			},
 
 			/**
-			 * TESTING REQUIREMENT #23
-			 * POSITIVE TEST
+			 * TESTING REQUIREMENT #13.6
+			 * NEGATIVE TEST (YOU CAN NOT CREATE A PetType WITH NO NAME)
+			 * (Expected IllegalArgumentException)
 			 * COVERED INSTRUCTIONS: 100%
-			 * COVERED DATA: 21%
-			 * 
-			 */
+			 * COVERED DATA: 10%
+			 * */
 
 			{
 				"admin", p2, IllegalArgumentException.class

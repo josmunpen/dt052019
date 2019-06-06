@@ -37,11 +37,9 @@ public class AdministratorServiceTest extends AbstractTest {
 
 
 	/**
-	 * TESTING REQUIREMENT #7.1 (Register as a administrator)
-	 * POSITIVE TEST
+	 * TESTING REQUIREMENT #13.1 (Register as a administrator)
 	 * COVERED INSTRUCTIONS IN THIS TEST: 100%
-	 * COVERED INSTRUCTIONS IN AdministratorService: 29.8%
-	 * COVERED INSTRUCTIONS IN ActorService: 35.6%
+	 * COVERED INSTRUCTIONS IN AdministratorService: 28.5%
 	 * COVERED DATA IN THIS TEST: 40%
 	 * */
 
@@ -98,7 +96,7 @@ public class AdministratorServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 
 			/**
-			 * TESTING REQUIREMENT #7.1
+			 * TESTING REQUIREMENT #13.1
 			 * POSITIVE TEST
 			 * COVERED INSTRUCTIONS: 100%
 			 * COVERED DATA: 10%
@@ -108,9 +106,9 @@ public class AdministratorServiceTest extends AbstractTest {
 			},
 
 			/**
-			 * TESTING REQUIREMENT #7.1
+			 * TESTING REQUIREMENT #13.1
 			 * NEGATIVE TEST: YOU CANNOT REGISTER WITH SOME NULL VALUES
-			 * (Expected ConstraintViolationException)
+			 * (Expected ValidationException)
 			 * COVERED INSTRUCTIONS: 100%
 			 * COVERED DATA: 10%
 			 * */
@@ -147,10 +145,9 @@ public class AdministratorServiceTest extends AbstractTest {
 	}
 
 	/**
-	 * THIS TEST IS FOR TESTING THE REQUIREMENT #8.2 (EDIT PERSONAL DATA)
+	 * THIS TEST IS FOR TESTING THE REQUIREMENT #10.2 (EDIT PERSONAL DATA)
 	 * COVERED INSTRUCTIONS IN THIS TEST: 100%
-	 * COVERED INSTRUCTIONS IN AdministratorService: 29.8%
-	 * COVERED INSTRUCTIONS IN ActorService: 35.6%
+	 * COVERED INSTRUCTIONS IN AdministratorService: 28.5%
 	 * COVERED DATA IN THIS TEST: 50%
 	 * */
 
@@ -171,7 +168,7 @@ public class AdministratorServiceTest extends AbstractTest {
 		final Administrator com2 = admins.get(1);
 
 		com2.setAddress(null);
-		com2.setEmail(null);
+		com2.setEmail("newAdministrator@gmail.com");
 		com2.setName(null);
 		com2.setPhoneNumber("+34 1231456789");
 		com2.setPhoto("http://www.sample.com");
@@ -180,7 +177,7 @@ public class AdministratorServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 
 			/**
-			 * TESTING REQUIREMENT #1
+			 * TESTING REQUIREMENT #10.2
 			 * POSITIVE TEST
 			 * COVERED INSTRUCTIONS: 100%
 			 * COVERED DATA: 25%
@@ -188,8 +185,15 @@ public class AdministratorServiceTest extends AbstractTest {
 			{
 				"admin", compa1, null
 			}, {
+				/**
+				 * TESTING REQUIREMENT #10.2
+				 * NEGATIVE TEST (YOU CAN NOT CREATE AN ADMIN WITH NO NAME)
+				 * (Expected ConstraintViolationException)
+				 * COVERED INSTRUCTIONS: 100%
+				 * COVERED DATA: 10%
+				 * */
 				"admin", com2, ConstraintViolationException.class
-			},
+			}
 		};
 
 		for (int i = 0; i < testingData.length; i++)

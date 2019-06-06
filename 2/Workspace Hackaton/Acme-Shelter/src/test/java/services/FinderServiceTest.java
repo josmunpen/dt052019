@@ -35,8 +35,22 @@ public class FinderServiceTest extends AbstractTest {
 	PetService			petService;
 
 
+	/**
+	 * TESTING REQUIREMENT #34.1 (Manage Finder)
+	 * COVERED INSTRUCTIONS IN THIS TEST: 100%
+	 * COVERED INSTRUCTIONS IN FinderService: 54.1%
+	 * COVERED INSTRUCTIONS IN PetService: 27.6%
+	 * COVERED DATA IN THIS TEST: 12%
+	 * */
+
 	@Test
 	public void testFinder() {
+		/**
+		 * TESTING REQUIREMENT #34.1
+		 * POSITIVE TEST
+		 * COVERED INSTRUCTIONS: 100%
+		 * COVERED DATA: 10%
+		 * */
 		super.authenticate("adopter1");
 		final int finderId = super.getEntityId("finder1");
 		final Finder f = this.finderService.findOne(finderId);
@@ -47,6 +61,13 @@ public class FinderServiceTest extends AbstractTest {
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testFinderBadSalary() {
+		/**
+		 * TESTING REQUIREMENT #34.1
+		 * NEGATIVE TEST (YOU CAN NOT EDIT YOUR FINDER SETTING A SCRIPT AS ITS KEYWORD)
+		 * (Expected ConstraintViolationException)
+		 * COVERED INSTRUCTIONS: 100%
+		 * COVERED DATA: 10%
+		 * */
 		super.authenticate("adopter1");
 		final int finderId = super.getEntityId("finder1");
 		final Finder f = this.finderService.findOne(finderId);
@@ -59,6 +80,12 @@ public class FinderServiceTest extends AbstractTest {
 
 	@Test
 	public void testFinderClear() {
+		/**
+		 * TESTING REQUIREMENT #34.2
+		 * POSITIVE TEST
+		 * COVERED INSTRUCTIONS: 100%
+		 * COVERED DATA: 10%
+		 * */
 		super.authenticate("adopter1");
 		final int finderId = super.getEntityId("finder1");
 		final Finder f = this.finderService.findOne(finderId);
@@ -73,7 +100,14 @@ public class FinderServiceTest extends AbstractTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testFinderBadClear() {
-		super.authenticate("adopter1");
+		/**
+		 * TESTING REQUIREMENT #34.2
+		 * NEGATIVE TEST (YOU CANNOT CLEAR A FINDER BEING A PETOWNER)
+		 * (Expected IllegalArgumentException)
+		 * COVERED INSTRUCTIONS: 100%
+		 * COVERED DATA: 10%
+		 * */
+		super.authenticate("petowner1");
 		final int finderId = super.getEntityId("finder1");
 		final Finder f = this.finderService.findOne(finderId);
 		f.setKeyword("testclear");
@@ -81,7 +115,6 @@ public class FinderServiceTest extends AbstractTest {
 		f.setSex("FEMALE");
 		f.setType("DOG");
 		final Finder ftest = this.finderService.clear(f);
-		Assert.isTrue(ftest.getAge() != null && ftest.getKeyword() != "" && ftest.getSex() != "" && ftest.getType() != "");
 		//		Assert.isTrue(ftest.getKeyword() == "" && ftest.getSex() == "" && ftest.getAge() == null && ftest.getType() == "");
 		super.unauthenticate();
 	}

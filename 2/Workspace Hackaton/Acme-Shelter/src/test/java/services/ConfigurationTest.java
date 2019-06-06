@@ -28,8 +28,22 @@ public class ConfigurationTest extends AbstractTest {
 	CustomisationRepository	repository;
 
 
+	/**
+	 * TESTING REQUIREMENT #34.1 (Manage Customisation)
+	 * COVERED INSTRUCTIONS IN THIS TEST: 100%
+	 * COVERED INSTRUCTIONS IN CustomisationService: 66.2%
+	 * COVERED DATA IN THIS TEST: 16%
+	 * */
+
 	@Test
 	public void configTest() {
+		/**
+		 * TESTING REQUIREMENT #34.1
+		 * POSITIVE TEST
+		 * COVERED INSTRUCTIONS: 100%
+		 * COVERED DATA: 12%
+		 * */
+
 		super.authenticate("admin");
 		final Customisation cus = this.service.getCustomisation();
 		cus.setFinderDuration(4);
@@ -41,6 +55,15 @@ public class ConfigurationTest extends AbstractTest {
 
 	@Test(expected = ConstraintViolationException.class)
 	public void configBadFinderDurationTest() {
+
+		/**
+		 * TESTING REQUIREMENT #34.1
+		 * NEGATIVE TEST (YOU CAN NOT SET A FINDER DURATION THAT LONG)
+		 * (Expected ConstraintViolationException)
+		 * COVERED INSTRUCTIONS: 100%
+		 * COVERED DATA: 10%
+		 * */
+
 		super.authenticate("admin");
 		final Customisation cus = this.service.getCustomisation();
 		cus.setFinderDuration(1293);
@@ -51,6 +74,13 @@ public class ConfigurationTest extends AbstractTest {
 
 	@Test(expected = ConstraintViolationException.class)
 	public void configBadSystemNameTest() {
+		/**
+		 * TESTING REQUIREMENT #34.1
+		 * NEGATIVE TEST (YOU CAN NOT SET A SYSTEM NAME THAT CONTAINS A SCRIPT IN IT)
+		 * (Expected ConstraintViolationException)
+		 * COVERED INSTRUCTIONS: 100%
+		 * COVERED DATA: 10%
+		 * */
 		super.authenticate("admin");
 		final Customisation cus = this.service.getCustomisation();
 		cus.setSystemName("<script></script>");
@@ -61,6 +91,13 @@ public class ConfigurationTest extends AbstractTest {
 
 	@Test(expected = ConstraintViolationException.class)
 	public void configBadVatPercentajeTest() {
+		/**
+		 * TESTING REQUIREMENT #34.1
+		 * NEGATIVE TEST (YOU CAN NOT SET A VAT HIGHER THAN 100 OR LOWER THAN 0)
+		 * (Expected ConstraintViolationException)
+		 * COVERED INSTRUCTIONS: 100%
+		 * COVERED DATA: 10%
+		 * */
 		super.authenticate("admin");
 		final Customisation cus = this.service.getCustomisation();
 		cus.setVat(-1231231);

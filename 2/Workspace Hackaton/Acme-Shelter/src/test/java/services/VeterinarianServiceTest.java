@@ -37,10 +37,10 @@ public class VeterinarianServiceTest extends AbstractTest {
 
 
 	/**
-	 * TESTING REQUIREMENT #7.1 (Register as a veterinarian)
+	 * TESTING REQUIREMENT #24.1 (Register as a veterinarian)
 	 * POSITIVE TEST
 	 * COVERED INSTRUCTIONS IN THIS TEST: 100%
-	 * COVERED INSTRUCTIONS IN VeterinarianService: 29.8%
+	 * COVERED INSTRUCTIONS IN VeterinarianService: 28.6%
 	 * COVERED INSTRUCTIONS IN ActorService: 35.6%
 	 * COVERED DATA IN THIS TEST: 40%
 	 * */
@@ -98,7 +98,7 @@ public class VeterinarianServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 
 			/**
-			 * TESTING REQUIREMENT #7.1
+			 * TESTING REQUIREMENT #24.1
 			 * POSITIVE TEST
 			 * COVERED INSTRUCTIONS: 100%
 			 * COVERED DATA: 10%
@@ -108,7 +108,7 @@ public class VeterinarianServiceTest extends AbstractTest {
 			},
 
 			/**
-			 * TESTING REQUIREMENT #7.1
+			 * TESTING REQUIREMENT #24.1
 			 * NEGATIVE TEST: YOU CANNOT REGISTER WITH SOME NULL VALUES
 			 * (Expected ConstraintViolationException)
 			 * COVERED INSTRUCTIONS: 100%
@@ -147,9 +147,9 @@ public class VeterinarianServiceTest extends AbstractTest {
 	}
 
 	/**
-	 * THIS TEST IS FOR TESTING THE REQUIREMENT #8.2 (EDIT PERSONAL DATA)
+	 * THIS TEST IS FOR TESTING THE REQUIREMENT #10.2 (EDIT PERSONAL DATA)
 	 * COVERED INSTRUCTIONS IN THIS TEST: 100%
-	 * COVERED INSTRUCTIONS IN VeterinarianService: 29.8%
+	 * COVERED INSTRUCTIONS IN VeterinarianService: 28.6%
 	 * COVERED INSTRUCTIONS IN ActorService: 35.6%
 	 * COVERED DATA IN THIS TEST: 50%
 	 * */
@@ -180,7 +180,7 @@ public class VeterinarianServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 
 			/**
-			 * TESTING REQUIREMENT #1
+			 * TESTING REQUIREMENT #10.2
 			 * POSITIVE TEST
 			 * COVERED INSTRUCTIONS: 100%
 			 * COVERED DATA: 25%
@@ -188,6 +188,13 @@ public class VeterinarianServiceTest extends AbstractTest {
 			{
 				"veterinarian1", compa1, null
 			}, {
+				/**
+				 * TESTING REQUIREMENT #10.2
+				 * NEGATIVE TEST (YOU CAN NOT CREATE A VETERINARIAN WITH NO NAME)
+				 * (Expected ConstraintViolationException)
+				 * COVERED INSTRUCTIONS: 100%
+				 * COVERED DATA: 10%
+				 * */
 				"veterinarian2", com2, ConstraintViolationException.class
 			},
 		};

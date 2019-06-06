@@ -32,11 +32,10 @@ public class PetOwnerServiceTest extends AbstractTest {
 
 
 	/**
-	 * TESTING REQUIREMENT #7.1 (Register as a petOwner)
+	 * TESTING REQUIREMENT #15.1 (Register as a petOwner)
 	 * POSITIVE TEST
 	 * COVERED INSTRUCTIONS IN THIS TEST: 100%
-	 * COVERED INSTRUCTIONS IN PetOwnerService: 31.1%
-	 * COVERED INSTRUCTIONS IN ActorService: 35.6%
+	 * COVERED INSTRUCTIONS IN PetOwnerService: 29.3%
 	 * COVERED DATA IN THIS TEST: 12%
 	 * */
 
@@ -93,7 +92,7 @@ public class PetOwnerServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 
 			/**
-			 * TESTING REQUIREMENT #7.1
+			 * TESTING REQUIREMENT #15.1
 			 * POSITIVE TEST
 			 * COVERED INSTRUCTIONS: 100%
 			 * COVERED DATA: 10%
@@ -103,7 +102,7 @@ public class PetOwnerServiceTest extends AbstractTest {
 			},
 
 			/**
-			 * TESTING REQUIREMENT #7.1
+			 * TESTING REQUIREMENT #15.1
 			 * NEGATIVE TEST: YOU CANNOT REGISTER WITH SOME NULL VALUES
 			 * (Expected ConstraintViolationException)
 			 * COVERED INSTRUCTIONS: 100%
@@ -138,10 +137,9 @@ public class PetOwnerServiceTest extends AbstractTest {
 	}
 
 	/**
-	 * THIS TEST IS FOR TESTING THE REQUIREMENT #8.2 (EDIT PERSONAL DATA)
+	 * THIS TEST IS FOR TESTING THE REQUIREMENT #10.2 (EDIT PERSONAL DATA)
 	 * COVERED INSTRUCTIONS IN THIS TEST: 100%
-	 * COVERED INSTRUCTIONS IN PetOwnerService: 31.1%
-	 * COVERED INSTRUCTIONS IN ActorService: 35.6%
+	 * COVERED INSTRUCTIONS IN PetOwnerService: 29.3%
 	 * COVERED DATA IN THIS TEST: 70%
 	 * */
 
@@ -171,7 +169,7 @@ public class PetOwnerServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 
 			/**
-			 * TESTING REQUIREMENT #1
+			 * TESTING REQUIREMENT #10.2
 			 * POSITIVE TEST
 			 * COVERED INSTRUCTIONS: 100%
 			 * COVERED DATA: 25%
@@ -179,6 +177,13 @@ public class PetOwnerServiceTest extends AbstractTest {
 			{
 				"petOwner1", compa1, null
 			}, {
+				/**
+				 * TESTING REQUIREMENT #10.2
+				 * NEGATIVE TEST (YOU CAN NOT CREATE A PETOWNER WITH NO NAME)
+				 * (Expected ConstraintViolationException)
+				 * COVERED INSTRUCTIONS: 100%
+				 * COVERED DATA: 10%
+				 * */
 				"petOwner2", com2, ConstraintViolationException.class
 			},
 		};

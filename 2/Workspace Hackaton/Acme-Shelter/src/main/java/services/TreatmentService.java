@@ -119,5 +119,9 @@ public class TreatmentService {
 		// TODO Auto-generated method stub
 		return this.treatmentRepository.findByMedicalCheckUp(m.getId());
 	}
+	
+	public void flush(){
+		this.treatmentRepository.flush();
+	}
 
 }

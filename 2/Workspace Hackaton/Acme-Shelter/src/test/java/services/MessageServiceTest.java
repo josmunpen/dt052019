@@ -36,11 +36,10 @@ public class MessageServiceTest extends AbstractTest {
 
 
 	/**
-	 * TESTING REQUIREMENT #23 (Messages)
-	 * POSITIVE TEST
+	 * TESTING REQUIREMENT #10.3 (Messages)
 	 * COVERED INSTRUCTIONS IN THIS TEST: 100%
-	 * COVERED INSTRUCTIONS IN MessageService: 7.1%
-	 * COVERED INSTRUCTIONS IN BoxService: 15.8%
+	 * COVERED INSTRUCTIONS IN MessageService: 10.1%
+	 * COVERED INSTRUCTIONS IN BoxService: 42.4%
 	 * COVERED DATA IN THIS TEST: 40%
 	 * */
 
@@ -84,10 +83,29 @@ public class MessageServiceTest extends AbstractTest {
 
 		this.unauthenticate();
 
+		this.authenticate("veterinarian1");
+		final Message m3 = this.messageService.create();
+		final int idvet5 = super.getEntityId("veterinarian1");
+		final Veterinarian v3 = this.hs.findOne(idvet5);
+		m.setSender(v3);
+		final int idvet6 = super.getEntityId("veterinarian2");
+		final Veterinarian h4 = this.hs.findOne(idvet6);
+		final ArrayList<Actor> actors3 = new ArrayList<Actor>();
+		actors2.add(h4);
+		m3.setRecipients(actors3);
+		m3.setBody("BodY");
+		m3.setBroadcast(false);
+		m3.setMoment(new Date());
+		m3.setSubject("");
+		m3.setTag("TEST");
+		m3.setPriority(null);
+
+		this.unauthenticate();
+
 		final Object testingData[][] = {
 
 			/**
-			 * TESTING REQUIREMENT #23
+			 * TESTING REQUIREMENT #10.3
 			 * POSITIVE TEST
 			 * COVERED INSTRUCTIONS: 100%
 			 * COVERED DATA: 21%
@@ -97,16 +115,27 @@ public class MessageServiceTest extends AbstractTest {
 			},
 
 			/**
-			 * TESTING REQUIREMENT #23
-			 * POSITIVE TEST
+			 * TESTING REQUIREMENT #10.3
+			 * NEGATIVE TEST (YOU CAN NOT CREATE A MESSAGE WITH NO BODY)
+			 * (Expected IllegalArgumentException)
 			 * COVERED INSTRUCTIONS: 100%
-			 * COVERED DATA: 21%
-			 * 
-			 */
+			 * COVERED DATA: 10%
+			 * */
 
 			{
 				"veterinarian1", m2, IllegalArgumentException.class
 			},
+
+			/**
+			 * TESTING REQUIREMENT #10.3
+			 * NEGATIVE TEST (YOU CAN NOT CREATE A MESSAGE WITH NO SUBJECT)
+			 * (Expected IllegalArgumentException)
+			 * COVERED INSTRUCTIONS: 100%
+			 * COVERED DATA: 10%
+			 * */
+			{
+				"veterinarian1", m3, IllegalArgumentException.class
+			}
 
 		};
 

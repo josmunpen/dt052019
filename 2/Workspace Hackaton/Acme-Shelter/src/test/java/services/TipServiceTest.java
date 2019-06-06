@@ -24,10 +24,9 @@ public class TipServiceTest extends AbstractTest {
 
 
 	/**
-	 * // * TESTING REQUIREMENT #31 (Create a tip)
-	 * // * POSITIVE TEST
+	 * // * TESTING REQUIREMENT #21.4 (Create a tip)
 	 * // * COVERED INSTRUCTIONS IN THIS TEST: 100%;
-	 * // * COVERED INSTRUCTIONS IN CommentService: 46.1%;
+	 * // * COVERED INSTRUCTIONS IN TipService: 11.2%;
 	 * 
 	 * // * COVERED DATA: 50%
 	 * //
@@ -44,10 +43,31 @@ public class TipServiceTest extends AbstractTest {
 	}
 
 	/**
-	 * // * TESTING REQUIREMENT #31 (Create a tip)
-	 * // * NEGATIVE TEST, YOU CAN NOT CREATE A TIP WITH NO TITLE;
+	 * // * TESTING REQUIREMENT #21.4 (Create a tip)
+	 * // * NEGATIVE TEST, YOU CAN NOT CREATE A TIP BEING A PETOWNER;
+	 * (Expected IllegalArgumentException)
 	 * // * COVERED INSTRUCTIONS IN THIS TEST: 100%;
-	 * // * COVERED INSTRUCTIONS IN CommentService: 46.1%;
+	 * // * COVERED INSTRUCTIONS IN TipService: 46.1%;
+	 * 
+	 * // * COVERED DATA: 50%
+	 * //
+	 **/
+	@Test(expected = IllegalArgumentException.class)
+	public void createTipBad() {
+		super.authenticate("petowner");
+		final Tip t = this.tipService.create();
+		t.setBody("");
+		t.setTitle("Title");
+		this.tipService.save(t);
+		super.unauthenticate();
+	}
+
+	/**
+	 * // * TESTING REQUIREMENT #21.4 (Create a tip)
+	 * // * NEGATIVE TEST, YOU CAN NOT CREATE A TIP WITH NO TITLE;
+	 * (Expected IllegalArgumentException)
+	 * // * COVERED INSTRUCTIONS IN THIS TEST: 100%;
+	 * // * COVERED INSTRUCTIONS IN TipService: 46.1%;
 	 * 
 	 * // * COVERED DATA: 50%
 	 * //
