@@ -2,6 +2,7 @@
 package services;
 
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.List;
 
 import javax.validation.ValidationException;
@@ -32,10 +33,19 @@ public class MedicalCheckUpService {
 	@Autowired
 	VeterinarianService			veterinarianService;
 
+	@Autowired
+	TreatmentService			treatmentService;
+
 
 	public void delete(final MedicalCheckUp m) {
 
+		final Collection<Treatment> treats = this.treatmentService.findByMedicalCheckUp(m);
+
+		for (final Treatment t : treats)
+			this.treatmentService.delete(t);
+
 		this.medicalCheckUpRepository.delete(m.getId());
+
 	}
 
 	public List<MedicalCheckUp> findByPet(final Pet p) {
